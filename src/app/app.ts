@@ -11,6 +11,8 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { registerLocaleData } from '@angular/common';
 import hu from '@angular/common/locales/hu';
 
+import { CalendarComponent } from './components/calendar/calendar';
+
 
 registerLocaleData(hu);
 
@@ -24,9 +26,10 @@ registerLocaleData(hu);
             NzDropDownModule,
             NzIconModule,
             NzCalendarModule,
-            NzCardModule, ],
+            NzCardModule, 
+            CalendarComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
   icons = [ MenuOutline ]; 
@@ -44,21 +47,7 @@ export class App {
   }
   */
 
-  events = new Map<string, { type: string; title: string }[]>([
-  ['2025-11-01', [
-    { type: 'facebook', title: 'Gólyabál esemény' },
-    { type: 'instagram', title: 'Quizek' }
-  ]],
-  ['2025-11-03', [
-    { type: 'other', title: 'Animaci plakát' }
-  ]],
-  ['2025-11-15', [
-    { type: 'discord', title: 'Tanulmányi ösztöndíjak'}
-  ]],
-  ['2025-11-10', [
-    {type: 'webpage', title: 'Referensi pályázatok'}
-  ]]
-]);
+
 
 /*
   events = new Map<string, string[]>([

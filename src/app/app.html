@@ -41,26 +41,8 @@
           </div>
         </ng-template>
       -->
-        <nz-calendar [nzDateCell]="dateCellTemplate"></nz-calendar>
-
-        <ng-template #dateCellTemplate let-date>
-          <div class="date-cell">
-            
-
-            <div *ngIf="events.get(date.toISOString().split('T')[0]) as dayEvents"
-                class="events">
-              <div *ngFor="let e of dayEvents"
-                  class="event"
-                  [ngClass]="e.type">
-                <i *ngIf="e.type === 'facebook'" nz-icon nzType="facebook" nzTheme="fill"></i>
-                <i *ngIf="e.type === 'instagram'" nz-icon nzType="instagram" nzTheme="outline"></i>
-                <i *ngIf="e.type === 'meeting'" nz-icon nzType="calendar" nzTheme="outline"></i>
-                {{ e.title }}
-              </div>
-            </div>
-          </div>
-        </ng-template>
-
+        
+      <app-calendar></app-calendar>
       </div>
       <div class="tasks-card">
         <div class="title"> My tasks </div>

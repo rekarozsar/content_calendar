@@ -94,57 +94,6 @@ nz-menu-item {
   max-width: 70%;
 }
 
-.date-cell {
-  position: relative;
-  padding: 4px;
-  height: 80px;
-  box-sizing: border-box;
-}
-
-.day-number {
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-/* shared event pill look */
-
-.event {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: white;
-  padding: 2px 6px;
-  margin-top: 2px;
-  border-radius: 4px;
-  font-size: 11px;
-
-  /* 👇 this makes the text truncate instead of wrapping */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  /* make sure it can actually cut */
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-
-/* specific colors */
-.event.facebook { background: linear-gradient(45deg, #1877F2, #3C5898); }      /* Facebook blue  */
-.event.instagram {
-  background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
-}
-.event.discord { background: linear-gradient(45deg, #738ADB, #5865F2);}
-.event.other  { background: linear-gradient(45deg, #409b5c, #00a3b5) }
-.event.webpage { background: linear-gradient(45deg, #012850, #CEAF87);}
-
-/* icon sizing */
-.event i {
-  font-size: 12px;
-  color: white;
-}
-
-
 .main-comps {
   display: flex;
 }
