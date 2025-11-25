@@ -8,8 +8,7 @@
     <!-- Desktop menu -->
     <ul nz-menu class="top-nav desktop-menu" nzTheme="dark" nzMode="horizontal">
       <li nz-menu-item>Tasks</li>
-      <li nz-menu-item>Done</li>
-      <li nz-menu-item>New</li>
+      <li nz-menu-item (click)="openNewEvent()">New</li>
       <li nz-menu-item>Profile</li>
     </ul>
 
@@ -21,15 +20,21 @@
       <ul nz-menu nzTheme="dark">
         <li nz-menu-item>Tasks</li>
         <li nz-menu-item>Done</li>
-        <li nz-menu-item>New</li>
+        <li nz-menu-item (click)="openNewEvent()">New</li>
         <li nz-menu-item>Profile</li>
       </ul>
     </nz-dropdown-menu>
 
   </nz-header>
+  <app-create-event (eventCreated)="addEvent($event)"></app-create-event>
   <nz-content>
+    
+
+
 
     <div class="main-comps">
+      
+
       <div class="calendar-comp">
         <!--
         <nz-calendar [nzDateCell]="dateCellTemplate" ></nz-calendar>

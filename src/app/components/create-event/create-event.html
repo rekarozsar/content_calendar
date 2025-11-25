@@ -1,0 +1,53 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Create New Event"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzFooter]="footer">
+
+  <ng-container *nzModalContent>
+    
+    <div class="form-group">
+      <label>Title</label>
+      <input nz-input [(ngModel)]="newEvent.title" />
+    </div>
+
+    <div class="form-group">
+      <label>Type</label>
+      <nz-select nzPlaceHolder="Select platform" [(ngModel)]="newEvent.type">
+        <nz-option nzValue="facebook" nzLabel="Facebook"></nz-option>
+        <nz-option nzValue="instagram" nzLabel="Instagram"></nz-option>
+        <nz-option nzValue="discord" nzLabel="Discord"></nz-option>
+        <nz-option nzValue="webpage" nzLabel="Webpage"></nz-option>
+        <nz-option nzValue="other" nzLabel="Other"></nz-option>
+      </nz-select>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea nz-input [(ngModel)]="newEvent.description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Date</label>
+      <nz-date-picker [(ngModel)]="newEvent.date"></nz-date-picker>
+    </div>
+
+    <div class="form-group">
+      <label>Place</label>
+      <input nz-input [(ngModel)]="newEvent.place" />
+    </div>
+
+    <div class="form-group">
+      <label>Link</label>
+      <input nz-input [(ngModel)]="newEvent.link" />
+    </div>
+
+  </ng-container>
+
+  <ng-template #footer>
+    <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+    <button nz-button nzType="primary" (click)="handleOk()">Create</button>
+  </ng-template>
+
+</nz-modal>

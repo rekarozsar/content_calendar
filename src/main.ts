@@ -7,10 +7,12 @@ import { NZ_DATE_CONFIG } from 'ng-zorro-antd/i18n';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 bootstrapApplication(App, {
   providers: [
     provideRouter(routes),
+    provideAnimations(),
     BrowserAnimationsModule,
     provideHttpClient(),
     provideNzI18n(hu_HU),
