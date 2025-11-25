@@ -13,4 +13,9 @@ export class EventService {
   clearSelection() {
     this.selectedEventSource.next(null);
   }
+
+  updateSelectedEvent(event: any) {
+  this.selectedEventSource.next(event);
+}
+
 }

@@ -4,6 +4,7 @@ import { EventService } from '../../services/event';
 import { FormsModule } from '@angular/forms';
 
 
+
 @Component({
   selector: 'app-details',
   standalone: true,
@@ -34,9 +35,11 @@ export class EventDetailsComponent {
     }
   }
 
-  onReady() {
-    if (this.selectedEvent) {
-      console.log('Mark event as ready:', this.selectedEvent);
-    }
+  onPosted() {
+  if (this.selectedEvent) {
+    this.selectedEvent.posted = !this.selectedEvent.posted; 
+    this.eventService.updateSelectedEvent(this.selectedEvent);
   }
+}
+
 }

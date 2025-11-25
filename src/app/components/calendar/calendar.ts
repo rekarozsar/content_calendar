@@ -12,25 +12,36 @@ import { EventService } from '../../services/event';
   styleUrls: ['./calendar.css']
 })
 export class CalendarComponent {
-  constructor(private eventService: EventService) {}
+
+  selectedEvent: any = null;
+
+  constructor(private eventService: EventService) {
+    this.eventService.selectedEvent$.subscribe(event => {
+    this.selectedEvent = event;
+  });
+  }
 
   events = new Map<string, { type: string; title: string, 
                              description: string, date: Date | null,
                              place: string | null,
                              link: string | null, photo: string | null, 
-                             graphics: string[] | null, text: string[] | null,}[]>([
+                             graphics: string[] | null, text: string[] | null,
+                             posted: boolean
+                            }[]>([
     ['2025-11-01', [
       { type: 'facebook', title: 'Gólyabál esemény', 
         description: 'AAAAA AA AAAAA AAAAAAAAAA AAAAAAAA AAAAAAA AAAAAAAAA AAAAAAAA AAAAAAAAA AAAAAA AAAAA', date: new Date('2025-11-11:23:00'),
         place: 'Négyzet aula',
         link: null, photo: null, 
-        graphics: null, text: ['Teszt Elek']
+        graphics: null, text: ['Teszt Elek'],
+        posted: false
       },
       { type: 'instagram', title: 'Quizek', 
         description: 'ijsd dsjidsd dusdljsd dpojdé djldj sduidsknd sdihsdksd oisdj lsd ildslj', date: null,
         place: null,
         link: null, photo: null,
-        graphics: ['Virág', 'Emma', 'Zoltán', 'Andor'], text: null
+        graphics: ['Virág', 'Emma', 'Zoltán', 'Andor'], text: null,
+        posted: false
       }
     ]],
     ['2025-11-03', [
@@ -38,7 +49,8 @@ export class CalendarComponent {
         description: 'yapp', date: null,
         place: null,
         link: null, photo: null,
-        graphics: null, text: null
+        graphics: null, text: null,
+        posted: false
       }
     ]],
     ['2025-11-15', [
@@ -46,7 +58,8 @@ export class CalendarComponent {
         description: 'uashask', date: null,
         place: null,
         link: null, photo: null,
-        graphics: null, text: null
+        graphics: null, text: null,
+        posted: false
       }
     ]],
     ['2025-11-10', [
@@ -54,7 +67,8 @@ export class CalendarComponent {
         description: 'skxhnax', date: null,
         place: null,
         link: null, photo: null,
-        graphics: null, text: null
+        graphics: null, text: null,
+        posted: false
       }
     ]],
     ['2025-12-02', [
@@ -62,7 +76,8 @@ export class CalendarComponent {
         description: 'hkdhsidisn', date: null,
         place: null, photo: null,
         graphics: null, text: null,
-        link: null 
+        link: null ,
+        posted: false
       }
     ]],
     ['2025-10-02', [
@@ -70,13 +85,15 @@ export class CalendarComponent {
         description: 'hkdhsidisn', date: null,
         place: null, photo: null,
         graphics: null, text: null,
-        link: null 
+        link: null ,
+        posted: false
       },
       { type: 'instagram', title: 'Séta',
         description: 'hkdhsidisn', date: null,
         place: null, photo: null,
         graphics: null, text: null,
-        link: null 
+        link: null ,
+        posted: false
       }
     ]],
       

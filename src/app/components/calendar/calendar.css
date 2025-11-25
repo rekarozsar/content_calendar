@@ -58,7 +58,11 @@
 }
 
 .event:hover {
-    opacity: 0.7;
+    opacity: 0.8;
+}
+
+.event.posted {
+  opacity: 0.4;
 }
 
 
