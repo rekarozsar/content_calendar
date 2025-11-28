@@ -60,23 +60,7 @@ export class App {
   ]); */
 
 
-  constructor(private auth: AuthService) {}
-
-  user: any = null;
  
-
-  testLogin() {
-    this.auth.login('asd@asd.asd', 'asdasdasd')
-      .then(res => {
-        console.log('Login result:', res);
-        return this.auth.getUser();
-      })
-      .then(user => {
-        this.user = user;
-        console.log('Authenticated user:', user);
-      })
-      .catch(err => console.error('Login failed', err));
-  }
 
 
   @ViewChild('dateCellTemplate', { static: true }) dateCellTemplate!: TemplateRef<any>;

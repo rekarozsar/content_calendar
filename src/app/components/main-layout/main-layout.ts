@@ -11,6 +11,8 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { ViewChild } from '@angular/core';
 import { CreateEventComponent } from './../create-event/create-event';
 
+import { AuthService } from '../../services/auth';
+
 
 
 @Component({
@@ -35,7 +37,7 @@ export class MainLayoutComponent {
 createEventModal!: CreateEventComponent;
 
 
-  constructor() {}
+  //constructor() {}
 
   openNewEvent() {
     console.log("Opening New Event Modal");
@@ -67,4 +69,24 @@ createEventModal!: CreateEventComponent;
   }
     */
   }
+
+    constructor(private auth: AuthService) {}
+
+    user: any = null;
+ 
+
+  testLogin() {
+    this.auth.login('asd@asd.asd', 'asdasdasd')
+      .then(res => {
+        console.log('Login result:', res);
+        return this.auth.getUser();
+      })
+      .then(user => {
+        this.user = user;
+        console.log('Authenticated user:', user);
+      })
+      .catch(err => console.error('Login failed', err));
+  }
+   
+  
 }
