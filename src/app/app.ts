@@ -60,8 +60,10 @@ export class App {
   ]); */
 
 
+  constructor(private auth: AuthService) {}
+
   user: any = null;
-  auth = new AuthService();
+ 
 
   testLogin() {
     this.auth.login('asd@asd.asd', 'asdasdasd')

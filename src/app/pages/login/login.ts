@@ -27,12 +27,18 @@ export class Login {
   }
 
   
+
+  
+  
   submitForm() {
     const credentials = {
       email: this.loginForm.value.username,
       password: this.loginForm.value.password
     };
 
+    
+
+    /*
     this.auth.login(credentials).subscribe({
       next: (res) => {
         console.log('Login success:', res);
@@ -42,6 +48,7 @@ export class Login {
         console.error('Login failed:', err);
       }
     });
+    */
 
     
   }
