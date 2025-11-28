@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventService } from '../../services/event';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../../api';
 
 
 
@@ -15,9 +16,20 @@ import { FormsModule } from '@angular/forms';
 export class EventDetailsComponent {
   selectedEvent: any | null = null;
 
-  constructor(private eventService: EventService) {
+  constructor(private eventService: EventService, private api: ApiService) {
     this.eventService.selectedEvent$.subscribe(event => {
       this.selectedEvent = event;
+    });
+  }
+
+   ngOnInit() {
+    this.api.ping().subscribe({
+      next: (res) => console.log('API OK:', res),
+      error: (err) => console.error('API ERROR:', err)
+    });
+    this.api.base().subscribe({
+      next: (res) => console.log('Base API Response:', res),
+      error: (err) => console.error('Base API ERROR:', err)
     });
   }
 
