@@ -27,16 +27,25 @@ export class Login {
   }
 
   
-async submitForm() {
-  const result = await this.auth.login({
-    email: this.loginForm.value.username,
-    password: this.loginForm.value.password
-  });
+  submitForm() {
+    const credentials = {
+      email: this.loginForm.value.username,
+      password: this.loginForm.value.password
+    };
 
-  console.log(result); 
+    this.auth.login(credentials).subscribe({
+      next: (res) => {
+        console.log('Login success:', res);
+        this.router.navigate(['/main']);
+      },
+      error: (err) => {
+        console.error('Login failed:', err);
+      }
+    });
 
-  this.router.navigate(['/main']);
-}
+    
+  }
+
 
   /*
   submitForm(): void {

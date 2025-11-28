@@ -12,7 +12,7 @@ export class AuthService {
 
 
   login(credentials: any) {
-  return this.http.post(`${this.apiUrl}/login`, credentials)
+  return this.http.post(`${this.apiUrl}/api/login`, credentials)
     .pipe(
       catchError((error) => {
         console.error('Login API error:', error);
