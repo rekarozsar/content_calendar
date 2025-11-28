@@ -9,7 +9,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   base(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/api/`);
+    return this.http.get(`${this.baseUrl}/`);
   }
 
   ping(): Observable<any> {
