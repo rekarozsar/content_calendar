@@ -6,7 +6,8 @@ import { throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'https://calendar-api-vpl7.onrender.com';
+  // Use a relative /api path so requests can go through the frontend proxy (same origin)
+  private apiUrl = '/api';
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +28,7 @@ export class AuthService {
 }
 
 
-  
+
 
 
 
@@ -51,5 +52,5 @@ export class AuthService {
   }
   */
 
-  
+
 
