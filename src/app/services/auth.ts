@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -22,8 +23,16 @@ export class AuthService {
   }
 
   // Fetch authenticated user
+  private getCookie(name: string): string | null {
+    const match = document.cookie.match(new RegExp('(^|; )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
   getUser() {
-    return this.http.get(`${this.apiUrl}/api/me`, { withCredentials: true });
+    // Try to read the XSRF token cookie and include it as a header.
+    const xsrf = this.getCookie('XSRF-TOKEN');
+    const headers = xsrf ? new HttpHeaders({ 'X-XSRF-TOKEN': xsrf }) : undefined;
+    return this.http.get(`${this.apiUrl}/api/me`, { withCredentials: true, headers });
   }
 
   // Logout (tell backend to invalidate session and clear cookies)
