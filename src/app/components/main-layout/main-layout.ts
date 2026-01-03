@@ -13,6 +13,10 @@ import { AuthService } from '../../services/auth';
 import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 
+import { MenuOutline } from '@ant-design/icons-angular/icons';
+import { NzIconService } from 'ng-zorro-antd/icon';
+
+
 
 // cleaned 
 
@@ -56,8 +60,11 @@ createEventModal!: CreateEventComponent;
       : 'no-date';
   }
 
-    constructor(private auth: AuthService, private router: Router) {}
+    constructor(private auth: AuthService, private router: Router, private iconService: NzIconService) {
+      this.iconService.addIcon(MenuOutline);
+    }
     user: any = null;
+    
 
   /*
   async testLogin() {
