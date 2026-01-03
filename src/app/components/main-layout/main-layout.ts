@@ -11,6 +11,8 @@ import { ViewChild } from '@angular/core';
 import { CreateEventComponent } from './../create-event/create-event';
 import { AuthService } from '../../services/auth';
 import { firstValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 // cleaned 
 
@@ -54,7 +56,7 @@ createEventModal!: CreateEventComponent;
       : 'no-date';
   }
 
-    constructor(private auth: AuthService) {}
+    constructor(private auth: AuthService, private router: Router) {}
     user: any = null;
 
   /*
@@ -145,6 +147,7 @@ createEventModal!: CreateEventComponent;
 
       this.user = null;
       console.log('Logged out and cleared cookies');
+      await this.router.navigate(['/login']);
     } catch (err) {
       console.error('Error during logout/clearing cookies:', err);
     }
