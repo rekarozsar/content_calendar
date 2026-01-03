@@ -7,6 +7,8 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { firstValueFrom } from 'rxjs';
+import { NzIconService } from 'ng-zorro-antd/icon';
+import { UserOutline, LockOutline } from '@ant-design/icons-angular/icons';
 
 
 @Component({
@@ -21,7 +23,8 @@ export class Login {
   loading = false;
   error: string | null = null;
 
-  constructor(private fb: FormBuilder, private router: Router, private auth: AuthService,) {
+  constructor(private fb: FormBuilder, private router: Router, private auth: AuthService, private iconService: NzIconService) {
+    this.iconService.addIcon(UserOutline, LockOutline);
     this.loginForm = fb.group({
       username: fb.control('admin@example.com', [Validators.required, Validators.email]),
       password: fb.control('password', [Validators.required, Validators.minLength(6)]),
