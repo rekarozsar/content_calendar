@@ -28,7 +28,7 @@ export class CalendarComponent {
                              graphics: string[] | null, text: string[] | null,
                              posted: boolean
                             }[]>([
-    ['2025-11-01', [
+    ['2026-01-03', [
       { type: 'facebook', title: 'Gólyabál esemény', 
         description: 'AAAAA AA AAAAA AAAAAAAAAA AAAAAAAA AAAAAAA AAAAAAAAA AAAAAAAA AAAAAAAAA AAAAAA AAAAA', date: new Date('2025-11-11:23:00'),
         place: 'Négyzet aula',
@@ -44,7 +44,7 @@ export class CalendarComponent {
         posted: false
       }
     ]],
-    ['2025-11-03', [
+    ['2026-01-04', [
       { type: 'other', title: 'Animaci plakát', 
         description: 'yapp', date: null,
         place: null,
@@ -53,7 +53,7 @@ export class CalendarComponent {
         posted: false
       }
     ]],
-    ['2025-11-15', [
+    ['2026-01-15', [
       { type: 'discord', title: 'Tanulmányi ösztöndíjak', 
         description: 'uashask', date: null,
         place: null,
@@ -62,7 +62,7 @@ export class CalendarComponent {
         posted: false
       }
     ]],
-    ['2025-11-10', [
+    ['2026-01-10', [
       { type: 'webpage', title: 'Referensi pályázatok', 
         description: 'skxhnax', date: null,
         place: null,
@@ -71,7 +71,7 @@ export class CalendarComponent {
         posted: false
       }
     ]],
-    ['2025-12-02', [
+    ['2026-01-02', [
       { type: 'facebook', title: 'Séta',
         description: 'hkdhsidisn', date: null,
         place: null, photo: null,
@@ -80,7 +80,7 @@ export class CalendarComponent {
         posted: false
       }
     ]],
-    ['2025-10-02', [
+    ['2026-01-12', [
       { type: 'instagram', title: 'Séta',
         description: 'hkdhsidisn', date: null,
         place: null, photo: null,

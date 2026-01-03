@@ -15,11 +15,4 @@ export class ApiService {
   ping(): Observable<any> {
     return this.http.get(`${this.baseUrl}/api/ping`);
   }
-
-  
- 
-
-  
-    
-
 }
