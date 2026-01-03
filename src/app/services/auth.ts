@@ -7,9 +7,7 @@ import { throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  // Use a relative `/backend` path so requests go through the frontend proxy (same origin)
   private apiUrl = '/backend';
-
   constructor(private http: HttpClient) {}
 
   // Get CSRF cookie
@@ -35,36 +33,12 @@ export class AuthService {
     return this.http.get(`${this.apiUrl}/api/me`, { withCredentials: true, headers });
   }
 
-  // Logout (tell backend to invalidate session and clear cookies)
+  // Logout
   logout() {
     return this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true });
   }
 }
 
-
-
-
-
-
-  /*
-  login(credentials: any) {
-  return this.http.post(`${this.apiUrl}/api/login`, credentials)
-    .pipe(
-      catchError((error) => {
-        console.error('Login API error:', error);
-        return throwError(() => error);
-      })
-    );
-}*/
-
-
-  /*
-  login(data: { email: string; password: string }) {
-    return firstValueFrom(
-      this.http.post(`${this.apiUrl}/login`, data)
-    );
-  }
-  */
 
 
 
