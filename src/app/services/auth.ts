@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'https://calendar-api-vpl7.onrender.com';
+  // Use a relative `/backend` path so requests go through the frontend proxy (same origin)
+  private apiUrl = '/backend';
 
   constructor(private http: HttpClient) {}
 
@@ -21,13 +23,26 @@ export class AuthService {
   }
 
   // Fetch authenticated user
+  private getCookie(name: string): string | null {
+    const match = document.cookie.match(new RegExp('(^|; )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
   getUser() {
-    return this.http.get(`${this.apiUrl}/api/user`, { withCredentials: true });
+    // Try to read the XSRF token cookie and include it as a header.
+    const xsrf = this.getCookie('XSRF-TOKEN');
+    const headers = xsrf ? new HttpHeaders({ 'X-XSRF-TOKEN': xsrf }) : undefined;
+    return this.http.get(`${this.apiUrl}/api/me`, { withCredentials: true, headers });
+  }
+
+  // Logout (tell backend to invalidate session and clear cookies)
+  logout() {
+    return this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true });
   }
 }
 
 
-  
+
 
 
 
@@ -51,5 +66,5 @@ export class AuthService {
   }
   */
 
-  
+
 
