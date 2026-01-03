@@ -6,8 +6,6 @@ export class EventService {
   private selectedEventSource = new BehaviorSubject<any | null>(null);
   selectedEvent$ = this.selectedEventSource.asObservable();
 
-  
-
   selectEvent(event: any) {
     this.selectedEventSource.next(event);
   }
@@ -17,7 +15,7 @@ export class EventService {
   }
 
   updateSelectedEvent(event: any) {
-  this.selectedEventSource.next(event);
-}
+    this.selectedEventSource.next(event);
+  }
 
 }
