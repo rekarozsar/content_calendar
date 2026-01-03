@@ -5,6 +5,8 @@ import { firstValueFrom } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
+// cleaned
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private apiUrl = '/backend';
