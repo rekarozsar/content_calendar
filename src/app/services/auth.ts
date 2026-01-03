@@ -14,7 +14,7 @@ export class AuthService {
 
   // Get CSRF cookie
   getCsrfCookie() {
-    return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true });
+    return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true, responseType: 'text' });
   }
 
   // Login
