@@ -57,6 +57,7 @@ createEventModal!: CreateEventComponent;
     constructor(private auth: AuthService) {}
     user: any = null;
 
+  /*
   async testLogin() {
   try {
     // Get CSRF cookie
@@ -79,8 +80,15 @@ createEventModal!: CreateEventComponent;
   } catch (err) {
     console.error('Login failed', err);
   }
+  
 
   }
+  */
+
+  async ngOnInit() {
+    await this.fetchUser();
+  }
+
 
   // Fetch the authenticated user and store in `this.user`.
   async fetchUser() {

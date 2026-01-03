@@ -6,6 +6,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -17,6 +18,8 @@ import { AuthService } from '../../services/auth';
 })
 export class Login {
   loginForm: FormGroup;
+  loading = false;
+  error: string | null = null;
 
   constructor(private fb: FormBuilder, private router: Router, private auth: AuthService,) {
     this.loginForm = fb.group({
@@ -30,11 +33,30 @@ export class Login {
 
   
   
-  submitForm() {
-    const credentials = {
-      email: this.loginForm.value.username,
-      password: this.loginForm.value.password
-    };
+  async submitForm() {
+
+    if (this.loginForm.invalid) return;
+
+    this.loading = true;
+    this.error = null;
+
+    const { username, password } = this.loginForm.value;
+
+    try {
+      // 1️⃣ Get CSRF cookie
+      await firstValueFrom(this.auth.getCsrfCookie());
+
+      // 2️⃣ Login
+      await firstValueFrom(this.auth.login(username, password));
+
+      // 3️⃣ Redirect
+      await this.router.navigate(['/main']);
+    } catch (err) {
+      console.error('Login failed', err);
+      this.error = 'Invalid credentials';
+    } finally {
+      this.loading = false;
+    }
 
     
 
