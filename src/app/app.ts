@@ -16,9 +16,9 @@ import { EventDetailsComponent } from './components/details/details';
 
 import { AuthService } from './services/auth';
 
+// cleaned
 
 registerLocaleData(hu);
-
 
 @Component({
   selector: 'app-root',
@@ -37,31 +37,6 @@ registerLocaleData(hu);
 })
 export class App {
   icons = [ MenuOutline ]; 
-
-  /*
-   events = new Map<string, string[]>([
-    ['2025-11-01', ['Plan social media posts', 'Team meeting']],
-    ['2025-11-03', ['Draft blog article']],
-  ]);
-
-  dateCellRender(date: Date) {
-    const key = date.toISOString().split('T')[0]; // YYYY-MM-DD
-    const dayEvents = this.events.get(key) || [];
-    return dayEvents.map(event => `<div class="event">${event}</div>`).join('');
-  }
-  */
-
-
-
-/*
-  events = new Map<string, string[]>([
-    ['2025-11-01', ['Plan social media posts', 'Team meeting']],
-    ['2025-11-03', ['Draft blog article']],
-  ]); */
-
-
- 
-
 
   @ViewChild('dateCellTemplate', { static: true }) dateCellTemplate!: TemplateRef<any>;
 }
