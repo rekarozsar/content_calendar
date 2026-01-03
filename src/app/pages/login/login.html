@@ -5,16 +5,22 @@
     </div>
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your username!">
-          <nz-input-group [nzPrefix]="userIcon">
+          <nz-input-group [nzPrefix]="userPrefix">
             <input type="text" nz-input formControlName="username" placeholder="Username" />
           </nz-input-group>
+          <ng-template #userPrefix>
+            <i nz-icon [nzType]="'user'" nzTheme="outline"></i>
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your Password!">
-          <nz-input-group [nzPrefix]="lockIcon">
+          <nz-input-group [nzPrefix]="lockPrefix">
             <input type="password" nz-input formControlName="password" placeholder="Password" />
           </nz-input-group>
+          <ng-template #lockPrefix>
+            <i nz-icon [nzType]="'lock'" nzTheme="outline"></i>
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
      

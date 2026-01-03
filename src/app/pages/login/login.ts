@@ -7,13 +7,13 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
 import { firstValueFrom } from 'rxjs';
-import { NzIconService } from 'ng-zorro-antd/icon';
+import { NzIconModule,  NzIconService } from 'ng-zorro-antd/icon';
 import { UserOutline, LockOutline } from '@ant-design/icons-angular/icons';
 
 
 @Component({
   selector: 'app-login',
-  imports: [ ReactiveFormsModule, NzButtonModule, NzInputModule, NzFormModule, NzCheckboxModule ],
+  imports: [ ReactiveFormsModule, NzButtonModule, NzInputModule, NzFormModule, NzCheckboxModule, NzIconModule   ],
   standalone: true,
   templateUrl: './login.html',
   styleUrl: './login.css',
