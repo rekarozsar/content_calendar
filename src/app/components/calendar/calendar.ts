@@ -26,21 +26,75 @@ export class CalendarComponent implements OnInit {
   });
   }
 
+  buildCalendarEvents(tasks: any[]) {
+    const map = new Map<string, any[]>();
+
+    for (const task of tasks) {
+      const dateStr = task.post_by ? this.toDateKey(task.post_by) : this.toDateKey(new Date());
+
+      if (!map.has(dateStr)) {
+        map.set(dateStr, []);
+      }
+
+      // Type
+      let type = 'other';
+      if (task.facebook_post) type = 'facebook';
+      else if (task.instagram_post) type = 'instagram';
+      else if (task.tiktok) type = 'discord';
+
+      // Graphics/text
+      const graphics = task.graphics_done ? ['Done'] : null;
+      const text = task.text_done ? ['Done'] : null;
+
+      map.get(dateStr)!.push({
+        type,
+        title: task.title,
+        description: task.description,
+        date: task.due_date,
+        place: task.location ?? null,
+        link: null,
+        photo: task.images && task.images.length > 0 ? task.images[0] : null,
+        graphics,
+        text,
+        posted: false
+      });
+    }
+
+    this.events = map;
+  }
+
+  toDateKey(date: string | Date): string {
+    const d = new Date(date);
+    return d.toISOString().split('T')[0]; // YYYY-MM-DD
+  }
+
+
+
   ngOnInit() {
     this.api.getTasks().subscribe({
-      next: (res) => console.log('RAW /backend/tasks RESPONSE:', res),
-      error: (err) => console.error('ERROR:', err)
+      next: tasks => this.buildCalendarEvents(tasks),
+      error: err => console.error('ERROR fetching tasks:', err)
     });
   }
 
 
 
-  events = new Map<string, { type: string; title: string, 
-                             description: string, date: Date | null,
-                             place: string | null,
-                             link: string | null, photo: string | null, 
-                             graphics: string[] | null, text: string[] | null,
-                             posted: boolean
+
+  events = new Map<string, { // post_by
+                             type: string; //fb...
+                             // other media
+                             title: string, // title
+                             description: string, //same
+                             //caption
+                             date: Date | null, //due date
+                             place: string | null, //location
+                             link: string | null, 
+                             photo: string | null, // images
+                             graphics: string[] | null, //grahics maker
+                             text: string[] | null, // text_writer
+                             posted: boolean // poster ???
+                            
+
                             }[]>([
     ['2026-01-03', [
       { type: 'facebook', title: 'Gólyabál esemény', 
