@@ -26,7 +26,7 @@ export class CalendarComponent implements OnInit {
   });
   }
 
-  buildCalendarEvents(tasks: any[]) {
+  buildCalendarEvents(tasks: any[], userMap: Map<number, string>) {
     const map = new Map<string, any[]>();
 
     for (const task of tasks) {
@@ -43,20 +43,8 @@ export class CalendarComponent implements OnInit {
       else if (task.tiktok) type = 'discord';
 
       // Graphics/text
-      const graphics_id = task.graphics_maker ?? null;
-      const text_id = task.text_writer ?? null;
-
-      let text: string | null = null;
-      let graphics: string | null = null;
-      
-      this.api.getUsers().subscribe(users => {
-        const userMap = new Map(users.map(u => [u.id, u.name]));
-
-        tasks.forEach(task => {
-          graphics = userMap.get(task.graphics_maker) ?? null;
-          text = userMap.get(task.text_writer) ?? null;
-        });
-      });
+      const graphics = userMap.get(task.graphics_maker) ?? null;
+      const text = userMap.get(task.text_writer) ?? null;
 
 
       map.get(dateStr)!.push({
@@ -87,10 +75,18 @@ export class CalendarComponent implements OnInit {
 
 
   ngOnInit() {
-    this.api.getTasks().subscribe({
-      next: tasks => this.buildCalendarEvents(tasks),
-      error: err => console.error('ERROR fetching tasks:', err)
-    });
+    this.api.getUsers().subscribe({
+    next: users => {
+      const userMap = new Map(users.map(u => [u.id, u.name]));
+
+      // Then fetch tasks
+      this.api.getTasks().subscribe({
+        next: tasks => this.buildCalendarEvents(tasks, userMap),
+        error: err => console.error('ERROR fetching tasks:', err)
+      });
+    },
+    error: err => console.error('ERROR fetching users:', err)
+  });
   }
 
 
