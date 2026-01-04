@@ -4,7 +4,7 @@ import { EventService } from '../../services/event';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../api';
 import { AuthService } from '../../services/auth';
-
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -24,7 +24,9 @@ export class EventDetailsComponent {
   }
   
 
-   ngOnInit() {
+
+   async ngOnInit() {
+    await this.fetchUser();
     console.log('AAAAAAAAAAAAAAAAAAA', this.auth);
     this.api.ping().subscribe({
       next: (res) => console.log('API OK:', res),
@@ -34,6 +36,21 @@ export class EventDetailsComponent {
       next: (res) => console.log('Base API Response:', res),
       error: (err) => console.error('Base API ERROR:', err)
     });
+  }
+
+  user: any = null;
+  // Fetch the authenticated user and store in `this.user`.
+  async fetchUser() {
+    try {
+      const user = await firstValueFrom(this.auth.getUser());
+      this.user = user;
+      console.log('Fetched user:', user);
+      return user;
+    } catch (err) {
+      console.warn('Could not fetch user (not authenticated or error):', err);
+      this.user = null;
+      return null;
+    }
   }
 
   onEdit() {
@@ -54,7 +71,7 @@ export class EventDetailsComponent {
   if (this.selectedEvent) {
     this.selectedEvent.posted = !this.selectedEvent.posted; 
     this.eventService.updateSelectedEvent(this.selectedEvent);
-    console.log('AAAAAAAAAAAAAAAAAAA', this.auth);
+    console.log('AAAAAAAAAAAAAAAAAAA', this.auth.getUser());
   }
 }
 

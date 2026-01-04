@@ -13,9 +13,6 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private apiUrl = '/backend';
 
-  private userSubject = new BehaviorSubject<any | null>(null);
-  user$ = this.userSubject.asObservable();
-
   constructor(private http: HttpClient) {}
 
   // Get CSRF cookie
@@ -45,20 +42,6 @@ export class AuthService {
   logout() {
     return this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true });
   }
-
-  setUser(user: any) {
-    this.userSubject.next(user);
-  }
-
-  get user() {
-    return this.userSubject.value;
-  }
-
-  get isAdmin(): boolean {
-    return !!this.user?.admin;
-  }
-
-
 }
 
 
