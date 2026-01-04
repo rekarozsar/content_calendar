@@ -48,19 +48,16 @@ export class CalendarComponent implements OnInit {
 
       let text: string | null = null;
       let graphics: string | null = null;
+      
+      this.api.getUsers().subscribe(users => {
+        const userMap = new Map(users.map(u => [u.id, u.name]));
 
-      if (text_id) {
-        this.api.getUser(text_id).subscribe({
-        next: text => text = text.name,
-        error: err => console.error('ERROR fetching user:', err)
+        tasks.forEach(task => {
+          graphics = userMap.get(task.graphics_maker) ?? null;
+          text = userMap.get(task.text_writer) ?? null;
+        });
       });
-      }
-      if (graphics_id) {
-        this.api.getUser(graphics_id).subscribe({
-        next: graphics => graphics = graphics.name,
-        error: err => console.error('ERROR fetching user:', err)
-      });
-      }
+
 
       map.get(dateStr)!.push({
         type,
