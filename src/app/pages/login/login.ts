@@ -53,7 +53,7 @@ export class Login {
       await firstValueFrom(this.auth.login(username, password));
 
       // 3️⃣ Redirect
-      await this.router.navigate(['/']);
+      await this.router.navigate(['/main']);
     } catch (err) {
       console.error('Login failed', err);
       this.error = 'Invalid credentials';
