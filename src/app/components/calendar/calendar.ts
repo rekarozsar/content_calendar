@@ -28,14 +28,11 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {
     this.api.getTasks().subscribe({
-      next: (tasks) => {
-        console.log('TASKS FROM BACKEND:', tasks);
-      },
-      error: (err) => {
-        console.error('ERROR FETCHING TASKS:', err);
-      }
+      next: (res) => console.log('RAW /backend/tasks RESPONSE:', res),
+      error: (err) => console.error('ERROR:', err)
     });
   }
+
 
 
   events = new Map<string, { type: string; title: string, 
