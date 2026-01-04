@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule, NgClass } from '@angular/common';
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
-import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzIconModule, NzIconService } from 'ng-zorro-antd/icon';
 import { EventService } from '../../services/event';
+import { FacebookOutline, InstagramOutline, CalendarOutline } from '@ant-design/icons-angular/icons';
 
 @Component({
   selector: 'app-calendar',
@@ -15,7 +16,8 @@ export class CalendarComponent {
 
   selectedEvent: any = null;
 
-  constructor(private eventService: EventService) {
+  constructor(private eventService: EventService, private iconService: NzIconService) {
+    this.iconService.addIcon(FacebookOutline, InstagramOutline, CalendarOutline);
     this.eventService.selectedEvent$.subscribe(event => {
     this.selectedEvent = event;
   });
