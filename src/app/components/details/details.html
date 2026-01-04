@@ -21,11 +21,11 @@
     <img [src]="selectedEvent.photo" alt="Event Photo" class="event-photo"/>
 </div>
 
-<div *ngIf="selectedEvent.graphics && selectedEvent.graphics.length > 0">
-    <div><b>Graphics:</b> {{ graphic }}</div>
+<div *ngIf="selectedEvent.graphics">
+    <div><b>Graphics:</b> {{ selectedEvent.graphics }}</div>
 </div>
-<div *ngIf="selectedEvent.text && selectedEvent.text.length > 0">
-    <div><b>Text:</b> {{ textItem }} </div>
+<div *ngIf="selectedEvent.text">
+    <div><b>Text:</b> {{ selectedEvent.text }} </div>
 </div>
 <div class="signUpBlock">
     <div *ngIf="selectedEvent.graphics_done === false">
