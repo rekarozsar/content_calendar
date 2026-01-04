@@ -4,7 +4,7 @@ import { MainLayoutComponent } from './components/main-layout/main-layout';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login' },
   { path: 'login', pathMatch: 'full', component: Login},
-  { path: 'main', component: MainLayoutComponent }
+  { path: 'main', component: MainLayoutComponent },
+  { path: '**', redirectTo: 'login' }
 ];
