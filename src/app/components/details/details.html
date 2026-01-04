@@ -50,9 +50,9 @@
 </div>
 
 <div class="action-buttons">
-    <button class="ready-btn button-75" *ngIf="auth.isAdmin" (click)="onPosted()">{{ selectedEvent?.posted ? 'Undo' : 'Posted' }}</button>
-    <button class="edit-btn button-75" *ngIf="auth.isAdmin" (click)="onEdit()">Edit</button>
-    <button class="delete-btn button-75" *ngIf="auth.isAdmin" (click)="onDelete()">Delete</button>
+    <button class="ready-btn button-75" (click)="onPosted()">{{ selectedEvent?.posted ? 'Undo' : 'Posted' }}</button>
+    <button class="edit-btn button-75" *ngIf="auth.admin" (click)="onEdit()">Edit</button>
+    <button class="delete-btn button-75" *ngIf="auth.admin" (click)="onDelete()">Delete</button>
 </div>
 
   <!-- Later you can add editing, date, etc. -->

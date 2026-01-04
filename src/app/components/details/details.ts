@@ -25,7 +25,7 @@ export class EventDetailsComponent {
   
 
    ngOnInit() {
-    console.log(this.auth);
+    console.log('AAAAAAAAAAAAAAAAAAA', this.auth);
     this.api.ping().subscribe({
       next: (res) => console.log('API OK:', res),
       error: (err) => console.error('API ERROR:', err)
@@ -54,6 +54,7 @@ export class EventDetailsComponent {
   if (this.selectedEvent) {
     this.selectedEvent.posted = !this.selectedEvent.posted; 
     this.eventService.updateSelectedEvent(this.selectedEvent);
+    console.log('AAAAAAAAAAAAAAAAAAA', this.auth);
   }
 }
 
