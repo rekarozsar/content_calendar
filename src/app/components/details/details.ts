@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { EventService } from '../../services/event';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../api';
+import { AuthService } from '../../services/auth';
 
 
 
@@ -16,7 +17,7 @@ import { ApiService } from '../../api';
 export class EventDetailsComponent {
   selectedEvent: any | null = null;
 
-  constructor(private eventService: EventService, private api: ApiService) {
+  constructor(private eventService: EventService, private api: ApiService, public auth: AuthService) {
     this.eventService.selectedEvent$.subscribe(event => {
       this.selectedEvent = event;
     });
