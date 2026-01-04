@@ -28,13 +28,13 @@
     <div><b>Text:</b> {{ selectedEvent.text }} </div>
 </div>
 <div class="signUpBlock">
-    <div *ngIf="selectedEvent.graphics_done === false">
+    <div *ngIf="selectedEvent.graphics === null">
         <label>
             <input type="checkbox" [(ngModel)]="selectedEvent.signUpGraphics" />
             Sign up for Graphics
         </label>
     </div>
-    <div *ngIf="selectedEvent.text_done === false">
+    <div *ngIf="selectedEvent.text === null">
         <label>
             <input type="checkbox" [(ngModel)]="selectedEvent.signUpText" />
             Sign up for Text
@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<button class="signup-btn button-75" *ngIf="selectedEvent.posted === false && (selectedEvent.graphics_done === false || selectedEvent.text_done === false)">Sign up</button>
+<button class="signup-btn button-75" *ngIf="selectedEvent.posted === false && (selectedEvent.graphics === null || selectedEvent.text === null) ">Sign up</button>
 
 <div class="action-buttons">
     <button class="ready-btn button-75" *ngIf="isAdmin" (click)="onPosted()">{{ selectedEvent?.posted ? 'Undo' : 'Posted' }}</button>
