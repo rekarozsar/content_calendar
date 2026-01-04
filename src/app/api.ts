@@ -9,7 +9,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getTasks() {
-    return this.http.get<any[]>('/tasks');
+    return this.http.get<any[]>('/backend/tasks');
   }
 
 }
