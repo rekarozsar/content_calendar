@@ -43,8 +43,8 @@ export class CalendarComponent implements OnInit {
       else if (task.tiktok) type = 'discord';
 
       // Graphics/text
-      const graphics = task.graphics_done ? ['Done'] : null;
-      const text = task.text_done ? ['Done'] : null;
+      const graphics = task.graphics_maker ?? null;
+      const text = task.text_writer ?? null;
 
       map.get(dateStr)!.push({
         type,
@@ -53,8 +53,11 @@ export class CalendarComponent implements OnInit {
         date: task.due_date,
         place: task.location ?? null,
         link: null,
+        caption: task.caption ?? null,
         photo: task.images && task.images.length > 0 ? task.images[0] : null,
+        graphics_done: task.graphics_done,
         graphics,
+        text_done: task.text_done,
         text,
         posted: false
       });
@@ -87,12 +90,14 @@ export class CalendarComponent implements OnInit {
                              title: string, // title
                              description: string, //same
                              //caption
-                             date: Date | null, //due date
+                             date: string | null, //due date
                              place: string | null, //location
                              link: string | null, 
                              photo: string | null, // images
-                             graphics: string[] | null, //grahics maker
-                             text: string[] | null, // text_writer
+                             graphics: string | null, //grahics maker
+                             graphics_done: boolean, // graphics done
+                             text: string | null, // text_writer
+                             text_done: boolean, // text done
                              posted: boolean // poster ???
                             
 

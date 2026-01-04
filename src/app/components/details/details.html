@@ -2,46 +2,39 @@
   <h3><b>{{ selectedEvent.title }}</b></h3>
   <p><b>Platforms:</b> {{ selectedEvent.type }}</p>
   <div *ngIf="selectedEvent.date">
-    <div>
-        <b>Date:</b> {{ selectedEvent.date | date:'mediumDate' }}
-        <span *ngIf="(selectedEvent.date | date:'HH:mm') !== '00:00'">
-            - {{ selectedEvent.date | date:'HH:mm' }}
-        </span>
+    <div >
+        <b>Date:</b> {{ selectedEvent.date }}
     </div>
   </div>
   <div *ngIf="selectedEvent.place">
     <b>Place:</b> {{selectedEvent.place}}
   </div>
   <div><b>Description:</b></div>
-  <div>{{selectedEvent.description}}</div>
+  <div *ngIf="selectedEvent.description">{{selectedEvent.description}}</div>
 <div *ngIf="selectedEvent.link">
     <b>Link:</b> <a [href]="selectedEvent.link" target="_blank" rel="noopener noreferrer">{{ selectedEvent.link }}</a>
 </div>
+<div><b>Caption:</b></div>
+  <div *ngIf="selectedEvent.caption">{{selectedEvent.caption}}</div>
 <div *ngIf="selectedEvent.photo">
     <div><b>Photo:</b></div>
     <img [src]="selectedEvent.photo" alt="Event Photo" class="event-photo"/>
 </div>
 
 <div *ngIf="selectedEvent.graphics && selectedEvent.graphics.length > 0">
-    <div><b>Graphics:</b></div>
-    <ul>
-        <li *ngFor="let graphic of selectedEvent.graphics">{{ graphic }}</li>
-    </ul>
+    <div><b>Graphics:</b> {{ graphic }}</div>
 </div>
 <div *ngIf="selectedEvent.text && selectedEvent.text.length > 0">
-    <div><b>Text:</b></div>
-    <ul>
-        <li *ngFor="let textItem of selectedEvent.text">{{ textItem }}</li>
-    </ul>
+    <div><b>Text:</b> {{ textItem }} </div>
 </div>
 <div class="signUpBlock">
-    <div>
+    <div *ngIf="selectedEvent.graphics_done === false">
         <label>
             <input type="checkbox" [(ngModel)]="selectedEvent.signUpGraphics" />
             Sign up for Graphics
         </label>
     </div>
-    <div>
+    <div *ngIf="selectedEvent.text_done === false">
         <label>
             <input type="checkbox" [(ngModel)]="selectedEvent.signUpText" />
             Sign up for Text
@@ -49,7 +42,7 @@
     </div>
 </div>
 
-<button class="signup-btn button-75" >Sign up</button>
+<button class="signup-btn button-75" *ngIf="selectedEvent.posted === false">Sign up</button>
 
 <div class="action-buttons">
     <button class="ready-btn button-75" *ngIf="isAdmin" (click)="onPosted()">{{ selectedEvent?.posted ? 'Undo' : 'Posted' }}</button>
