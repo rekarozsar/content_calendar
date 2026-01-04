@@ -6,5 +6,5 @@ export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', pathMatch: 'full', component: Login},
   { path: 'main', component: MainLayoutComponent },
-  { path: '**', redirectTo: 'login' }
+  // { path: '**', redirectTo: 'login' }
 ];
