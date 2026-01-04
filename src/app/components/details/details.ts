@@ -28,14 +28,6 @@ export class EventDetailsComponent {
    async ngOnInit() {
     await this.fetchUser();
     console.log('AAAAAAAAAAAAAAAAAAA', this.auth);
-    this.api.ping().subscribe({
-      next: (res) => console.log('API OK:', res),
-      error: (err) => console.error('API ERROR:', err)
-    });
-    this.api.base().subscribe({
-      next: (res) => console.log('Base API Response:', res),
-      error: (err) => console.error('Base API ERROR:', err)
-    });
   }
 
   user: any = null;
