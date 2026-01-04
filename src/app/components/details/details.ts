@@ -68,11 +68,16 @@ export class EventDetailsComponent {
   }
 
   onPosted() {
-  if (this.selectedEvent) {
-    this.selectedEvent.posted = !this.selectedEvent.posted; 
-    this.eventService.updateSelectedEvent(this.selectedEvent);
-    console.log('AAAAAAAAAAAAAAAAAAA', this.user);
+    if (this.selectedEvent) {
+      this.selectedEvent.posted = !this.selectedEvent.posted; 
+      this.eventService.updateSelectedEvent(this.selectedEvent);
+      console.log('AAAAAAAAAAAAAAAAAAA', this.user);
+    }
   }
-}
+
+  get isAdmin(): boolean {
+    return !!this.user?.admin;
+  }
+
 
 }
