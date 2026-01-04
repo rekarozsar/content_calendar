@@ -80,6 +80,7 @@ export class CalendarComponent implements OnInit {
 
 
 
+  
   events = new Map<string, { // post_by
                              type: string; //fb...
                              // other media
@@ -95,7 +96,7 @@ export class CalendarComponent implements OnInit {
                              posted: boolean // poster ???
                             
 
-                            }[]>([
+                            }[]>/*([
     ['2026-01-03', [
       { type: 'facebook', title: 'Gólyabál esemény', 
         description: 'AAAAA AA AAAAA AAAAAAAAAA AAAAAAAA AAAAAAA AAAAAAAAA AAAAAAAA AAAAAAAAA AAAAAA AAAAA', date: new Date('2025-11-11:23:00'),
@@ -166,6 +167,7 @@ export class CalendarComponent implements OnInit {
     ]],
       
   ]);
+  */
 
   selectEvent(event: any) {
     this.eventService.selectEvent(event);
