@@ -113,6 +113,10 @@ createEventModal!: CreateEventComponent;
     }
   }
 
+  isAdmin(): boolean {
+    return !!this.user?.admin;
+  }
+
   
   async logout() {
     try {

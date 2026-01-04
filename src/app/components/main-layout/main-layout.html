@@ -8,7 +8,7 @@
     <!-- Desktop menu -->
     <ul nz-menu class="top-nav desktop-menu" nzTheme="dark" nzMode="horizontal">
       <li nz-menu-item>Tasks</li>
-      <li nz-menu-item (click)="openNewEvent()">New</li>
+      <li nz-menu-item *ngIf="isAdmin()" (click)="openNewEvent()">New</li>
       <li nz-menu-item (click)="logout()">Logout</li>
     </ul>
 
@@ -19,7 +19,7 @@
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu nzTheme="dark">
         <li nz-menu-item>Tasks</li>
-        <li nz-menu-item (click)="openNewEvent()">New</li>
+        <li nz-menu-item *ngIf="isAdmin()" (click)="openNewEvent()">New</li>
         <li nz-menu-item (click)="logout()">Logout</li>
       </ul>
     </nz-dropdown-menu>
