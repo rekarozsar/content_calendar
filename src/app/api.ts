@@ -12,6 +12,13 @@ export class ApiService {
     return this.http.get<any[]>('/backend/api/tasks');
   }
 
-  
+  getUsers() {
+    return this.http.get<any[]>('/backend/api/users');
+  }
+
+  getUser(id: number) {
+    return this.http.get<any>(`/backend/api/users/${id}`);
+  }
+
 
 }

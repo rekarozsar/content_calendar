@@ -43,8 +43,24 @@ export class CalendarComponent implements OnInit {
       else if (task.tiktok) type = 'discord';
 
       // Graphics/text
-      const graphics = task.graphics_maker ?? null;
-      const text = task.text_writer ?? null;
+      const graphics_id = task.graphics_maker ?? null;
+      const text_id = task.text_writer ?? null;
+
+      let text: string | null = null;
+      let graphics: string | null = null;
+
+      if (text_id) {
+        this.api.getUser(text_id).subscribe({
+        next: text => text = text.name,
+        error: err => console.error('ERROR fetching user:', err)
+      });
+      }
+      if (graphics_id) {
+        this.api.getUser(graphics_id).subscribe({
+        next: graphics => graphics = graphics.name,
+        error: err => console.error('ERROR fetching user:', err)
+      });
+      }
 
       map.get(dateStr)!.push({
         type,
@@ -79,6 +95,8 @@ export class CalendarComponent implements OnInit {
       error: err => console.error('ERROR fetching tasks:', err)
     });
   }
+
+
 
 
 
