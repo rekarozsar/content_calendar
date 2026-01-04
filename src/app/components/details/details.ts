@@ -22,8 +22,10 @@ export class EventDetailsComponent {
       this.selectedEvent = event;
     });
   }
+  
 
    ngOnInit() {
+    console.log(this.auth);
     this.api.ping().subscribe({
       next: (res) => console.log('API OK:', res),
       error: (err) => console.error('API ERROR:', err)
