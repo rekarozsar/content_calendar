@@ -4,6 +4,9 @@ import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { NzIconModule, NzIconService } from 'ng-zorro-antd/icon';
 import { EventService } from '../../services/event';
 import { FacebookOutline, InstagramOutline, CalendarOutline } from '@ant-design/icons-angular/icons';
+import { ApiService } from '../../api';
+import { OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-calendar',
@@ -12,16 +15,28 @@ import { FacebookOutline, InstagramOutline, CalendarOutline } from '@ant-design/
   templateUrl: './calendar.html',
   styleUrls: ['./calendar.css']
 })
-export class CalendarComponent {
+export class CalendarComponent implements OnInit {
 
   selectedEvent: any = null;
 
-  constructor(private eventService: EventService, private iconService: NzIconService) {
+  constructor(private eventService: EventService, private iconService: NzIconService, private api: ApiService) {
     this.iconService.addIcon(FacebookOutline, InstagramOutline, CalendarOutline);
     this.eventService.selectedEvent$.subscribe(event => {
     this.selectedEvent = event;
   });
   }
+
+  ngOnInit() {
+    this.api.getTasks().subscribe({
+      next: (tasks) => {
+        console.log('TASKS FROM BACKEND:', tasks);
+      },
+      error: (err) => {
+        console.error('ERROR FETCHING TASKS:', err);
+      }
+    });
+  }
+
 
   events = new Map<string, { type: string; title: string, 
                              description: string, date: Date | null,

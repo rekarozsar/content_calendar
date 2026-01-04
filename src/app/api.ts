@@ -15,4 +15,9 @@ export class ApiService {
   ping(): Observable<any> {
     return this.http.get(`${this.baseUrl}/api/ping`);
   }
+
+  getTasks() {
+    return this.http.get<any[]>('/backend/tasks');
+  }
+
 }
