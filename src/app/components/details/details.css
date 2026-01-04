@@ -14,9 +14,7 @@
     background-image: linear-gradient(135deg, #5fc52e 40%, #6eee87);
 }
 
-.ready-btn {
-    background-image: linear-gradient(135deg, #ac2ec5 40%, #ee6ecc);
-}
+
 
 .button-75 {
   align-items: center;
@@ -78,4 +76,9 @@
     justify-content: space-between;
     
     margin-top: 1.5rem;
+}
+
+.signup-btn {
+    background-image: linear-gradient(135deg, #ac2ec5 40%, #ee6ecc);
+    margin-top: 1rem;
 }
