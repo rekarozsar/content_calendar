@@ -71,7 +71,7 @@ export class EventDetailsComponent {
   if (this.selectedEvent) {
     this.selectedEvent.posted = !this.selectedEvent.posted; 
     this.eventService.updateSelectedEvent(this.selectedEvent);
-    console.log('AAAAAAAAAAAAAAAAAAA', this.auth.getUser());
+    console.log('AAAAAAAAAAAAAAAAAAA', this.user);
   }
 }
 
