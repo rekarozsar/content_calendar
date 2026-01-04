@@ -10,7 +10,7 @@
                   [class.posted]="e.posted"
                   [ngClass]="e.type"
                   (click)="selectEvent(e)">
-                <i *ngIf="e.type === 'facebook'" nz-icon nzType="facebook" nzTheme="fill"></i>
+                <i *ngIf="e.type === 'facebook'" nz-icon nzType="facebook" nzTheme="outline"></i>
                 <i *ngIf="e.type === 'instagram'" nz-icon nzType="instagram" nzTheme="outline"></i>
                 <i *ngIf="e.type === 'meeting'" nz-icon nzType="calendar" nzTheme="outline"></i>
                 {{ e.title }}
