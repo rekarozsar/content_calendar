@@ -20,5 +20,10 @@ export class ApiService {
     return this.http.get<any>(`/backend/api/users/${id}`);
   }
 
+  createTask(task: any) {
+    return this.http.post('/backend/api/tasks', task);
+  }
+
+
 
 }

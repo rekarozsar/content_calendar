@@ -28,13 +28,14 @@ export class CreateEventComponent {
   newEvent = {
     type: '',
     title: '',
-    description: '',
-    date: null as Date | null,
+    date: '',
     place: '',
+    description: '', 
+    caption: '',
     link: '',
     photo: '',
-    graphics: [] as string[],
-    text: [] as string[],
+    graphics_maker_id: null,
+    text_writer_id: null,
     posted: false
   };
 
@@ -50,13 +51,14 @@ export class CreateEventComponent {
     this.newEvent = {
       type: '',
       title: '',
-      description: '',
-      date: null,
+      date: '',
       place: '',
+      description: '',
+      caption: '',
       link: '',
       photo: '',
-      graphics: [],
-      text: [],
+      graphics_maker_id: null,
+      text_writer_id: null,
       posted: false
     };
   }

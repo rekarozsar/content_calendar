@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 import { MenuOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
 
+import { ApiService } from '../../api';
+
 
 
 // cleaned 
@@ -41,6 +43,11 @@ export class MainLayoutComponent {
   @ViewChild(CreateEventComponent, { static: false })
 createEventModal!: CreateEventComponent;
 
+  constructor(private auth: AuthService, private router: Router, private iconService: NzIconService, private api: ApiService) {
+      this.iconService.addIcon(MenuOutline);
+    }
+    user: any = null;
+
   openNewEvent() {
     console.log("Opening New Event Modal");
     console.log("Modal reference:", this.createEventModal);
@@ -51,48 +58,39 @@ createEventModal!: CreateEventComponent;
       }
   }
 
-  addEvent(eventData: any) {
-    console.log("New Event:", eventData);
+  addEvent(event: any) {
+    console.log('EVENT FROM MODAL:', event);
 
-    // Insert into calendar event map
-    const dateKey = eventData.date
-      ? eventData.date.toISOString().split('T')[0]
-      : 'no-date';
+    const payload = {
+      title: event.title,
+      description: event.description,
+      caption: event.caption || null,
+      location: event.place || null,
+      post_by: event.date || null,
+
+      facebook_post: event.type === 'facebook',
+      instagram_post: event.type === 'instagram',
+      tiktok: event.type === 'discord',
+
+      graphics_maker: event.graphics_maker_id,
+      text_writer: event.text_writer_id,
+
+      graphics_done: false,
+      text_done: false,
+      poster: false,
+      story: false,
+      priority: 1
+    };
+
+    this.api.createTask(payload).subscribe({
+      next: res => {
+        console.log('TASK CREATED:', res);
+        // optionally trigger refresh
+      },
+      error: err => console.error('ERROR CREATING TASK:', err)
+    });
   }
 
-    constructor(private auth: AuthService, private router: Router, private iconService: NzIconService) {
-      this.iconService.addIcon(MenuOutline);
-    }
-    user: any = null;
-    
-
-  /*
-  async testLogin() {
-  try {
-    // Get CSRF cookie
-    console.log('Getting CSRF cookie...');
-    await firstValueFrom(this.auth.getCsrfCookie());
-    console.log('CSRF cookie obtained.');
-    const cookie = document.cookie;
-    console.log('Current cookies:', cookie);
-
-    // Login
-    console.log('Logging in...');
-    const loginResult = await firstValueFrom(this.auth.login('asd@asd.asd', 'asdasdasd'));
-    console.log('Login result:', loginResult);
-
-    // Get user
-    console.log('Fetching authenticated user...');
-    const user = await firstValueFrom(this.auth.getUser());
-    console.log('Authenticated user:', user);
-    this.user = user;
-  } catch (err) {
-    console.error('Login failed', err);
-  }
-  
-
-  }
-  */
 
   async ngOnInit() {
     await this.fetchUser();

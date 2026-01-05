@@ -13,7 +13,7 @@
     </div>
 
     <div class="form-group select-content">
-      <label class="choicetype">Type</label>
+      <label class="choicetype">Platform </label>
       <nz-select nzPlaceHolder="Select platform" [(ngModel)]="newEvent.type">
         <nz-option nzValue="facebook" nzLabel="Facebook"></nz-option>
         <nz-option nzValue="instagram" nzLabel="Instagram"></nz-option>
@@ -24,18 +24,23 @@
     </div>
 
     <div class="form-group">
-      <label>Description</label>
-      <textarea nz-input [(ngModel)]="newEvent.description"></textarea>
-    </div>
-
-    <div class="form-group select-content">
-      <label class="choicetype">Date</label>
-      <nz-date-picker [(ngModel)]="newEvent.date" class="select"></nz-date-picker>
+      <label >Date</label>
+      <input nz-input [(ngModel)]="newEvent.date" />
     </div>
 
     <div class="form-group">
       <label>Place</label>
       <input nz-input [(ngModel)]="newEvent.place" />
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea nz-input [(ngModel)]="newEvent.description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Caption</label>
+      <input nz-input [(ngModel)]="newEvent.caption" />
     </div>
     
     <div class="form-group">
