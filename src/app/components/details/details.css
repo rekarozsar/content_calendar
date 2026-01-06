@@ -82,3 +82,7 @@
     background-image: linear-gradient(135deg, #ac2ec5 40%, #ee6ecc);
     margin-top: 1rem;
 }
+
+.platforms-title {
+    margin-bottom: 0.5rem;
+}

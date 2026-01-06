@@ -1,6 +1,6 @@
 <div class="event-details" *ngIf="selectedEvent; else noSelection">
   <h3><b>{{ selectedEvent.title }}</b></h3>
-  <p><b>Platforms:</b></p>
+  <p class="platforms-title" ><b>Platforms:</b></p>
   <ul>
     <li *ngIf="selectedEvent.facebook_post">Facebook Post</li>
     <li *ngIf="selectedEvent.facebook_event">Facebook Event</li>
