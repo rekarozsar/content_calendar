@@ -12,6 +12,7 @@ import { CreateEventComponent } from './../create-event/create-event';
 import { AuthService } from '../../services/auth';
 import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
+import { EventService } from '../../services/event';
 
 import { MenuOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -34,7 +35,8 @@ import { ApiService } from '../../api';
     NzCardModule,
     CalendarComponent,
     EventDetailsComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    EventService
   ],
   templateUrl: './main-layout.html',
   styleUrls: ['./main-layout.css']
@@ -43,7 +45,7 @@ export class MainLayoutComponent {
   @ViewChild(CreateEventComponent, { static: false })
 createEventModal!: CreateEventComponent;
 
-  constructor(private auth: AuthService, private router: Router, private iconService: NzIconService, private api: ApiService) {
+  constructor(private auth: AuthService, private router: Router, private iconService: NzIconService, private api: ApiService, private eventService: EventService) {
       this.iconService.addIcon(MenuOutline);
     }
     user: any = null;
@@ -115,7 +117,8 @@ createEventModal!: CreateEventComponent;
     this.api.createTask(payload).subscribe({
       next: res => {
         console.log('TASK CREATED:', res);
-        // optionally trigger refresh
+        this.eventService.triggerRefresh();
+        // optionally trigger refresh 
       },
       error: err => console.error('ERROR CREATING TASK:', err)
     });

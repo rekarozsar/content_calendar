@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class EventService {
@@ -16,6 +17,13 @@ export class EventService {
 
   updateSelectedEvent(event: any) {
     this.selectedEventSource.next(event);
+  }
+
+  private refreshSubject = new Subject<void>();
+  refresh$ = this.refreshSubject.asObservable();
+
+  triggerRefresh() {
+    this.refreshSubject.next();
   }
 
 }
