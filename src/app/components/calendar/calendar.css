@@ -44,8 +44,22 @@
 .event.other  { background: linear-gradient(45deg, #409b5c, #00a3b5) }
 .event.webpage { background: linear-gradient(45deg, #012850, #CEAF87);}
 .event.facebook_instagram {
-  background: linear-gradient(45deg,#1877F2,#3C5898,#f58529,#dd2a7b,#8134af,#515bd4);
+  background: linear-gradient(
+    90deg,
+    /* Facebook side */
+    #1877F2 0%,
+    #3C5898 50%,
+
+    /* HARD CUT */
+    #f58529 50%,
+
+    /* Instagram side */
+    #dd2a7b 65%,
+    #8134af 80%,
+    #515bd4 100%
+  );
 }
+
 
 /* icon sizing */
 .event i {
