@@ -23,8 +23,13 @@
       </nz-select>
     </div>
 
+    <div class="form-group select-content">
+      <label class="choicetype">Date of the post</label>
+      <nz-date-picker [(ngModel)]="newEvent.post_date" class="select"></nz-date-picker>
+    </div>
+
     <div class="form-group">
-      <label >Date</label>
+      <label >Date of the event</label>
       <input nz-input [(ngModel)]="newEvent.date" />
     </div>
 

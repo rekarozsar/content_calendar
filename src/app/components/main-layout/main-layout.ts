@@ -66,10 +66,12 @@ createEventModal!: CreateEventComponent;
       description: event.description,
       caption: event.caption || null,
       location: event.place || null,
-      post_by: event.date || null,
+      post_by: event.post_due || null,
 
       facebook_post: event.type === 'facebook',
+      facebook_event: false,
       instagram_post: event.type === 'instagram',
+      instagram_story: false,
       tiktok: event.type === 'discord',
 
       graphics_maker: event.graphics_maker_id,
