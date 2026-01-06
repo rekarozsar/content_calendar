@@ -2,12 +2,12 @@
   <h3><b>{{ selectedEvent.title }}</b></h3>
   <p><b>Platforms:</b></p>
   <ul>
-    <li *ngIf="selectedEvent.fb_post">Facebook Post</li>
-    <li *ngIf="selectedEvent.fb_event">Facebook Event</li>
-    <li *ngIf="selectedEvent.ig_post">Instagram Post</li>
-    <li *ngIf="selectedEvent.ig_story">Instagram Story</li>
-    <li *ngIf="selectedEvent.discord_post">Discord Post</li>
-  </ul>
+    <li *ngIf="selectedEvent.facebook_post">Facebook Post</li>
+    <li *ngIf="selectedEvent.facebook_event">Facebook Event</li>
+    <li *ngIf="selectedEvent.instagram_post">Instagram Post</li>
+    <li *ngIf="selectedEvent.story">Instagram Story</li>
+    <li *ngIf="selectedEvent.tiktok">Discord</li>
+</ul>
   <div *ngIf="selectedEvent.date">
     <div >
         <b>Date:</b> {{ selectedEvent.date }}
