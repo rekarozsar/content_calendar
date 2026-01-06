@@ -49,6 +49,7 @@ export class CalendarComponent implements OnInit {
 
 
       map.get(dateStr)!.push({
+        id: task.id,
         type,
         facebook_post: task.facebook_post,
         facebook_event: task.facebook_event,
@@ -105,6 +106,7 @@ export class CalendarComponent implements OnInit {
 
   
   events = new Map<string, { // post_by
+                             id: number,
                              type: string; //fb...
                              facebook_post: boolean,
                              facebook_event: boolean,
