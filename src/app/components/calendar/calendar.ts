@@ -50,6 +50,11 @@ export class CalendarComponent implements OnInit {
 
       map.get(dateStr)!.push({
         type,
+        facebook_post: task.facebook_post,
+        facebook_event: task.facebook_event,
+        instagram_post: task.instagram_post,
+        story: task.story,
+        discord_post: task.tiktok,
         title: task.title,
         description: task.description,
         date: task.due_date,
@@ -100,6 +105,11 @@ export class CalendarComponent implements OnInit {
   
   events = new Map<string, { // post_by
                              type: string; //fb...
+                             facebook_post: boolean,
+                             facebook_event: boolean,
+                             instagram_post: boolean,
+                             story: boolean,
+                             discord_post: boolean,                             
                              // other media
                              title: string, // title
                              description: string, //same
