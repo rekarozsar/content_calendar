@@ -81,7 +81,9 @@ export class CalendarComponent implements OnInit {
 
       // Then fetch tasks
       this.api.getTasks().subscribe({
-        next: tasks => this.buildCalendarEvents(tasks, userMap),
+        next: tasks => {
+          console.log('FIRST TASK ONLY:', tasks[0]);
+          this.buildCalendarEvents(tasks, userMap)},
         error: err => console.error('ERROR fetching tasks:', err)
       });
     },
