@@ -5,6 +5,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 @Component({
   selector: 'app-create-event',
@@ -15,7 +16,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzModalModule,
     NzInputModule,
     NzDatePickerModule,
-    NzSelectModule
+    NzSelectModule,
+    NzCheckboxModule
   ],
   templateUrl: './create-event.html',
     styleUrls: ['./create-event.css']
