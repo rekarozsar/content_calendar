@@ -71,19 +71,21 @@ createEventModal!: CreateEventComponent;
       ? event.post_date.toISOString()
       : null,
 
+      due_date: event.date || null,
+
       facebook_post: event.type === 'facebook',
       facebook_event: false,
       instagram_post: event.type === 'instagram',
-      instagram_story: false,
+      story: false,
       tiktok: event.type === 'discord',
+      other_media: event.type === 'other' ? 'other' : null,
 
-      graphics_maker: event.graphics_maker_id,
-      text_writer: event.text_writer_id,
+      graphics_maker: event.graphics_maker_id ?? null,
+      text_writer: event.text_writer_id ?? null,
 
       graphics_done: false,
       text_done: false,
       poster: false,
-      story: false,
       priority: 1
     };
 
