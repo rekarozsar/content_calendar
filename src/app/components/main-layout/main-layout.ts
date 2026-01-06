@@ -78,11 +78,13 @@ createEventModal!: CreateEventComponent;
 
       due_date: event.date || null,
 
-      facebook_post: event.type === 'facebook',
-      facebook_event: false,
-      instagram_post: event.type === 'instagram',
-      story: false,
-      tiktok: event.type === 'discord',
+      facebook_post: event.fb_post,
+      facebook_event: event.fb_event,
+      instagram_post: event.ig_post,
+      story: event.ig_story,
+      tiktok: event.discord_post,
+
+
       // other_media: event.type === 'other' ? 'other' : null,
 
       images: event.photo ? [event.photo] : [],

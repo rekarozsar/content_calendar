@@ -38,8 +38,9 @@ export class CalendarComponent implements OnInit {
 
       // Type
       let type = 'other';
-      if (task.facebook_post) type = 'facebook';
-      else if (task.instagram_post) type = 'instagram';
+      if ((task.facebook_post || task.facebook_event) && (task.instagram_post || task.story)) type = 'facebook_instagram';
+      else if (task.facebook_post || task.facebook_event) type = 'facebook';
+      else if (task.instagram_post || task.story) type = 'instagram';
       else if (task.tiktok) type = 'discord';
 
       // Graphics/text

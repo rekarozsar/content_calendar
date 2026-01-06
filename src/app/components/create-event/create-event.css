@@ -49,5 +49,10 @@ label {
     display: flex;
     justify-content: flex-end;
     gap: 0.5rem;
-   
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 16px;
 }

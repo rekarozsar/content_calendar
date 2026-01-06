@@ -43,6 +43,9 @@
 .event.discord { background: linear-gradient(45deg, #738ADB, #5865F2);}
 .event.other  { background: linear-gradient(45deg, #409b5c, #00a3b5) }
 .event.webpage { background: linear-gradient(45deg, #012850, #CEAF87);}
+.event.facebook_instagram {
+  background: linear-gradient(45deg,#1877F2,#3C5898,#f58529,#dd2a7b,#8134af,#515bd4);
+}
 
 /* icon sizing */
 .event i {

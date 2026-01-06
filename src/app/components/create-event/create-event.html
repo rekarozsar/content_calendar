@@ -13,15 +13,36 @@
     </div>
 
     <div class="form-group select-content">
-      <label class="choicetype">Platform </label>
-      <nz-select nzPlaceHolder="Select platform" [(ngModel)]="newEvent.type">
-        <nz-option nzValue="facebook" nzLabel="Facebook"></nz-option>
-        <nz-option nzValue="instagram" nzLabel="Instagram"></nz-option>
-        <nz-option nzValue="discord" nzLabel="Discord"></nz-option>
-        <nz-option nzValue="webpage" nzLabel="Webpage"></nz-option>
-        <nz-option nzValue="other" nzLabel="Other"></nz-option>
-      </nz-select>
-    </div>
+  <label class="choicetype">Platforms:</label>
+
+  <div class="checkbox-group">
+    <label nz-checkbox [(ngModel)]="newEvent.facebook_post">
+      Facebook post
+    </label>
+
+    <label nz-checkbox [(ngModel)]="newEvent.facebook_event">
+      Facebook event
+    </label>
+
+    <label nz-checkbox [(ngModel)]="newEvent.instagram_post">
+      Instagram post
+    </label>
+
+    <label nz-checkbox [(ngModel)]="newEvent.story">
+      Instagram story
+    </label>
+
+    <!-- FIX IN BACKEND -->
+    <label nz-checkbox [(ngModel)]="newEvent.tiktok">
+      Discord
+    </label>
+
+    <label nz-checkbox [(ngModel)]="newEvent.webpage">
+      Web page
+    </label>
+  </div>
+</div>
+
 
     <div class="form-group select-content">
       <label class="choicetype">Date of the post</label>

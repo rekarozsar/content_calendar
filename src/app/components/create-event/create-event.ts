@@ -27,6 +27,12 @@ export class CreateEventComponent {
 
   newEvent = {
     type: '',
+    fb_post: false,
+    ig_post: false,
+    discord_post: false,
+    fb_event: false,
+    ig_story: false,
+    other_media: false,
     title: '',
     post_date: null as Date | null, 
     date: '',
@@ -51,6 +57,12 @@ export class CreateEventComponent {
     // Reset
     this.newEvent = {
       type: '',
+      fb_post: false,
+      ig_post: false,
+      discord_post: false,
+      fb_event: false,
+      ig_story: false,
+      other_media: false,
       title: '',
       post_date: null,
       date: '',
