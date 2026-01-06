@@ -54,11 +54,31 @@ export class EventDetailsComponent {
   }
 
   onDelete() {
-    if (this.selectedEvent) {
-      console.log('Delete event:', this.selectedEvent);
-      // TODO: delete functionality
-    }
+  if (!this.selectedEvent) return;
+
+  if (!confirm('Are you sure you want to delete this task?')) {
+    return;
   }
+
+  console.log('Deleting event:', this.selectedEvent);
+
+  this.api.deleteTask(this.selectedEvent.id).subscribe({
+    next: () => {
+      console.log('Task deleted');
+
+      // Clear selection
+      this.eventService.updateSelectedEvent(null);
+
+      // Optional: trigger refresh in calendar/list
+      // this.eventService.refreshTasks();
+    },
+    error: err => {
+      console.error('DELETE failed:', err);
+    }
+  });
+}
+
+  
 
   onPosted() {
     if (this.selectedEvent) {
