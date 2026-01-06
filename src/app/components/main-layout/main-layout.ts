@@ -68,8 +68,13 @@ createEventModal!: CreateEventComponent;
       location: event.place || null,
       
       post_by: event.post_date
-      ? event.post_date.toISOString()
+      ? new Date(
+          new Date(event.post_date).setDate(
+            new Date(event.post_date).getDate() + 1
+          )
+        ).toISOString()
       : null,
+
 
       due_date: event.date || null,
 
