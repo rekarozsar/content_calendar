@@ -20,6 +20,7 @@ export class EventDetailsComponent {
   constructor(private eventService: EventService, private api: ApiService, public auth: AuthService) {
     this.eventService.selectedEvent$.subscribe(event => {
       this.selectedEvent = event;
+      console.log('selectedEvent FROM SERVICE:', event);
     });
   }
   
