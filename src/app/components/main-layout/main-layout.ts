@@ -80,6 +80,8 @@ createEventModal!: CreateEventComponent;
       tiktok: event.type === 'discord',
       other_media: event.type === 'other' ? 'other' : null,
 
+      images: event.photo ? [event.photo] : [],
+
       graphics_maker: event.graphics_maker_id ?? null,
       text_writer: event.text_writer_id ?? null,
 
