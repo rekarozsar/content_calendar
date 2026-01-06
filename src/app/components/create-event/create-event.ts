@@ -28,7 +28,7 @@ export class CreateEventComponent {
   newEvent = {
     type: '',
     title: '',
-    post_due: null as Date | null, 
+    post_date: null as Date | null, 
     date: '',
     place: '',
     description: '', 
@@ -52,7 +52,7 @@ export class CreateEventComponent {
     this.newEvent = {
       type: '',
       title: '',
-      post_due: null,
+      post_date: null,
       date: '',
       place: '',
       description: '',
