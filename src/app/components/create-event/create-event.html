@@ -16,30 +16,32 @@
   <label class="choicetype">Platforms:</label>
 
   <div class="checkbox-group">
-    <label nz-checkbox [(ngModel)]="newEvent.facebook_post">
+    <label nz-checkbox [(ngModel)]="newEvent.fb_post">
       Facebook post
     </label>
 
-    <label nz-checkbox [(ngModel)]="newEvent.facebook_event">
+    <label nz-checkbox [(ngModel)]="newEvent.fb_event">
       Facebook event
     </label>
 
-    <label nz-checkbox [(ngModel)]="newEvent.instagram_post">
+    <label nz-checkbox [(ngModel)]="newEvent.ig_post">
       Instagram post
     </label>
 
-    <label nz-checkbox [(ngModel)]="newEvent.story">
+    <label nz-checkbox [(ngModel)]="newEvent.ig_story">
       Instagram story
     </label>
 
     <!-- FIX IN BACKEND -->
-    <label nz-checkbox [(ngModel)]="newEvent.tiktok">
+    <label nz-checkbox [(ngModel)]="newEvent.discord_post">
       Discord
     </label>
 
+    <!--
     <label nz-checkbox [(ngModel)]="newEvent.webpage">
       Web page
     </label>
+    -->
   </div>
 </div>
 
