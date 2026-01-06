@@ -78,13 +78,13 @@ createEventModal!: CreateEventComponent;
       instagram_post: event.type === 'instagram',
       story: false,
       tiktok: event.type === 'discord',
-      other_media: event.type === 'other' ? 'other' : null,
+      // other_media: event.type === 'other' ? 'other' : null,
 
       images: event.photo ? [event.photo] : [],
 
       // UNDO LATER
-      graphics_maker: 2,
-      text_writer: 2,
+      // graphics_maker: 2,
+      // text_writer: 2,
 
       graphics_done: false,
       text_done: false,
