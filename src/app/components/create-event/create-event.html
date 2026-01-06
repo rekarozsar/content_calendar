@@ -13,37 +13,47 @@
     </div>
 
     <div class="form-group select-content">
-  <label class="choicetype">Platforms:</label>
+      <label class="choicetype">Platforms:</label>
 
-  <div class="checkbox-group">
-    <label nz-checkbox [(ngModel)]="newEvent.fb_post">
-      Facebook post
-    </label>
+      <div class="checkbox-group">
+        <label nz-checkbox [(ngModel)]="newEvent.fb_post">
+          Facebook post
+        </label>
 
-    <label nz-checkbox [(ngModel)]="newEvent.fb_event">
-      Facebook event
-    </label>
+        <label nz-checkbox [(ngModel)]="newEvent.fb_event">
+          Facebook event
+        </label>
 
-    <label nz-checkbox [(ngModel)]="newEvent.ig_post">
-      Instagram post
-    </label>
+        <label nz-checkbox [(ngModel)]="newEvent.ig_post">
+          Instagram post
+        </label>
 
-    <label nz-checkbox [(ngModel)]="newEvent.ig_story">
-      Instagram story
-    </label>
+        <label nz-checkbox [(ngModel)]="newEvent.ig_story">
+          Instagram story
+        </label>
 
-    <!-- FIX IN BACKEND -->
-    <label nz-checkbox [(ngModel)]="newEvent.discord_post">
-      Discord
-    </label>
+        <!-- FIX IN BACKEND -->
+        <label nz-checkbox [(ngModel)]="newEvent.discord_post">
+          Discord
+        </label>
 
-    <!--
-    <label nz-checkbox [(ngModel)]="newEvent.webpage">
-      Web page
-    </label>
-    -->
-  </div>
-</div>
+        <!--
+        <label nz-checkbox [(ngModel)]="newEvent.webpage">
+          Web page
+        </label>
+        -->
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label >Other platforms:</label>
+      <input nz-input [(ngModel)]="newEvent.other_media" />
+    </div>
+
+    <div class="form-group select-content">
+      <label class="choicetype">Date of the post</label>
+      <nz-date-picker [(ngModel)]="newEvent.post_date" class="select"></nz-date-picker>
+    </div>
 
 
     <div class="form-group select-content">

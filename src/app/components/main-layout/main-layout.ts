@@ -61,7 +61,7 @@ createEventModal!: CreateEventComponent;
   addEvent(event: any) {
     console.log('EVENT FROM MODAL:', event);
 
-    const payload = {
+    const payload: any = {
       title: event.title,
       description: event.description,
       caption: event.caption || null,
@@ -98,6 +98,11 @@ createEventModal!: CreateEventComponent;
       poster: false,
       priority: 1
     };
+
+    if (event.other && event.other.trim() !== '') {
+      payload.other_media = event.other;
+    }
+
 
      // 🔥 THIS is what the backend sees
   console.log(

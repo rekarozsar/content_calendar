@@ -7,6 +7,7 @@
     <li *ngIf="selectedEvent.instagram_post">Instagram Post</li>
     <li *ngIf="selectedEvent.story">Instagram Story</li>
     <li *ngIf="selectedEvent.tiktok">Discord</li>
+    <li *ngIf="selectedEvent.other_media">{{ selectedEvent.other_media }}</li>
 </ul>
   <div *ngIf="selectedEvent.date">
     <div >

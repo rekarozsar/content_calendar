@@ -55,6 +55,7 @@ export class CalendarComponent implements OnInit {
         instagram_post: task.instagram_post,
         story: task.story,
         discord_post: task.tiktok,
+        other_media: task.other_media ?? null,
         title: task.title,
         description: task.description,
         date: task.due_date,
@@ -109,7 +110,8 @@ export class CalendarComponent implements OnInit {
                              facebook_event: boolean,
                              instagram_post: boolean,
                              story: boolean,
-                             discord_post: boolean,                             
+                             discord_post: boolean,
+                             other_media: string | null,
                              // other media
                              title: string, // title
                              description: string, //same
