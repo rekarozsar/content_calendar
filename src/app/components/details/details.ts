@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth';
 import { firstValueFrom } from 'rxjs';
 
 
+
 @Component({
   selector: 'app-details',
   standalone: true,
@@ -66,11 +67,9 @@ export class EventDetailsComponent {
     next: () => {
       console.log('Task deleted');
 
-      // Clear selection
       this.eventService.updateSelectedEvent(null);
 
-      // Optional: trigger refresh in calendar/list
-      // this.eventService.refreshTasks();
+      this.eventService.triggerRefresh();
     },
     error: err => {
       console.error('DELETE failed:', err);

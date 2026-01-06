@@ -35,8 +35,7 @@ import { ApiService } from '../../api';
     NzCardModule,
     CalendarComponent,
     EventDetailsComponent,
-    CreateEventComponent,
-    EventService
+    CreateEventComponent
   ],
   templateUrl: './main-layout.html',
   styleUrls: ['./main-layout.css']
