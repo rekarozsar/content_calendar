@@ -66,7 +66,10 @@ createEventModal!: CreateEventComponent;
       description: event.description,
       caption: event.caption || null,
       location: event.place || null,
-      post_by: event.post_due || null,
+      
+      post_by: event.post_date
+      ? event.post_date.toISOString()
+      : null,
 
       facebook_post: event.type === 'facebook',
       facebook_event: false,
