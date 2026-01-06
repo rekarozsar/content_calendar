@@ -83,6 +83,7 @@ createEventModal!: CreateEventComponent;
       instagram_post: event.ig_post,
       story: event.ig_story,
       tiktok: event.discord_post,
+      other_media: event.other_media || null,
 
 
       // other_media: event.type === 'other' ? 'other' : null,
@@ -98,11 +99,6 @@ createEventModal!: CreateEventComponent;
       poster: false,
       priority: 1
     };
-
-    if (event.other && event.other.trim() !== '') {
-      payload.other_media = event.other;
-      console.log('Added other_media to payload:', event.other);
-    }
 
 
      // 🔥 THIS is what the backend sees
