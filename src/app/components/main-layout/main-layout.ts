@@ -82,8 +82,9 @@ createEventModal!: CreateEventComponent;
 
       images: event.photo ? [event.photo] : [],
 
-      graphics_maker: event.graphics_maker_id ?? null,
-      text_writer: event.text_writer_id ?? null,
+      // UNDO LATER
+      graphics_maker: 2,
+      text_writer: 2,
 
       graphics_done: false,
       text_done: false,
