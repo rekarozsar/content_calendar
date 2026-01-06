@@ -101,6 +101,7 @@ createEventModal!: CreateEventComponent;
 
     if (event.other && event.other.trim() !== '') {
       payload.other_media = event.other;
+      console.log('Added other_media to payload:', event.other);
     }
 
 
