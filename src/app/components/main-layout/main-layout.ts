@@ -89,6 +89,17 @@ createEventModal!: CreateEventComponent;
       priority: 1
     };
 
+     // 🔥 THIS is what the backend sees
+  console.log(
+    'POST /api/tasks PAYLOAD (raw object):',
+    payload
+  );
+
+  console.log(
+    'POST /api/tasks PAYLOAD (JSON):',
+    JSON.stringify(payload, null, 2)
+  );
+
     this.api.createTask(payload).subscribe({
       next: res => {
         console.log('TASK CREATED:', res);
