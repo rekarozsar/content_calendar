@@ -54,6 +54,7 @@ export class CreateEventComponent {
       const graphicsUser = this.users.find(
         u => u.name === event.graphics
       );
+      console.log(graphicsUser, this.users[3].name);
 
       const textUser = this.users.find(
         u => u.name === event.text
