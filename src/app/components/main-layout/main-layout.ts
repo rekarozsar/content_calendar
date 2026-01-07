@@ -75,10 +75,10 @@ createEventModal!: CreateEventComponent;
       caption: event.caption || null,
       location: event.place || null,
       
-      post_by: event.post_date
+      post_by: event.post_by
     ? new Date(
-        new Date(event.post_date).setDate(
-          new Date(event.post_date).getDate() - 1
+        new Date(event.post_by).setDate(
+          new Date(event.post_by).getDate() - 1
         )
       ).toISOString()
     : null,
@@ -142,6 +142,7 @@ createEventModal!: CreateEventComponent;
     JSON.stringify(payload, null, 2)
   );
 
+  /*
     this.api.createTask(payload).subscribe({
       next: res => {
         console.log('TASK CREATED:', res);
@@ -150,6 +151,8 @@ createEventModal!: CreateEventComponent;
       },
       error: err => console.error('ERROR CREATING TASK:', err)
     });
+
+    */
 
     
   }
