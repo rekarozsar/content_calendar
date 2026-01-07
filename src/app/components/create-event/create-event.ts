@@ -86,8 +86,8 @@ export class CreateEventComponent {
         other_media: event.other_media ?? '',
 
         photo: '',
-        graphics_maker: event.graphics_maker?.id ?? null,
-        text_writer: event.text_writer?.id ?? null,
+        graphics_maker: graphicsUser?.id ?? null,
+        text_writer: textUser?.id ?? null,
 
         posted: event.posted ?? false,
 
