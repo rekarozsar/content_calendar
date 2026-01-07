@@ -93,15 +93,10 @@ createEventModal!: CreateEventComponent;
       tiktok: event.discord_post,
       other_media: event.other_media || null,
 
-
-      // other_media: event.type === 'other' ? 'other' : null,
-
       images: event.photo ? [event.photo] : [],
 
-      // UNDO LATER
-      // graphics_maker: 2,
-      // text_writer: 2,
-
+      graphics_maker: event.graphics_maker_id || null,
+      text_writer: event.text_writer_id || null,
       graphics_done: false,
       text_done: false,
       poster: false,
