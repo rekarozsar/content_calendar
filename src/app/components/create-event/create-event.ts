@@ -47,7 +47,10 @@ export class CreateEventComponent {
         date: event.due_date ?? '',
 
         // ✅ DATE: string → Date
-        post_by: event.post_by ? new Date(event.post_by) : null,
+        post_by: event.post_by
+          ? new Date(Date.parse(event.post_by))
+          : null,
+        
 
         // ✅ CHECKBOXES: map backend → frontend
         fb_post: !!event.facebook_post,
