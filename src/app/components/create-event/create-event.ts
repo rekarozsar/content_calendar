@@ -52,11 +52,11 @@ export class CreateEventComponent {
       this.isEditMode = true;
 
       const graphicsUser = this.users.find(
-        u => `${u.first_name} ${u.last_name}` === event.graphics
+        u => u.name === event.graphics
       );
 
       const textUser = this.users.find(
-        u => `${u.first_name} ${u.last_name}` === event.text
+        u => u.name === event.text
       );
 
 

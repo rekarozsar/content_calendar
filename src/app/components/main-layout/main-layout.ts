@@ -76,12 +76,12 @@ createEventModal!: CreateEventComponent;
       location: event.place || null,
       
       post_by: event.post_by
-    ? new Date(
-        new Date(event.post_by).setDate(
-          new Date(event.post_by).getDate() - 1
-        )
-      ).toISOString()
-    : null,
+        ? new Date(
+            new Date(event.post_by).setDate(
+              new Date(event.post_by).getDate() - 1
+            )
+          ).toISOString()
+        : null,
 
 
       due_date: event.due_date || null,
