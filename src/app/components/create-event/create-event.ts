@@ -31,7 +31,8 @@ export class CreateEventComponent {
   isEditMode = false;
 
   constructor(private eventService: EventService, private api: ApiService) {
-  this.eventService.modalEvent$.subscribe(event => {
+  this.eventService.modalEvent$.subscribe(async event => {
+    await this.fetchUserList();
     if (event === null) {
       // CREATE
       this.isEditMode = false;
@@ -80,9 +81,7 @@ export class CreateEventComponent {
 
 users: any[] = [];
 
-ngOnInit() {
-  this.fetchUserList();
-}
+
 async fetchUserList() {
   try {
     this.users = await firstValueFrom(this.api.getUsers());
