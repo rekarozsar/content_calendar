@@ -72,8 +72,9 @@ export class CreateEventComponent {
         other_media: event.other_media ?? '',
 
         photo: '',
-        graphics_maker_id: event.graphics_maker_id ?? null,
-        text_writer_id: event.text_writer_id ?? null,
+        graphics_maker: event.graphics_maker?.id ?? null,
+        text_writer: event.text_writer?.id ?? null,
+
         posted: event.posted ?? false,
 
         // keep the id for update
@@ -116,8 +117,8 @@ async fetchUserList() {
     caption: '',
     link: '',
     photo: '',
-    graphics_maker_id: null,
-    text_writer_id: null,
+    graphics_maker: null,
+    text_writer: null,
     posted: false,
     id: null as number | null
   };
@@ -158,8 +159,8 @@ async fetchUserList() {
     caption: '',
     link: '',
     photo: '',
-    graphics_maker_id: null,
-    text_writer_id: null,
+    graphics_maker: null,
+    text_writer: null,
     posted: false,
     id: null as number | null
   };

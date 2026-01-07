@@ -95,8 +95,8 @@ createEventModal!: CreateEventComponent;
 
       images: event.photo ? [event.photo] : [],
 
-      graphics_maker: event.graphics_maker_id || null,
-      text_writer: event.text_writer_id || null,
+      graphics_maker: event.graphics_maker || null,
+      text_writer: event.text_writer || null,
       graphics_done: false,
       text_done: false,
       poster: false,
