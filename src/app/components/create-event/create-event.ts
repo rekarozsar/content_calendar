@@ -40,6 +40,8 @@ export class CreateEventComponent {
     console.log('EVENT text id:', event?.text_writer);
     console.log('USERS:', this.users.map(u => u.id));
 
+    
+
 
     if (event === null) {
       // CREATE
@@ -48,14 +50,24 @@ export class CreateEventComponent {
     } else {
       // EDIT
       this.isEditMode = true;
+
+      const graphicsUser = this.users.find(
+        u => `${u.first_name} ${u.last_name}` === event.graphics
+      );
+
+      const textUser = this.users.find(
+        u => `${u.first_name} ${u.last_name}` === event.text
+      );
+
+
       this.newEvent = {
         type: '',
         title: event.title ?? '',
         description: event.description ?? '',
         caption: event.caption ?? '',
         link: event.link ?? '',
-        place: event.location ?? '',
-        due_date: event.due_date ?? '',
+        place: event.place ?? '',
+        due_date: event.date ?? '',
 
         // ✅ DATE: string → Date
         post_by: event.post_by
