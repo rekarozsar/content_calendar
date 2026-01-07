@@ -33,6 +33,13 @@ export class CreateEventComponent {
   constructor(private eventService: EventService, private api: ApiService) {
   this.eventService.modalEvent$.subscribe(async event => {
     await this.fetchUserList();
+
+    // DEBUG
+    console.log('EVENT graphics id:', event?.graphics_maker_id);
+    console.log('EVENT text id:', event?.text_writer_id);
+    console.log('USERS:', this.users.map(u => u.id));
+
+
     if (event === null) {
       // CREATE
       this.isEditMode = false;
