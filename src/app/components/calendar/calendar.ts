@@ -71,7 +71,8 @@ export class CalendarComponent implements OnInit {
         graphics,
         text_done: task.text_done,
         text,
-        posted: false
+        posted: false,
+        post_by: task.post_by
       });
     }
 
@@ -146,8 +147,8 @@ export class CalendarComponent implements OnInit {
                              graphics_done: boolean, // graphics done
                              text: string | null, // text_writer
                              text_done: boolean, // text done
-                             posted: boolean // poster ???
-                            
+                             posted: boolean, // poster ???
+                             post_by: Date | null, // post_by
 
                             }[]>
                             
