@@ -7,6 +7,8 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { EventService } from '../../services/event';
+import { firstValueFrom } from 'rxjs';
+import { ApiService } from '../../api';
 
 @Component({
   selector: 'app-create-event',
@@ -28,7 +30,7 @@ export class CreateEventComponent {
 
   isEditMode = false;
 
-  constructor(private eventService: EventService) {
+  constructor(private eventService: EventService, private api: ApiService) {
   this.eventService.modalEvent$.subscribe(event => {
     if (event === null) {
       // CREATE
@@ -74,6 +76,20 @@ export class CreateEventComponent {
 
     this.isVisible = true;
   });
+}
+
+users: any[] = [];
+
+ngOnInit() {
+  this.fetchUserList();
+}
+async fetchUserList() {
+  try {
+    this.users = await firstValueFrom(this.api.getUsers());
+  } catch (err) {
+    console.error('Failed to fetch users:', err);
+    this.users = [];
+  }
 }
 
   @Output() eventCreated = new EventEmitter<any>();

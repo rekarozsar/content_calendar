@@ -76,9 +76,40 @@
     </div>
     
     <div class="form-group">
-      <label>Link</label>
-      <input nz-input [(ngModel)]="newEvent.link" />
+      <label>Graphics Maker</label>
+      <nz-select
+        [(ngModel)]="newEvent.graphics_maker_id"
+        nzAllowClear
+        nzPlaceHolder="Select graphics maker"
+        nzBordered
+        style="width: 100%;">
+        <nz-option
+          *ngFor="let user of users"
+          [nzValue]="user.id"
+          [nzLabel]="user.name">
+        </nz-option>
+        <nz-option [nzValue]="null" nzLabel="None"></nz-option>
+      </nz-select>
     </div>
+
+    <!-- Text Writer -->
+    <div class="form-group">
+      <label>Text Writer</label>
+      <nz-select
+        [(ngModel)]="newEvent.text_writer_id"
+        nzAllowClear
+        nzPlaceHolder="Select text writer"
+        nzBordered
+        style="width: 100%;">
+        <nz-option
+          *ngFor="let user of users"
+          [nzValue]="user.id"
+          [nzLabel]="user.name">
+        </nz-option>
+        <nz-option [nzValue]="null" nzLabel="None"></nz-option>
+      </nz-select>
+    </div>
+    
 
   </ng-container>
 
