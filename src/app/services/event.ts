@@ -26,7 +26,7 @@ export class EventService {
     this.refreshSubject.next();
   }
 
-  private modalEventSource = new BehaviorSubject<any | null>(null);
+  private modalEventSource = new Subject<any>();
   modalEvent$ = this.modalEventSource.asObservable();
 
   openCreate() {

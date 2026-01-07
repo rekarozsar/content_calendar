@@ -44,7 +44,7 @@ export class CreateEventComponent {
         caption: event.caption ?? '',
         link: event.link ?? '',
         place: event.location ?? '',
-        date: event.due_date ?? '',
+        due_date: event.due_date ?? '',
 
         // ✅ DATE: string → Date
         post_by: event.post_by
@@ -88,7 +88,7 @@ export class CreateEventComponent {
     other_media: '',
     title: '',
     post_by: null as Date | null, 
-    date: '',
+    due_date: '',
     place: '',
     description: '', 
     caption: '',
@@ -130,7 +130,7 @@ export class CreateEventComponent {
     other_media: '',
     title: '',
     post_by: null,
-    date: '',
+    due_date: '',
     place: '',
     description: '',
     caption: '',
