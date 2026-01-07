@@ -6,6 +6,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { EventService } from '../../services/event';
 
 @Component({
   selector: 'app-create-event',
@@ -24,6 +25,24 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 })
 export class CreateEventComponent {
   isVisible = false;
+
+  isEditMode = false;
+
+  constructor(private eventService: EventService) {
+  this.eventService.modalEvent$.subscribe(event => {
+    if (event === null) {
+      // CREATE
+      this.isEditMode = false;
+      this.resetForm();
+    } else {
+      // EDIT
+      this.isEditMode = true;
+      this.newEvent = { ...event };
+    }
+
+    this.isVisible = true;
+  });
+}
 
   @Output() eventCreated = new EventEmitter<any>();
 
@@ -53,33 +72,41 @@ export class CreateEventComponent {
   }
 
   handleOk() {
-    this.eventCreated.emit(this.newEvent);
-    this.isVisible = false;
+    this.eventCreated.emit({
+      ...this.newEvent,
+      isEditMode: this.isEditMode
+    });
 
-    // Reset
-    this.newEvent = {
-      type: '',
-      fb_post: false,
-      ig_post: false,
-      discord_post: false,
-      fb_event: false,
-      ig_story: false,
-      other_media: '',
-      title: '',
-      post_date: null,
-      date: '',
-      place: '',
-      description: '',
-      caption: '',
-      link: '',
-      photo: '',
-      graphics_maker_id: null,
-      text_writer_id: null,
-      posted: false
-    };
+    this.isVisible = false;
+    this.resetForm();
   }
+
 
   handleCancel() {
     this.isVisible = false;
   }
+
+  resetForm() {
+  this.newEvent = {
+    type: '',
+    fb_post: false,
+    ig_post: false,
+    discord_post: false,
+    fb_event: false,
+    ig_story: false,
+    other_media: '',
+    title: '',
+    post_date: null,
+    date: '',
+    place: '',
+    description: '',
+    caption: '',
+    link: '',
+    photo: '',
+    graphics_maker_id: null,
+    text_writer_id: null,
+    posted: false
+  };
+}
+
 }

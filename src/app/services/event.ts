@@ -26,4 +26,15 @@ export class EventService {
     this.refreshSubject.next();
   }
 
+  private modalEventSource = new BehaviorSubject<any | null>(null);
+  modalEvent$ = this.modalEventSource.asObservable();
+
+  openCreate() {
+    this.modalEventSource.next(null);
+  }
+
+  openEdit(event: any) {
+    this.modalEventSource.next({ ...event }); // clone!
+  }
+
 }

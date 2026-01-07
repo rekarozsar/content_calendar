@@ -48,11 +48,11 @@ export class EventDetailsComponent {
   }
 
   onEdit() {
-    if (this.selectedEvent) {
-      console.log('Edit event:', this.selectedEvent);
-      // TODO: edit functionality
-    }
+    if (!this.selectedEvent) return;
+
+    this.eventService.openEdit(this.selectedEvent);
   }
+
 
   onDelete() {
   if (!this.selectedEvent) return;

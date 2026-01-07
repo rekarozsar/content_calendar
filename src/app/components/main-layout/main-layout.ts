@@ -49,6 +49,12 @@ createEventModal!: CreateEventComponent;
     }
     user: any = null;
 
+    openNewEvent() {
+      this.eventService.openCreate();
+    }
+
+
+  /*
   openNewEvent() {
     console.log("Opening New Event Modal");
     console.log("Modal reference:", this.createEventModal);
@@ -58,6 +64,7 @@ createEventModal!: CreateEventComponent;
         this.createEventModal.show();
       }
   }
+  */
 
   addEvent(event: any) {
     console.log('EVENT FROM MODAL:', event);
@@ -101,6 +108,28 @@ createEventModal!: CreateEventComponent;
       priority: 1
     };
 
+    if (event.isEditMode) {
+      console.log('UPDATING TASK', event.id, payload);
+
+      this.api.updateTask(event.id, payload).subscribe({
+        next: () => {
+          this.eventService.triggerRefresh();
+        },
+        error: err => console.error('UPDATE failed:', err)
+      });
+
+    } else {
+      console.log('CREATING TASK', payload);
+
+      this.api.createTask(payload).subscribe({
+        next: () => {
+          this.eventService.triggerRefresh();
+        },
+        error: err => console.error('CREATE failed:', err)
+      });
+    }
+  
+
 
      // 🔥 THIS is what the backend sees
   console.log(
@@ -121,7 +150,11 @@ createEventModal!: CreateEventComponent;
       },
       error: err => console.error('ERROR CREATING TASK:', err)
     });
+
+    
   }
+
+  
 
 
   async ngOnInit() {

@@ -24,9 +24,21 @@ export class ApiService {
     return this.http.post('/backend/api/tasks', task);
   }
 
+  
   updateTask(id: number, payload: any) {
     return this.http.put(`/backend/api/tasks/${id}`, payload);
   }
+
+  /*
+  updateTask(id: number, payload: any) {
+    return this.http.put(
+      `${this.baseUrl}/api/tasks/${id}`,
+      payload,
+      { withCredentials: true }
+    );
+  }
+    */
+
 
   deleteTask(id: number) {
     return this.http.delete(`/backend/api/tasks/${id}`);
