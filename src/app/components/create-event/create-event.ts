@@ -35,8 +35,8 @@ export class CreateEventComponent {
     await this.fetchUserList();
 
     // DEBUG
-    console.log('EVENT graphics id:', event?.graphics_maker_id);
-    console.log('EVENT text id:', event?.text_writer_id);
+    console.log('EVENT graphics id:', event?.graphics_maker);
+    console.log('EVENT text id:', event?.text_writer);
     console.log('USERS:', this.users.map(u => u.id));
 
 
