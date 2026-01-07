@@ -37,7 +37,36 @@ export class CreateEventComponent {
     } else {
       // EDIT
       this.isEditMode = true;
-      this.newEvent = { ...event };
+      this.newEvent = {
+        type: '',
+        title: event.title ?? '',
+        description: event.description ?? '',
+        caption: event.caption ?? '',
+        link: event.link ?? '',
+        place: event.location ?? '',
+        date: event.due_date ?? '',
+
+        // ✅ DATE: string → Date
+        post_by: event.post_by ? new Date(event.post_by) : null,
+
+        // ✅ CHECKBOXES: map backend → frontend
+        fb_post: !!event.facebook_post,
+        fb_event: !!event.facebook_event,
+        ig_post: !!event.instagram_post,
+        ig_story: !!event.story,
+        discord_post: !!event.tiktok,
+
+        other_media: event.other_media ?? '',
+
+        photo: '',
+        graphics_maker_id: event.graphics_maker_id ?? null,
+        text_writer_id: event.text_writer_id ?? null,
+        posted: event.posted ?? false,
+
+        // keep the id for update
+        id: event.id
+      };
+
     }
 
     this.isVisible = true;
@@ -64,7 +93,8 @@ export class CreateEventComponent {
     photo: '',
     graphics_maker_id: null,
     text_writer_id: null,
-    posted: false
+    posted: false,
+    id: null as number | null
   };
 
   show() {
@@ -105,7 +135,8 @@ export class CreateEventComponent {
     photo: '',
     graphics_maker_id: null,
     text_writer_id: null,
-    posted: false
+    posted: false,
+    id: null as number | null
   };
 }
 
