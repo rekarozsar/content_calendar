@@ -84,7 +84,7 @@ createEventModal!: CreateEventComponent;
     : null,
 
 
-      due_date: event.date || null,
+      due_date: event.due_date || null,
 
       facebook_post: event.fb_post,
       facebook_event: event.fb_event,
