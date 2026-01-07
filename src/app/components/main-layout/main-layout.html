@@ -7,7 +7,8 @@
     </div>
     <!-- Desktop menu -->
     <ul nz-menu class="top-nav desktop-menu" nzTheme="dark" nzMode="horizontal">
-      <li nz-menu-item>Tasks</li>
+      <li nz-menu-item (click)="showTasks()">Tasks</li>
+      <li nz-menu-item (click)="showCalendar()">Calendar</li>
       <li nz-menu-item *ngIf="isAdmin()" (click)="openNewEvent()">New</li>
       <li nz-menu-item (click)="logout()">Logout</li>
     </ul>
@@ -18,7 +19,8 @@
     </div>
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu nzTheme="dark">
-        <li nz-menu-item>Tasks</li>
+        <li nz-menu-item (click)="showTasks()">Tasks</li>
+        <li nz-menu-item (click)="showCalendar()">Calendar</li>
         <li nz-menu-item *ngIf="isAdmin()" (click)="openNewEvent()">New</li>
         <li nz-menu-item (click)="logout()">Logout</li>
       </ul>
@@ -37,19 +39,10 @@
 
 
       <div class="calendar-comp">
-        <!--
-        <nz-calendar [nzDateCell]="dateCellTemplate" ></nz-calendar>
-
-
-        <ng-template #dateCellTemplate let-date>
-          <div *ngIf="events.get(date.toISOString().split('T')[0]) as dayEvents">
-            <div *ngFor="let event of dayEvents" class="event">{{ event }}</div>
-          </div>
-        </ng-template>
-      -->
-
-      <app-calendar></app-calendar>
+        <app-calendar *ngIf="activeLeftView === 'calendar'"></app-calendar>
+        <app-tasks *ngIf="activeLeftView === 'tasks'"></app-tasks>
       </div>
+
       <div class="tasks-card">
         <app-details></app-details>
         <!--<app-tasks></app-tasks>-->

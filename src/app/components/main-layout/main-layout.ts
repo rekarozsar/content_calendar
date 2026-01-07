@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth';
 import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 import { EventService } from '../../services/event';
+import { TasksComponent } from '../../components/tasks/tasks';
 
 import { MenuOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -35,14 +36,15 @@ import { ApiService } from '../../api';
     NzCardModule,
     CalendarComponent,
     EventDetailsComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    TasksComponent
   ],
   templateUrl: './main-layout.html',
   styleUrls: ['./main-layout.css']
 })
 export class MainLayoutComponent {
   @ViewChild(CreateEventComponent, { static: false })
-createEventModal!: CreateEventComponent;
+  createEventModal!: CreateEventComponent;
 
   constructor(private auth: AuthService, private router: Router, private iconService: NzIconService, private api: ApiService, private eventService: EventService) {
       this.iconService.addIcon(MenuOutline);
@@ -65,6 +67,16 @@ createEventModal!: CreateEventComponent;
       }
   }
   */
+
+  activeLeftView: 'calendar' | 'tasks' = 'calendar';
+
+  showCalendar() {
+    this.activeLeftView = 'calendar';
+  }
+
+  showTasks() {
+    this.activeLeftView = 'tasks';
+  }
 
   addEvent(event: any) {
     console.log('EVENT FROM MODAL:', event);
