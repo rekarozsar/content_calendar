@@ -105,6 +105,13 @@ nz-menu-item {
   width: 100%;
 }
 
+.user-tasks-card {
+  margin: 2rem;
+  background-color: white;
+  padding: 1.5rem;
+  width: 100%;
+}
+
 .title {
   font-size: 1.5rem;
   font-weight: bold;

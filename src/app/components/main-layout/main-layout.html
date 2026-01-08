@@ -10,6 +10,7 @@
       <li nz-menu-item (click)="showTasks()">Tasks</li>
       <li nz-menu-item (click)="showCalendar()">Calendar</li>
       <li nz-menu-item *ngIf="isAdmin()" (click)="openNewEvent()">New</li>
+      <li nz-menu-item *ngIf="isAdmin()">Users</li>
       <li nz-menu-item (click)="logout()">Logout</li>
     </ul>
 
@@ -22,6 +23,7 @@
         <li nz-menu-item (click)="showTasks()">Tasks</li>
         <li nz-menu-item (click)="showCalendar()">Calendar</li>
         <li nz-menu-item *ngIf="isAdmin()" (click)="openNewEvent()">New</li>
+        <li nz-menu-item *ngIf="isAdmin()">Users</li>
         <li nz-menu-item (click)="logout()">Logout</li>
       </ul>
     </nz-dropdown-menu>
@@ -40,7 +42,10 @@
 
       <div class="calendar-comp">
         <app-calendar *ngIf="activeLeftView === 'calendar'"></app-calendar>
-        <app-tasks *ngIf="activeLeftView === 'tasks'"></app-tasks>
+        <div class="user-tasks-card">
+          <app-tasks *ngIf="activeLeftView === 'tasks'"></app-tasks>
+        </div>
+        
       </div>
 
       <div class="tasks-card">
