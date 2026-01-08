@@ -5,7 +5,7 @@ import { AuthService } from '../../services/auth';
 @Component({
   selector: 'app-tasks',
   imports: [
-    AuthService
+    
   ],
   templateUrl: './tasks.html',
   styleUrl: './tasks.css',
