@@ -25,7 +25,7 @@ export class TasksComponent {
       map(tasks => tasks.filter(task => {
         console.log('Checking task for user:', task, 'user id:', this.user?.id);
         console.log('Task graphics maker:', task.graphics_maker, 'Task text writer:', task.text_writer);
-        task.graphics_maker === this.user?.id || task.text_writer === this.user?.id
+        return task.graphics_maker === this.user?.id || task.text_writer === this.user?.id
   }))
     );
     console.log('User tasks set up for user:', this.userTasks$);
