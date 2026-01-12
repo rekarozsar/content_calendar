@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { firstValueFrom, map, Observable } from 'rxjs';
+import { firstValueFrom, map, Observable, combineLatest } from 'rxjs';
 import { AuthService } from '../../services/auth';
 import { TaskService } from '../../services/tasks.service';
 
@@ -14,23 +14,12 @@ import { TaskService } from '../../services/tasks.service';
 })
 export class TasksComponent {
   tasks$!: Observable<any[]>;
+  userTasks$!: Observable<any[]>;
 
   constructor(private auth: AuthService, private taskService: TaskService) {}
   user: any = null;
 
-  userTasks$!: Observable<any[]>;
-
-  ngAfterViewInit() {
-    this.userTasks$ = this.tasks$.pipe(
-      map(tasks => tasks.filter(task => {
-        console.log('Checking task for user:', task, 'user id:', this.user?.id);
-        console.log('Task graphics maker:', task.graphics_maker, 'Task text writer:', task.text_writer);
-        return task.graphics_maker === this.user?.id || task.text_writer === this.user?.id
-  }))
-    );
-    console.log('User tasks set up for user:', this.userTasks$);
-  }
-  
+   
 
   async fetchUser() {
     try {
@@ -46,8 +35,43 @@ export class TasksComponent {
   }
 
   async ngOnInit() {
-    this.tasks$ = this.taskService.tasks$;
-    this.taskService.loadTasks(); 
-    await this.fetchUser();
-  }
+  console.log('[TasksComponent] ngOnInit start');
+
+  this.tasks$ = this.taskService.tasks$;
+  this.taskService.loadTasks();
+  console.log('[TasksComponent] tasks loading triggered');
+
+  await this.fetchUser();
+  console.log('[TasksComponent] user after fetch:', this.user);
+
+  this.userTasks$ = this.tasks$.pipe(
+    map(tasks => {
+      console.log('[userTasks$] all tasks:', tasks);
+
+      if (!this.user) {
+        console.warn('[userTasks$] user is null');
+        return [];
+      }
+
+      const filtered = tasks.filter(task => {
+        const isTextWriter = task.text_writer === this.user!.id;
+        const isGraphicsMaker = task.graphics_maker === this.user!.id;
+
+        console.log('[userTasks$] checking task', {
+          taskId: task.id,
+          text_writer: task.text_writer,
+          graphics_maker: task.graphics_maker,
+          userId: this.user!.id,
+          isTextWriter,
+          isGraphicsMaker
+        });
+
+        return isTextWriter || isGraphicsMaker;
+      });
+
+      console.log('[userTasks$] filtered tasks:', filtered);
+      return filtered;
+    })
+  );
+}
 }
