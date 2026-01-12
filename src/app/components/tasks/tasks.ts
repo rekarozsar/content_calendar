@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../services/auth';
+import { TaskService } from '../../services/tasks.service';
+
 
 @Component({
   selector: 'app-tasks',
@@ -11,8 +13,11 @@ import { AuthService } from '../../services/auth';
   styleUrl: './tasks.css',
 })
 export class TasksComponent {
-  constructor(private auth: AuthService) {}
+  
+  constructor(private auth: AuthService, private taskService: TaskService) {}
   user: any = null;
+
+  
 
   async fetchUser() {
     try {
@@ -28,6 +33,7 @@ export class TasksComponent {
   }
 
   async ngOnInit() {
+    this.taskService.loadTasks(); 
     await this.fetchUser();
   }
 }
