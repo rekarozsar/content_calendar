@@ -11,7 +11,9 @@ export class TaskService {
 
   loadTasks() {
     this.api.getTasks().subscribe({
-      next: tasks => this.tasksSource.next(tasks),
+      next: tasks => { this.tasksSource.next(tasks);
+      console.log('Tasks loaded:', tasks);
+      },
       error: err => console.error('Failed to load tasks:', err)
     });
   }
