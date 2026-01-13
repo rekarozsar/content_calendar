@@ -170,7 +170,64 @@ export class TasksComponent {
   }
 
   async Done(task: any) {
+    if (!this.user) return;
+
+    const isGraphics = task.graphics === this.user.name;
+    const isText = task.text === this.user.name;
+
+    if (!isGraphics && !isText) {
+      alert('You are not assigned to this task.');
+      return;
+    }
+
+    // Determine new values (toggle)
+    const payload: any = {};
+    if (isGraphics) payload.graphics_done = !task.graphics_done;
+    if (isText) payload.text_done = !task.text_done;
+
+    try {
+      const updated = await firstValueFrom(this.api.updateTask(task.id, payload));
+      Object.assign(task, updated);  // merge changes
+
+      // Optionally, recompute roleText (if needed)
+      const g = task.graphics_done ? 'Graphics' : '';
+      const t = task.text_done ? 'Text' : '';
+      task.roleText = g && t ? 'Graphics & Text' : g || t || task.roleText;
+
+    } catch (err) {
+      console.error('Failed to update task:', err);
+      alert('Failed to update task.');
+    }
   }
+
+
+  getDoneText(task: any): string {
+    if (!this.user) return 'Mark as done';
+
+    const isGraphics = task.graphics === this.user.name;
+    const isText = task.text === this.user.name;
+
+    const graphicsDone = isGraphics ? task.graphics_done : false;
+    const textDone = isText ? task.text_done : false;
+
+    // If any role of the current user is done, show "Undo done"
+    if ((isGraphics && graphicsDone) || (isText && textDone)) return 'Undo done';
+    return 'Mark as done';
+  }
+
+  getDoneClass(task: any): string {
+    if (!this.user) return 'not-done-btn';
+
+    const isGraphics = task.graphics === this.user.name;
+    const isText = task.text === this.user.name;
+
+    const graphicsDone = isGraphics ? task.graphics_done : false;
+    const textDone = isText ? task.text_done : false;
+
+    return (graphicsDone || textDone) ? 'done-btn' : 'not-done-btn';
+  }
+
+
 
 
 }

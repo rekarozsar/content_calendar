@@ -37,9 +37,11 @@
     <button class="signoff-btn button-75" (click)="signOff(task); $event.stopPropagation()">
         Cancel task
     </button>
-    <button class="ready-btn button-75" (click)="Done(task); $event.stopPropagation()">
-        Done
+    <button class="ready-btn button-75" [ngClass]="getDoneClass(task)" (click)="Done(task); $event.stopPropagation()">
+        {{ getDoneText(task) }}
     </button>
+
+
     </div>
 
 

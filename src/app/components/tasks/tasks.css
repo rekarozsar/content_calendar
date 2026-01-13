@@ -120,6 +120,11 @@
     margin-top: 1rem;
 }
 
-.ready-btn {
+.done-btn {
     background-image: linear-gradient(135deg, #5fc52e 40%, #6eee87);
 }
+
+.not-done-btn {
+    background-image: linear-gradient(135deg, #484848 40%, #b5b5b5);
+}
+  
