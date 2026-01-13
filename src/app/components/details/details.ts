@@ -125,6 +125,7 @@ export class EventDetailsComponent {
       this.selectedEvent.signUpText = false;
 
       alert('Successfully signed up!');
+      this.eventService.triggerRefresh();
     } catch (err) {
       console.error('Failed to sign up:', err);
       alert('Sign up failed.');

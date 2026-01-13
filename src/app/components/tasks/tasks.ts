@@ -163,6 +163,7 @@ export class TasksComponent {
       else task.roleText = '';
 
       alert('You have been removed from this task.');
+      this.eventService.triggerRefresh();
     } catch (err) {
       console.error('Sign off failed:', err);
       alert('Sign off failed.');
@@ -187,12 +188,15 @@ export class TasksComponent {
 
     try {
       const updated = await firstValueFrom(this.api.updateTask(task.id, payload));
+      
       Object.assign(task, updated);  // merge changes
 
       // Optionally, recompute roleText (if needed)
       const g = task.graphics_done ? 'Graphics' : '';
       const t = task.text_done ? 'Text' : '';
       task.roleText = g && t ? 'Graphics & Text' : g || t || task.roleText;
+
+      this.eventService.triggerRefresh();
 
     } catch (err) {
       console.error('Failed to update task:', err);
