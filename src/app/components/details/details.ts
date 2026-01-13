@@ -96,25 +96,27 @@ export class EventDetailsComponent {
 
     const updatedTask: any = {};
 
-    // If the user checked Graphics and it's still empty
-    if (this.selectedEvent.signUpGraphics && !this.selectedEvent.graphics) {
-      updatedTask.graphics = this.user.id;
+    // Use the backend field names!
+    if (this.selectedEvent.signUpGraphics && !this.selectedEvent.graphics_maker) {
+      updatedTask.graphics_maker = this.user.id;
     }
 
-    // If the user checked Text and it's still empty
-    if (this.selectedEvent.signUpText && !this.selectedEvent.text) {
-      updatedTask.text = this.user.id;
+    if (this.selectedEvent.signUpText && !this.selectedEvent.text_writer) {
+      updatedTask.text_writer = this.user.id;
     }
 
-    // If nothing to update, exit
     if (Object.keys(updatedTask).length === 0) {
       alert('Nothing to sign up for or already taken.');
       return;
     }
 
-    // Call your API to update the task
+    console.log('Updating task with payload:', updatedTask);
+
     try {
       const updated = await firstValueFrom(this.api.updateTask(this.selectedEvent.id, updatedTask));
+      console.log('API response:', updated);
+
+      // Merge the updated fields locally
       this.selectedEvent = { ...this.selectedEvent, ...updated };
       this.eventService.updateSelectedEvent(this.selectedEvent);
 
@@ -128,6 +130,7 @@ export class EventDetailsComponent {
       alert('Sign up failed.');
     }
   }
+
 
 
 
