@@ -1,3 +1,10 @@
+interface AuthUser {
+  id: number;
+  name: string;
+  email: string;
+  admin: boolean;
+}
+
 import { Component, OnInit } from '@angular/core';
 import { firstValueFrom, map, Observable, combineLatest } from 'rxjs';
 import { AuthService } from '../../services/auth';
@@ -17,6 +24,9 @@ import { EventService } from '../../services/event';
   templateUrl: './tasks.html',
   styleUrl: './tasks.css',
 })
+
+
+
 export class TasksComponent {
   tasks: any[] = [];
   userMap = new Map<number, string>();
@@ -34,27 +44,33 @@ export class TasksComponent {
       DiscordOutline
     );
   }
-  user: any = null;
+  user: AuthUser | null = null;
+
 
   selectTask(task: any) {
     this.eventService.selectEvent(task);
   }
 
 
-  async fetchUser() {
+  async fetchUser(): Promise<AuthUser | null> {
     try {
+      // <-- no casting needed here
       const user = await firstValueFrom(this.auth.getUser());
-      this.user = user;
-      console.log('Fetched user:', user);
-      return user;
+
+      this.user = user as AuthUser; // tell TS this is the type we expect
+      return this.user;
     } catch (err) {
-      console.warn('Could not fetch user (not authenticated or error):', err);
+      console.warn('Could not fetch user:', err);
       this.user = null;
       return null;
     }
   }
 
-  ngOnInit() {
+
+
+  async ngOnInit() {
+    const user = await this.fetchUser();
+    if (!user) return;
     // 1. Fetch users first
     this.api.getUsers().subscribe({
       next: users => {
@@ -62,6 +78,10 @@ export class TasksComponent {
         // 2. Then fetch tasks
         this.api.getTasks().subscribe({
           next: tasks => {
+            const filteredTasks = tasks.filter(task =>
+            task.graphics_maker === user.id ||
+            task.text_writer === user.id
+            );
             // 3. Build tasks exactly like CalendarComponent
             this.tasks = tasks.map(task => {
               // determine type
