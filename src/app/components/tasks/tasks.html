@@ -1,22 +1,43 @@
 <div class="tasks-list">
-  <h2>All Tasks</h2>
+  <div *ngFor="let task of tasks" class="task-card">
 
-  <div *ngIf="tasks.length > 0; else noTasks">
-    <div *ngFor="let task of tasks" class="task-item">
-      <h3>{{ task.title }} <span class="type">[{{ task.type }}]</span></h3>
-      <p>{{ task.description }}</p>
-      <p *ngIf="task.date"><strong>Due:</strong> {{ task.date }}</p>
-      <p *ngIf="task.post_by"><strong>Post by:</strong> {{ task.post_by }}</p>
-      <p *ngIf="task.graphics"><strong>Graphics:</strong> {{ task.graphics }} <span *ngIf="task.graphics_done">(done)</span></p>
-      <p *ngIf="task.text"><strong>Text:</strong> {{ task.text }} <span *ngIf="task.text_done">(done)</span></p>
-      <p *ngIf="task.facebook_post || task.facebook_event">Facebook task</p>
-      <p *ngIf="task.instagram_post || task.story">Instagram task</p>
-      <p *ngIf="task.discord_post">Discord task</p>
-      <p *ngIf="task.other_media">Other: {{ task.other_media }}</p>
+    <!-- LEFT SIDE -->
+    <div class="task-main">
+
+      <!-- Title row -->
+      <div class="task-title">
+        {{ task.title }}
+      </div>
+
+      <!-- Post by -->
+      <div class="task-postby" *ngIf="task.post_by">
+        Post by: {{ task.post_by | date:'mediumDate' }}
+      </div>
+
+      <!-- Icons row -->
+      <div class="task-icons">
+        <i *ngIf="task.facebook_post || task.facebook_event"
+           nz-icon nzType="facebook" nzTheme="outline"></i>
+
+        <i *ngIf="task.instagram_post || task.story"
+           nz-icon nzType="instagram" nzTheme="outline"></i>
+
+        <i *ngIf="task.discord_post"
+           nz-icon nzType="discord" nzTheme="outline"></i>
+      </div>
+
+      <!-- Graphics field -->
+      <div class="task-graphics">
+        Graphics
+      </div>
     </div>
-  </div>
 
-  <ng-template #noTasks>
-    <p>No tasks available.</p>
-  </ng-template>
+    <!-- RIGHT SIDE -->
+    <div class="task-actions">
+      <button class="signoff-btn">
+        Sign off
+      </button>
+    </div>
+
+  </div>
 </div>
