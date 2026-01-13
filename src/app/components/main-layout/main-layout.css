@@ -106,6 +106,9 @@ nz-menu-item {
 /* RIGHT = 30% */
 .right-panel {
   flex: 0 0 30%;
+  padding: 5%;
+  background-color: #fff;
+  border-radius: 8px;
 }
 
 .title {

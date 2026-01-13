@@ -91,6 +91,17 @@ export class TasksComponent {
               else if (task.instagram_post || task.story) type = 'instagram';
               else if (task.tiktok) type = 'discord';
 
+              let roleText = '';
+              if (!this.user) roleText = '';
+              else {
+                const isGraphics = task.graphics_maker === this.user.id;
+                const isText = task.text_writer === this.user.id;
+
+                if (isGraphics && isText) roleText = 'Graphics & Text';
+                else if (isGraphics) roleText = 'Graphics';
+                else if (isText) roleText = 'Text';
+              }
+
               return {
                 id: task.id,
                 title: task.title,
@@ -102,6 +113,7 @@ export class TasksComponent {
                 graphics: this.userMap.get(task.graphics_maker) ?? null,
                 text_done: task.text_done,
                 text: this.userMap.get(task.text_writer) ?? null,
+                roleText,
                 facebook_post: task.facebook_post,
                 facebook_event: task.facebook_event,
                 instagram_post: task.instagram_post,
