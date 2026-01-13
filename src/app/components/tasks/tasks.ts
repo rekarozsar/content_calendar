@@ -44,34 +44,8 @@ export class TasksComponent {
   await this.fetchUser();
   console.log('[TasksComponent] user after fetch:', this.user);
 
-  this.userTasks$ = this.tasks$.pipe(
-    map(tasks => {
-      console.log('[userTasks$] all tasks:', tasks);
 
-      if (!this.user) {
-        console.warn('[userTasks$] user is null');
-        return [];
-      }
+      
 
-      const filtered = tasks.filter(task => {
-        const isTextWriter = task.text_writer === this.user!.id;
-        const isGraphicsMaker = task.graphics_maker === this.user!.id;
-
-        console.log('[userTasks$] checking task', {
-          taskId: task.id,
-          text_writer: task.text_writer,
-          graphics_maker: task.graphics_maker,
-          userId: this.user!.id,
-          isTextWriter,
-          isGraphicsMaker
-        });
-
-        return isTextWriter || isGraphicsMaker;
-      });
-
-      console.log('[userTasks$] filtered tasks:', filtered);
-      return filtered;
-    })
-  );
 }
 }
