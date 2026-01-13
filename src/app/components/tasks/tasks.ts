@@ -130,4 +130,44 @@ export class TasksComponent {
       error: err => console.error('ERROR fetching users:', err)
     });
   }
+
+  async signOff(task: any) {
+    if (!this.user) return;
+
+    const payload: any = {};
+
+    // Check which roles the current user has
+    if (task.graphics === this.user.name) payload.graphics_maker = null;
+    if (task.text === this.user.name) payload.text_writer = null;
+
+    if (Object.keys(payload).length === 0) {
+      alert('You are not signed up for this task.');
+      return;
+    }
+
+    try {
+      console.log('Sign off payload:', payload);
+      const updated = await firstValueFrom(this.api.updateTask(task.id, payload));
+      console.log('API response:', updated);
+
+      // Merge the updated fields into the local task object
+      Object.assign(task, updated);
+
+      // Recompute roleText
+      const isGraphics = task.graphics_maker === this.user.id;
+      const isText = task.text_writer === this.user.id;
+
+      if (isGraphics && isText) task.roleText = 'Graphics & Text';
+      else if (isGraphics) task.roleText = 'Graphics';
+      else if (isText) task.roleText = 'Text';
+      else task.roleText = '';
+
+      alert('You have been removed from this task.');
+    } catch (err) {
+      console.error('Sign off failed:', err);
+      alert('Sign off failed.');
+    }
+  }
+
+
 }
