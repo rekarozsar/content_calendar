@@ -5,6 +5,7 @@ import { ApiService } from '../../api';
 import { CommonModule } from '@angular/common';
 import { NzIconModule, NzIconService } from 'ng-zorro-antd/icon';
 import { FacebookOutline, InstagramOutline, DiscordOutline } from '@ant-design/icons-angular/icons';
+import { EventService } from '../../services/event';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class TasksComponent {
   constructor(
     private auth: AuthService,
     private api: ApiService,
-    private iconService: NzIconService
+    private iconService: NzIconService,
+    private eventService: EventService
   ) {
     this.iconService.addIcon(
       FacebookOutline,
@@ -34,7 +36,10 @@ export class TasksComponent {
   }
   user: any = null;
 
-   
+  selectTask(task: any) {
+    this.eventService.selectEvent(task);
+  }
+
 
   async fetchUser() {
     try {

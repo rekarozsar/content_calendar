@@ -90,27 +90,22 @@ nz-menu-item {
   }
 }
 
-.calendar-comp {
-  max-width: 70%;
-}
+
 
 .main-comps {
   display: flex;
   gap: 16px;
 }
 
-.tasks-card {
-  margin: 2rem;
-  background-color: white;
-  padding: 1.5rem;
-  width: 100%;
+
+/* LEFT = 70% */
+.left-panel {
+  flex: 0 0 70%;
 }
 
-.user-tasks-card {
-  margin: 2rem;
-  background-color: white;
-  padding: 1.5rem;
-  width: 100%;
+/* RIGHT = 30% */
+.right-panel {
+  flex: 0 0 30%;
 }
 
 .title {

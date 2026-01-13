@@ -40,7 +40,7 @@
     <div class="main-comps">
 
 
-      <div class="calendar-comp">
+      <div class="right-panel">
         <app-calendar *ngIf="activeLeftView === 'calendar'"></app-calendar>
         <div class="user-tasks-card">
           <app-tasks *ngIf="activeLeftView === 'tasks'"></app-tasks>
@@ -48,7 +48,7 @@
         
       </div>
 
-      <div class="tasks-card">
+      <div class="left-panel">
         <app-details></app-details>
         <!--<app-tasks></app-tasks>-->
       </div>

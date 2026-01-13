@@ -1,7 +1,3 @@
-:host {
-  flex: 0 0 70%;
-}
-
 
 .tasks-list {
   display: flex;

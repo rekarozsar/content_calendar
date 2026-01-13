@@ -1,5 +1,5 @@
 <div class="tasks-list">
-  <div *ngFor="let task of tasks" class="task-card">
+  <div *ngFor="let task of tasks" class="task-card" (click)="selectTask(task)">
 
     <!-- LEFT SIDE -->
     <div class="task-main">
@@ -34,7 +34,7 @@
 
     <!-- RIGHT SIDE -->
     <div class="task-actions">
-      <button class="signoff-btn button-75">
+      <button class="signoff-btn button-75" (click)="$event.stopPropagation()">
         Sign off
       </button>
     </div>
