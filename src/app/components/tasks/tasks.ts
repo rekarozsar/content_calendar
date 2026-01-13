@@ -35,17 +35,12 @@ export class TasksComponent {
   }
 
   async ngOnInit() {
-  console.log('[TasksComponent] ngOnInit start');
+    this.tasks$ = this.taskService.tasks$;
+    this.taskService.loadTasks(); 
+    await this.fetchUser();
 
-  this.tasks$ = this.taskService.tasks$;
-  this.taskService.loadTasks();
-  console.log('[TasksComponent] tasks loading triggered');
-
-  await this.fetchUser();
-  console.log('[TasksComponent] user after fetch:', this.user);
+    console.log('[TasksComponent] user after fetch:', this.user);
 
 
-      
-
-}
+  }
 }
