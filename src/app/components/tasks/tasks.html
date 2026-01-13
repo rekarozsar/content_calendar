@@ -5,8 +5,8 @@
     <div *ngFor="let task of tasks" class="task-item">
       <h3>{{ task.title }} <span class="type">[{{ task.type }}]</span></h3>
       <p>{{ task.description }}</p>
-      <p *ngIf="task.date"><strong>Due:</strong> {{ task.date | date:'mediumDate' }}</p>
-      <p *ngIf="task.post_by"><strong>Post by:</strong> {{ task.post_by | date:'mediumDate' }}</p>
+      <p *ngIf="task.date"><strong>Due:</strong> {{ task.date }}</p>
+      <p *ngIf="task.post_by"><strong>Post by:</strong> {{ task.post_by }}</p>
       <p *ngIf="task.graphics"><strong>Graphics:</strong> {{ task.graphics }} <span *ngIf="task.graphics_done">(done)</span></p>
       <p *ngIf="task.text"><strong>Text:</strong> {{ task.text }} <span *ngIf="task.text_done">(done)</span></p>
       <p *ngIf="task.facebook_post || task.facebook_event">Facebook task</p>
