@@ -40,7 +40,7 @@ export class TasksComponent {
     await this.fetchUser();
 
     console.log('[TasksComponent] user after fetch:', this.user);
-    console.log('[TasksComponent] tasks$ observable set up.');
+    console.log('[TasksComponent] tasks$ observable set up.', this.tasks$);
 
 
   }
