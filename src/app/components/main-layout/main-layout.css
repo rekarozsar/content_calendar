@@ -1,6 +1,4 @@
-:host {
-  display: flex;
-}
+
 
 .app-layout {
   height:auto;
@@ -95,17 +93,19 @@ nz-menu-item {
 .main-comps {
   display: flex;
   gap: 16px;
+  width: 100%;
+
 }
 
 
 /* LEFT = 70% */
 .left-panel {
-  flex: 0 0 70%;
+  flex: 0 0 80%;
 }
 
 /* RIGHT = 30% */
 .right-panel {
-  flex: 0 0 30%;
+  flex: 0 0 20%;
 }
 
 .title {
