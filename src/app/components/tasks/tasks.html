@@ -1,6 +1,8 @@
 <p>jaj faszi</p>
 
 
-<div *ngFor="let task of userTasks$ | async">
-  {{ task.title }}
+<div *ngFor="let task of tasks$ | async">
+  <ng-container *ngIf="task.text_writer && task.graphics_maker">
+    {{ task.title }}
+  </ng-container>
 </div>
