@@ -50,7 +50,7 @@
     </div>
 </div>
 
-<button class="signup-btn button-75" *ngIf="selectedEvent.posted === false && (selectedEvent.graphics === null || selectedEvent.text === null) ">Sign up</button>
+<button class="signup-btn button-75" *ngIf="selectedEvent.posted === false && (selectedEvent.graphics === null || selectedEvent.text === null) " (click)="signUp()">Sign up</button>
 
 <div class="action-buttons">
     <button class="ready-btn button-75" *ngIf="isAdmin" (click)="onPosted()">{{ selectedEvent?.posted ? 'Undo' : 'Posted' }}</button>

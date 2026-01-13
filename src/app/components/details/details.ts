@@ -91,5 +91,44 @@ export class EventDetailsComponent {
     return !!this.user?.admin;
   }
 
+  async signUp() {
+    if (!this.selectedEvent || !this.user) return;
+
+    const updatedTask: any = {};
+
+    // If the user checked Graphics and it's still empty
+    if (this.selectedEvent.signUpGraphics && !this.selectedEvent.graphics) {
+      updatedTask.graphics = this.user.id;
+    }
+
+    // If the user checked Text and it's still empty
+    if (this.selectedEvent.signUpText && !this.selectedEvent.text) {
+      updatedTask.text = this.user.id;
+    }
+
+    // If nothing to update, exit
+    if (Object.keys(updatedTask).length === 0) {
+      alert('Nothing to sign up for or already taken.');
+      return;
+    }
+
+    // Call your API to update the task
+    try {
+      const updated = await firstValueFrom(this.api.updateTask(this.selectedEvent.id, updatedTask));
+      this.selectedEvent = { ...this.selectedEvent, ...updated };
+      this.eventService.updateSelectedEvent(this.selectedEvent);
+
+      // Reset checkboxes
+      this.selectedEvent.signUpGraphics = false;
+      this.selectedEvent.signUpText = false;
+
+      alert('Successfully signed up!');
+    } catch (err) {
+      console.error('Failed to sign up:', err);
+      alert('Sign up failed.');
+    }
+  }
+
+
 
 }
