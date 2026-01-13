@@ -163,6 +163,8 @@ export class TasksComponent {
       else task.roleText = '';
 
       alert('You have been removed from this task.');
+      this.eventService.selectEvent(null); 
+
       this.eventService.triggerRefresh();
     } catch (err) {
       console.error('Sign off failed:', err);
