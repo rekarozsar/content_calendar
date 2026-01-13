@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { firstValueFrom, map, Observable, combineLatest } from 'rxjs';
 import { AuthService } from '../../services/auth';
-import { TaskService } from '../../services/tasks.service';
 import { ApiService } from '../../api';
 import { CommonModule } from '@angular/common';
+import { NzIconModule, NzIconService } from 'ng-zorro-antd/icon';
+import { FacebookOutline, InstagramOutline, DiscordOutline } from '@ant-design/icons-angular/icons';
 
 
 @Component({
   selector: 'app-tasks',
   imports: [
-    CommonModule
+    CommonModule,
+    NzIconModule
   ],
   templateUrl: './tasks.html',
   styleUrl: './tasks.css',
@@ -18,7 +20,18 @@ export class TasksComponent {
   tasks: any[] = [];
   userMap = new Map<number, string>();
 
-  constructor(private auth: AuthService, private api: ApiService) {}
+  
+  constructor(
+    private auth: AuthService,
+    private api: ApiService,
+    private iconService: NzIconService
+  ) {
+    this.iconService.addIcon(
+      FacebookOutline,
+      InstagramOutline,
+      DiscordOutline
+    );
+  }
   user: any = null;
 
    

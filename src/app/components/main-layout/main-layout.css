@@ -96,6 +96,7 @@ nz-menu-item {
 
 .main-comps {
   display: flex;
+  gap: 16px;
 }
 
 .tasks-card {
