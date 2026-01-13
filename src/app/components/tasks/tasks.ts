@@ -169,5 +169,8 @@ export class TasksComponent {
     }
   }
 
+  async Done(task: any) {
+  }
+
 
 }
