@@ -1,13 +1,18 @@
-<h2>All Tasks</h2>
+<div class="tasks-list">
+  <h2>All Tasks</h2>
 
-<div *ngIf="tasks$ | async as tasks">
   <div *ngIf="tasks.length > 0; else noTasks">
-    <div *ngFor="let task of tasks">
-      <p><strong>{{ task.title }}</strong></p>
-      <p>ID: {{ task.id }}</p>
-      <p>Text writer: {{ task.text_writer }}</p>
-      <p>Graphics maker: {{ task.graphics_maker }}</p>
-      <hr />
+    <div *ngFor="let task of tasks" class="task-item">
+      <h3>{{ task.title }} <span class="type">[{{ task.type }}]</span></h3>
+      <p>{{ task.description }}</p>
+      <p *ngIf="task.date"><strong>Due:</strong> {{ task.date | date:'mediumDate' }}</p>
+      <p *ngIf="task.post_by"><strong>Post by:</strong> {{ task.post_by | date:'mediumDate' }}</p>
+      <p *ngIf="task.graphics"><strong>Graphics:</strong> {{ task.graphics }} <span *ngIf="task.graphics_done">(done)</span></p>
+      <p *ngIf="task.text"><strong>Text:</strong> {{ task.text }} <span *ngIf="task.text_done">(done)</span></p>
+      <p *ngIf="task.facebook_post || task.facebook_event">Facebook task</p>
+      <p *ngIf="task.instagram_post || task.story">Instagram task</p>
+      <p *ngIf="task.discord_post">Discord task</p>
+      <p *ngIf="task.other_media">Other: {{ task.other_media }}</p>
     </div>
   </div>
 
