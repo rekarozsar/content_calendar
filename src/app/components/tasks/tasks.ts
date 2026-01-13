@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { firstValueFrom, map, Observable, combineLatest } from 'rxjs';
 import { AuthService } from '../../services/auth';
 import { TaskService } from '../../services/tasks.service';
 import { ApiService } from '../../api';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-tasks',
   imports: [
-    
+    CommonModule
   ],
   templateUrl: './tasks.html',
   styleUrl: './tasks.css',
