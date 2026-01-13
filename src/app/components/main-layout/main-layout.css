@@ -100,12 +100,12 @@ nz-menu-item {
 
 /* LEFT = 70% */
 .left-panel {
-  flex: 0 0 80%;
+  flex: 0 0 70%;
 }
 
 /* RIGHT = 30% */
 .right-panel {
-  flex: 0 0 20%;
+  flex: 0 0 30%;
 }
 
 .title {

@@ -83,7 +83,7 @@ export class TasksComponent {
             task.text_writer === user.id
             );
             // 3. Build tasks exactly like CalendarComponent
-            this.tasks = tasks.map(task => {
+            this.tasks = filteredTasks.map(task => {
               // determine type
               let type = 'other';
               if ((task.facebook_post || task.facebook_event) && (task.instagram_post || task.story)) type = 'facebook_instagram';
