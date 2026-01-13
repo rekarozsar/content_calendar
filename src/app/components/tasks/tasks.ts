@@ -71,58 +71,55 @@ export class TasksComponent {
   async ngOnInit() {
     const user = await this.fetchUser();
     if (!user) return;
-    // 1. Fetch users first
+
+    // Subscribe to refresh
+    this.eventService.refresh$.subscribe(() => {
+      this.loadTasks(); // fetch tasks again
+    });
+
+    this.loadTasks(); // initial load
+  }
+
+
+  async loadTasks() {
+    if (!this.user) return;
+
     this.api.getUsers().subscribe({
       next: users => {
         this.userMap = new Map(users.map(u => [u.id, u.name]));
-        // 2. Then fetch tasks
+
         this.api.getTasks().subscribe({
           next: tasks => {
             const filteredTasks = tasks.filter(task =>
-            task.graphics_maker === user.id ||
-            task.text_writer === user.id
+              task.graphics_maker === this.user!.id ||
+              task.text_writer === this.user!.id
             );
-            // 3. Build tasks exactly like CalendarComponent
+
             this.tasks = filteredTasks.map(task => {
-              // determine type
               let type = 'other';
               if ((task.facebook_post || task.facebook_event) && (task.instagram_post || task.story)) type = 'facebook_instagram';
               else if (task.facebook_post || task.facebook_event) type = 'facebook';
               else if (task.instagram_post || task.story) type = 'instagram';
               else if (task.tiktok) type = 'discord';
 
-              let roleText = '';
-              if (!this.user) roleText = '';
-              else {
-                const isGraphics = task.graphics_maker === this.user.id;
-                const isText = task.text_writer === this.user.id;
+              const isGraphics = task.graphics_maker === this.user!.id;
+              const isText = task.text_writer === this.user!.id;
 
-                if (isGraphics && isText) roleText = 'Graphics & Text';
-                else if (isGraphics) roleText = 'Graphics';
-                else if (isText) roleText = 'Text';
-              }
+              let roleText = '';
+              if (isGraphics && isText) roleText = 'Graphics & Text';
+              else if (isGraphics) roleText = 'Graphics';
+              else if (isText) roleText = 'Text';
 
               return {
-                id: task.id,
-                title: task.title,
-                description: task.description,
-                date: task.due_date,
-                post_by: task.post_by,
+                ...task,
                 type,
-                graphics_done: task.graphics_done,
                 graphics: this.userMap.get(task.graphics_maker) ?? null,
-                text_done: task.text_done,
                 text: this.userMap.get(task.text_writer) ?? null,
-                roleText,
-                facebook_post: task.facebook_post,
-                facebook_event: task.facebook_event,
-                instagram_post: task.instagram_post,
-                story: task.story,
-                discord_post: task.tiktok,
-                other_media: task.other_media ?? null
+                roleText
               };
             });
-            console.log('Tasks built:', this.tasks);
+
+            console.log('Tasks loaded:', this.tasks);
           },
           error: err => console.error('ERROR fetching tasks:', err)
         });
@@ -130,6 +127,7 @@ export class TasksComponent {
       error: err => console.error('ERROR fetching users:', err)
     });
   }
+
 
   async signOff(task: any) {
     if (!this.user) return;
