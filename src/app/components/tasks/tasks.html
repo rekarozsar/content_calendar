@@ -38,6 +38,11 @@
         Cancel task
       </button>
     </div>
+    <div class="task-actions">
+      <button class="ready-btn button-75" (click)="Done(task); $event.stopPropagation()">
+        Done
+      </button>
+    </div>
 
   </div>
 </div>
