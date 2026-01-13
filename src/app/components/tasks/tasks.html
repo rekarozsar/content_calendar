@@ -1,8 +1,8 @@
-<p>jaj faszi</p>
-
-
-<div *ngFor="let task of tasks$ | async">
-  <ng-container *ngIf="task.text_writer && task.graphics_maker">
-    {{ task.title }}
-  </ng-container>
+<div *ngIf="tasks$ | async as tasks">
+  <pre>{{ tasks | json }}</pre> <!-- see everything that comes in -->
+  <div *ngFor="let task of tasks">
+    <ng-container *ngIf="task?.text_writer && task?.graphics_maker">
+      {{ task.title }}
+    </ng-container>
+  </div>
 </div>
