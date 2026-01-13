@@ -1,1 +1,17 @@
-<div>hagyd mar abba</div>
+<h2>All Tasks</h2>
+
+<div *ngIf="tasks$ | async as tasks">
+  <div *ngIf="tasks.length > 0; else noTasks">
+    <div *ngFor="let task of tasks">
+      <p><strong>{{ task.title }}</strong></p>
+      <p>ID: {{ task.id }}</p>
+      <p>Text writer: {{ task.text_writer }}</p>
+      <p>Graphics maker: {{ task.graphics_maker }}</p>
+      <hr />
+    </div>
+  </div>
+
+  <ng-template #noTasks>
+    <p>No tasks available.</p>
+  </ng-template>
+</div>
