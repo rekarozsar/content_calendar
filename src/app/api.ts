@@ -28,6 +28,11 @@ export class ApiService {
     return this.http.put(`/backend/api/users/${id}`, payload);
   }
 
+  deleteUser(id: number) {
+    return this.http.delete(`/api/users/${id}`);
+  }
+
+
   createTask(task: any) {
     return this.http.post('/backend/api/tasks', task);
   }

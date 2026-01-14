@@ -6,6 +6,9 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormsModule } from '@angular/forms';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { AuthService } from '../../services/auth';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -34,7 +37,21 @@ export class UsersComponent implements OnInit {
     email: ''
   };
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private modal: NzModalService, private auth: AuthService,) {}
+  user: any = null;
+
+  async fetchUser() {
+      try {
+        const user = await firstValueFrom(this.auth.getUser());
+        this.user = user;
+        console.log('Fetched user:', user);
+        return user;
+      } catch (err) {
+        console.warn('Could not fetch user (not authenticated or error):', err);
+        this.user = null;
+        return null;
+      }
+    }
 
   ngOnInit() {
     this.loadUsers();
@@ -88,6 +105,30 @@ export class UsersComponent implements OnInit {
       });
     }
   }
+
+  async confirmDelete(user: any) {
+    await this.fetchUser();
+    if (user.id === this.user?.id) {
+      this.modal.warning({
+        nzTitle: 'Action not allowed',
+        nzContent: 'You cannot delete your own account.'
+      });
+      return;
+    }
+    this.modal.confirm({
+      nzTitle: 'Delete user',
+      nzContent: `Are you sure you want to delete <b>${user.name}</b>?`,
+      nzOkText: 'Delete',
+      nzOkDanger: true,
+      nzCancelText: 'Cancel',
+      nzOnOk: () => {
+        return this.api.deleteUser(user.id).toPromise().then(() => {
+          this.loadUsers();
+        });
+      }
+    });
+  }
+
 
 
 }
