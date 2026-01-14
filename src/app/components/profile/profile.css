@@ -108,3 +108,13 @@
   font-size: 3rem;
   margin-bottom: 8px;
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.required {
+  color: red;
+}

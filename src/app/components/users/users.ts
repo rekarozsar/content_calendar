@@ -37,6 +37,8 @@ export class UsersComponent implements OnInit {
     email: ''
   };
 
+  formSubmitted = false;
+
   constructor(private api: ApiService, private modal: NzModalService, private auth: AuthService,) {}
   user: any = null;
 
@@ -81,10 +83,18 @@ export class UsersComponent implements OnInit {
 
   handleCancel() {
     this.isModalVisible = false;
+    this.formSubmitted = false;
   }
 
   handleOk() {
-    if (!this.formUser.name || !this.formUser.email) return;
+    this.formSubmitted = true;
+
+    // stop if invalid
+    if (!this.formUser.name || !this.formUser.email || !this.isEmailValid(this.formUser.email)) {
+      return;
+    }
+
+    
 
     if (this.isEditMode) {
       this.api.updateUser(this.formUser.id, {
@@ -93,6 +103,7 @@ export class UsersComponent implements OnInit {
       }).subscribe(() => {
         this.isModalVisible = false;
         this.loadUsers();
+        this.formSubmitted = false;
       });
     } else {
       this.api.createUser({
@@ -102,6 +113,7 @@ export class UsersComponent implements OnInit {
       }).subscribe(() => {
         this.isModalVisible = false;
         this.loadUsers();
+        this.formSubmitted = false;
       });
     }
   }
@@ -153,7 +165,10 @@ export class UsersComponent implements OnInit {
     }
   }
 
-
+  isEmailValid(email: string): boolean {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
+  }
 
 
 }

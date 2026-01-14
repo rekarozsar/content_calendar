@@ -26,12 +26,27 @@
   nzOkText="Save"
 >
   <ng-template nzModalContent>
+    <form #userForm="ngForm" novalidate>
     <div class="modal-form">
-        <label>Name</label>
-        <input nz-input [(ngModel)]="formUser.name" placeholder="Full name" />
+        <label>Name <span class="required">*</span></label>
+        <input nz-input [(ngModel)]="formUser.name" placeholder="Full name" required #name="ngModel" />
+        <div class="error" *ngIf="name.invalid && (name.touched || formSubmitted)">
+          Name is required
+        </div>
 
-        <label>Email</label>
-        <input nz-input [(ngModel)]="formUser.email" placeholder="Email address" />
+        <label>Email <span class="required">*</span></label>
+        <input nz-input [(ngModel)]="formUser.email" placeholder="Email address" required email #email="ngModel"/>
+        <div class="error" *ngIf="email.invalid && (email.touched || formSubmitted)">
+          <span *ngIf="email.errors?.['required']">Email is required</span>
+          <span *ngIf="email.errors?.['email']">Email must be valid</span>
+        </div>
+    </div>
+    </form>
+  </ng-template>
+  <ng-template #modalFooter>
+    <div class="form-btns">
+      <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+      <button nz-button nzType="primary" (click)="handleOk()">Save</button>
     </div>
   </ng-template>
 
