@@ -73,7 +73,7 @@ export class CalendarComponent implements OnInit {
         graphics,
         text_done: task.text_done,
         text,
-        posted: task.posted ?? false,
+        posted: task.poster ?? false,
         post_by: task.post_by,
         fullyDone
       });
