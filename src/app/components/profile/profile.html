@@ -18,3 +18,34 @@
 <button class="button-75 change-password-btn" (click)="onChangePassword()">
   Change password
 </button>
+
+<nz-modal
+  [(nzVisible)]="isEditModalVisible"
+  nzTitle="Edit profile"
+  (nzOnCancel)="cancelEdit()"
+  (nzOnOk)="saveEdit()"
+>
+  <ng-container *nzModalContent>
+    <label>Username</label>
+    <input nz-input [(ngModel)]="editForm.name" />
+
+    <label>Email</label>
+    <input nz-input [(ngModel)]="editForm.email" />
+  </ng-container>
+</nz-modal>
+
+<!-- CHANGE PASSWORD MODAL -->
+<nz-modal
+  [(nzVisible)]="isPasswordModalVisible"
+  nzTitle="Change password"
+  (nzOnCancel)="cancelChangePassword()"
+  (nzOnOk)="changePassword()"
+>
+  <ng-container *nzModalContent>
+    <label>Old password</label>
+    <input nz-input type="password" [(ngModel)]="passwordForm.old_password" />
+
+    <label>New password</label>
+    <input nz-input type="password" [(ngModel)]="passwordForm.new_password" />
+  </ng-container>
+</nz-modal>
