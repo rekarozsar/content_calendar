@@ -21,7 +21,7 @@
 <nz-modal
   [(nzVisible)]="isModalVisible"
   [nzTitle]="isEditMode ? 'Edit User' : 'New User'"
-  [nzFooter]="null"
+  [nzFooter]="footer"
   nzOkText="Save"
   (nzOnCancel)="handleCancel()"
 >
@@ -42,7 +42,7 @@
     </div>
     </form>
     </ng-template>
-    <ng-template nzModalFooter>
+    <ng-template #footer>
       <div class="form-btns">
         <button
           class="button-75 cancel-btn"

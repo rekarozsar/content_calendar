@@ -23,7 +23,7 @@
 <nz-modal
   [(nzVisible)]="isEditModalVisible"
   nzTitle="Edit profile"
-  [nzFooter]="null"
+  [nzFooter]="footer"
   (nzOnCancel)="cancelEdit()"
 >
 <form #editFormRef="ngForm" novalidate>
@@ -41,7 +41,7 @@
     </div>
     </ng-container>
     </form>
-    <ng-template nzModalFooter>
+    <ng-template #footer>
       <div class="form-btns">
         <button
           class="button-75 cancel-btn"
@@ -67,7 +67,7 @@
 <nz-modal
   [(nzVisible)]="isPasswordModalVisible"
   nzTitle="Change password"
-  [nzFooter]="null"
+  [nzFooter]="footer"
   (nzOnCancel)="cancelChangePassword()"
 >
 <form #passwordFormRef="ngForm" novalidate>
@@ -89,7 +89,7 @@
     </div>
   </ng-container>
   </form>
-   <ng-template nzModalFooter>
+   <ng-template #footer>
       <div class="form-btns">
         <button
           class="button-75 cancel-btn"
