@@ -82,6 +82,9 @@ export class TasksComponent {
 
 
   async loadTasks() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     if (!this.user) return;
 
     this.api.getUsers().subscribe({
@@ -90,10 +93,18 @@ export class TasksComponent {
 
         this.api.getTasks().subscribe({
           next: tasks => {
-            const filteredTasks = tasks.filter(task =>
+            const filteredTasks = tasks.filter(task => {
+            const postByDate = task.post_by ? new Date(task.post_by) : null;
+
+            const isAssigned =
               task.graphics_maker === this.user!.id ||
-              task.text_writer === this.user!.id
-            );
+              task.text_writer === this.user!.id;
+
+            const isTodayOrLater =
+              postByDate && postByDate >= today;
+
+            return isAssigned && isTodayOrLater;
+          });
 
             this.tasks = filteredTasks.map(task => {
               let type = 'other';
@@ -215,8 +226,8 @@ export class TasksComponent {
     const textDone = isText ? task.text_done : false;
 
     // If any role of the current user is done, show "Undo done"
-    if ((isGraphics && graphicsDone) || (isText && textDone)) return 'Undo done';
-    return 'Mark as done';
+    if ((isGraphics && graphicsDone) || (isText && textDone)) return 'Done';
+    return 'Undo done';
   }
 
   getDoneClass(task: any): string {
