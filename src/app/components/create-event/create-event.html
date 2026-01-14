@@ -6,16 +6,19 @@
   [nzFooter]="footer">
 
   <ng-container *nzModalContent>
-    
+    <form #eventForm="ngForm">
     <div class="form-group">
-      <label>Title</label>
-      <input nz-input [(ngModel)]="newEvent.title" />
+      <label>Title <span class="required">*</span></label>
+      <input nz-input [(ngModel)]="newEvent.title" required #title="ngModel" />
+      <div class="error" *ngIf="title.invalid && title.touched">
+        Title is required
+      </div>
     </div>
 
     <div class="form-group select-content">
-      <label class="choicetype">Platforms:</label>
+      <label class="choicetype">Platforms:<span class="required">*</span></label>
 
-      <div class="checkbox-group">
+      <div class="checkbox-group" required>
         <label nz-checkbox [(ngModel)]="newEvent.fb_post">
           Facebook post
         </label>
@@ -43,6 +46,9 @@
         </label>
         -->
       </div>
+      <div class="error" *ngIf="!anyPlatformSelected() && formSubmitted">
+        At least one platform must be selected
+      </div>
     </div>
 
     <div class="form-group">
@@ -51,18 +57,27 @@
     </div>
 
     <div class="form-group select-content">
-      <label class="choicetype">Date of the post</label>
-      <nz-date-picker [(ngModel)]="newEvent.post_by" class="select"></nz-date-picker>
+      <label class="choicetype">Date of the post <span class="required">*</span></label>
+      <nz-date-picker [(ngModel)]="newEvent.post_by" class="select" required></nz-date-picker>
+    </div>
+    <div class="error" *ngIf="!dateOfThePostGiven() && formSubmitted">
+        You must specify the date of the post
+      </div>
+
+    <div class="form-group">
+      <label >Date of the event <span class="required">*</span></label>
+      <input nz-input [(ngModel)]="newEvent.due_date" required />
+      <div class="error" *ngIf="!eventDateGiven() && formSubmitted">
+        You must specify the date of the event
+      </div>
     </div>
 
     <div class="form-group">
-      <label >Date of the event</label>
-      <input nz-input [(ngModel)]="newEvent.due_date" />
-    </div>
-
-    <div class="form-group">
-      <label>Place</label>
-      <input nz-input [(ngModel)]="newEvent.place" />
+      <label>Place <span class="required">*</span> </label>
+      <input nz-input [(ngModel)]="newEvent.place" required />
+      <div class="error" *ngIf="!placeGiven() && formSubmitted">
+        Place is required
+      </div>
     </div>
 
     <div class="form-group">
@@ -110,7 +125,7 @@
       </nz-select>
     </div>
     
-
+  </form>
   </ng-container>
 
   <ng-template #footer>

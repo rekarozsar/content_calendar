@@ -2,9 +2,9 @@
   <div class="profile-row">
     <div>
       <p class="label">Username</p>
-      <p class="value">{{ user.name }}</p>
+      <p class="value username">{{ user.name }}</p>
     </div>
-    <button class="button-75 edit-btn" (click)="openEdit()">Edit</button>
+    
   </div>
 
   <div class="profile-row">
@@ -13,6 +13,7 @@
       <p class="value">{{ user.email }}</p>
     </div>
   </div>
+  <button class="button-75 edit-btn" (click)="openEdit()">Edit</button>
 </div>
 
 <button class="button-75 change-password-btn" (click)="openChangePassword()">

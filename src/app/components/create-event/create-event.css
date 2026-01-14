@@ -56,3 +56,13 @@ label {
   grid-template-columns: repeat(2, 1fr);
   gap: 8px 16px;
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.required {
+  color: red;
+}

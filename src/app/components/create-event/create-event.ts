@@ -27,6 +27,7 @@ import { ApiService } from '../../api';
 })
 export class CreateEventComponent {
   isVisible = false;
+  formSubmitted = false;
 
   isEditMode = false;
 
@@ -70,13 +71,13 @@ export class CreateEventComponent {
         place: event.place ?? '',
         due_date: event.date ?? '',
 
-        // ✅ DATE: string → Date
+        
         post_by: event.post_by
           ? new Date(Date.parse(event.post_by))
           : null,
         
 
-        // ✅ CHECKBOXES: map backend → frontend
+        
         fb_post: !!event.facebook_post,
         fb_event: !!event.facebook_event,
         ig_post: !!event.instagram_post,
@@ -91,7 +92,7 @@ export class CreateEventComponent {
 
         posted: event.posted ?? false,
 
-        // keep the id for update
+        
         id: event.id
       };
 
@@ -142,6 +143,14 @@ async fetchUserList() {
   }
 
   handleOk() {
+    this.formSubmitted = true;
+
+    if (!this.newEvent.title) return;
+    if (!this.anyPlatformSelected()) return;
+    if (!this.dateOfThePostGiven()) return;
+    if (!this.eventDateGiven()) return;
+    if (!this.placeGiven()) return;
+    
     this.eventCreated.emit({
       ...this.newEvent,
       isEditMode: this.isEditMode
@@ -149,35 +158,59 @@ async fetchUserList() {
 
     this.isVisible = false;
     this.resetForm();
+    this.formSubmitted = false;
   }
 
 
   handleCancel() {
     this.isVisible = false;
+    this.formSubmitted = false;
   }
 
   resetForm() {
-  this.newEvent = {
-    type: '',
-    fb_post: false,
-    ig_post: false,
-    discord_post: false,
-    fb_event: false,
-    ig_story: false,
-    other_media: '',
-    title: '',
-    post_by: null,
-    due_date: '',
-    place: '',
-    description: '',
-    caption: '',
-    link: '',
-    photo: '',
-    graphics_maker: null,
-    text_writer: null,
-    posted: false,
-    id: null as number | null
-  };
-}
+    this.newEvent = {
+      type: '',
+      fb_post: false,
+      ig_post: false,
+      discord_post: false,
+      fb_event: false,
+      ig_story: false,
+      other_media: '',
+      title: '',
+      post_by: null,
+      due_date: '',
+      place: '',
+      description: '',
+      caption: '',
+      link: '',
+      photo: '',
+      graphics_maker: null,
+      text_writer: null,
+      posted: false,
+      id: null as number | null
+    };
+  }
+
+  anyPlatformSelected(): boolean {
+      return !!(
+        this.newEvent.fb_post ||
+        this.newEvent.fb_event ||
+        this.newEvent.ig_post ||
+        this.newEvent.ig_story ||
+        this.newEvent.discord_post
+      );
+    }
+
+    dateOfThePostGiven(): boolean {
+      return !!this.newEvent.post_by;
+    }
+
+    eventDateGiven(): boolean {
+      return !!this.newEvent.due_date;
+    }
+
+    placeGiven(): boolean {
+      return !!this.newEvent.place;
+    }
 
 }
