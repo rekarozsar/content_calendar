@@ -53,16 +53,22 @@
 <form #passwordFormRef="ngForm" novalidate>
   <ng-container *nzModalContent>
     <label>Old password <span class="required">*</span></label>
-    <input nz-input type="password" [(ngModel)]="passwordForm.old_password" required #oldPass="ngModel"/>
+    <input nz-input type="password" name="old_password" [(ngModel)]="passwordForm.old_password" required #oldPass="ngModel"/>
     <div class="error" *ngIf="oldPass.invalid && (oldPass.touched || formSubmitted)">
         Old password is required
     </div>
+    <div class="error" *ngIf="formSubmitted && !isOldPasswordCorrect()">
+        Old password is incorrect
+    </div>
 
     <label>New password <span class="required">*</span></label>
-    <input nz-input type="password" [(ngModel)]="passwordForm.new_password" required #newPass="ngModel"/>
+    <input nz-input type="password" name="new_password" [(ngModel)]="passwordForm.new_password" required #newPass="ngModel"/>
     <div class="error" *ngIf="newPass.invalid && (newPass.touched || formSubmitted)">
         New password is required
-      </div>
+    </div>
+    <div class="error" *ngIf="formSubmitted && passwordForm.new_password && passwordForm.new_password.length < 8">
+        New password must be at least 8 characters
+    </div>
   </ng-container>
   </form>
 </nz-modal>
