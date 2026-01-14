@@ -82,21 +82,23 @@ export class EventDetailsComponent {
   async onPosted() {
     if (!this.selectedEvent) return;
 
-    const newPosted = !this.selectedEvent.posted;
+    // Toggle locally
+    const updatedEvent = { ...this.selectedEvent, posted: !this.selectedEvent.posted };
 
     try {
-      const updated = await firstValueFrom(
-        this.api.updateTask(this.selectedEvent.id, { posted: newPosted })
-      );
-      // merge the backend response
+      const updated = await firstValueFrom(this.api.updateTask(this.selectedEvent.id, updatedEvent));
+
+      // Merge response back
       this.selectedEvent = { ...this.selectedEvent, ...updated };
       this.eventService.updateSelectedEvent(this.selectedEvent);
-      this.eventService.triggerRefresh(); // calendar will now rebuild with correct posted
+
+      this.eventService.triggerRefresh(); // calendar rebuilds with posted
     } catch (err) {
       console.error('Failed to update posted:', err);
       alert('Failed to update posted status.');
     }
   }
+
 
 
   get isAdmin(): boolean {
