@@ -20,6 +20,14 @@ export class ApiService {
     return this.http.get<any>(`/backend/api/users/${id}`);
   }
 
+  createUser(user: any) {
+    return this.http.post('/backend/api/users', user);
+  }
+
+  updateUser(id: number, payload: any) {
+    return this.http.put(`/backend/api/users/${id}`, payload);
+  }
+
   createTask(task: any) {
     return this.http.post('/backend/api/tasks', task);
   }

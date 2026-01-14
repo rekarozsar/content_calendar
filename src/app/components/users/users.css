@@ -127,3 +127,10 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   transform: translateY(-1px);
 }
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
