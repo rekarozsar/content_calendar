@@ -124,8 +124,14 @@ export class ProfileComponent implements OnInit {
   }
 
   isEmailValid(email: string): boolean {
-    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/; 
     return pattern.test(email);
+  }
+
+  getEmailError() {
+    if (!this.editForm.email) return 'Email is required';
+    if (!this.isEmailValid(this.editForm.email)) return 'Email must be valid';
+    return null;
   }
 
 }
