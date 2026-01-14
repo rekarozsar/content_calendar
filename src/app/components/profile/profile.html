@@ -24,6 +24,7 @@
   [(nzVisible)]="isEditModalVisible"
   nzTitle="Edit profile"
   [nzFooter]="null"
+  (nzOnCancel)="cancelEdit()"
 >
 <form #editFormRef="ngForm" novalidate>
   <ng-container *nzModalContent>
@@ -39,7 +40,7 @@
           {{ getEmailError() }}
     </div>
     </ng-container>
-  
+    </form>
     <ng-template nzModalFooter>
       <div class="form-btns">
         <button
@@ -59,7 +60,7 @@
       </div>
     </ng-template>
   
-  </form>
+  
 </nz-modal>
 
 <!-- CHANGE PASSWORD MODAL -->
@@ -67,6 +68,7 @@
   [(nzVisible)]="isPasswordModalVisible"
   nzTitle="Change password"
   [nzFooter]="null"
+  (nzOnCancel)="cancelChangePassword()"
 >
 <form #passwordFormRef="ngForm" novalidate>
   <ng-container *nzModalContent>
@@ -86,6 +88,7 @@
         New password must be at least 8 characters
     </div>
   </ng-container>
+  </form>
    <ng-template nzModalFooter>
       <div class="form-btns">
         <button
@@ -104,5 +107,5 @@
         </button>
       </div>
     </ng-template>
-  </form>
+  
 </nz-modal>

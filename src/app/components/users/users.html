@@ -23,6 +23,7 @@
   [nzTitle]="isEditMode ? 'Edit User' : 'New User'"
   [nzFooter]="null"
   nzOkText="Save"
+  (nzOnCancel)="handleCancel()"
 >
   <ng-template nzModalContent>
     <form #userForm="ngForm" novalidate>
@@ -39,6 +40,8 @@
           {{ getEmailError() }}
         </div>
     </div>
+    </form>
+    </ng-template>
     <ng-template nzModalFooter>
       <div class="form-btns">
         <button
@@ -57,8 +60,8 @@
         </button>
       </div>
     </ng-template>
-    </form>
-  </ng-template>
+    
+  
   
   
   
