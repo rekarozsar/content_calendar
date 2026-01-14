@@ -1,4 +1,5 @@
 <div class="users-wrapper">
+  <button class="button-75 new-btn">New User</button>
   <nz-card
     *ngFor="let user of users"
     class="user-card"
@@ -9,10 +10,10 @@
       <div class="admin" *ngIf="user.admin">Admin</div>
     </div>
 
-    <div class="actions">
-      <button nz-button nzType="default" class="button-75 admin-btn">Make Admin</button>
-      <button nz-button nzType="default" class="button-75 edit-btn">Edit</button>
-      <button nz-button nzDanger class="button-75 delete-btn">Delete</button>
+    <div class="user-actions">
+      <button class="button-75 admin-btn">Make Admin</button>
+      <button class="button-75 edit-btn">Edit</button>
+      <button class="button-75 delete-btn">Delete</button>
     </div>
   </nz-card>
 </div>
