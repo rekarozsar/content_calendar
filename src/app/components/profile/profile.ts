@@ -101,18 +101,27 @@ export class ProfileComponent implements OnInit {
     this.isPasswordModalVisible = false;
   }
 
+  /* ---------- CHANGE PASSWORD ---------- */
+
   changePassword() {
     this.formSubmitted = true;
 
-    if (!this.passwordForm.old_password || !this.passwordForm.new_password) {
-      return;
-    }
+    // stop if either field empty
+    if (!this.passwordForm.old_password || !this.passwordForm.new_password) return;
 
+    // check old password
+    if (!this.isOldPasswordCorrect()) return;
+
+    // check new password length
+    if (this.passwordForm.new_password.length < 8) return;
+
+    // payload for API
     const payload = {
       name: this.user.name,
       email: this.user.email,
       password: this.passwordForm.new_password
     };
+
     this.api.updateUser(this.user.id, payload).subscribe({
       next: () => {
         this.isPasswordModalVisible = false;
@@ -122,6 +131,13 @@ export class ProfileComponent implements OnInit {
       error: () => alert('Error updating password')
     });
   }
+
+  // check old password (replace with API call if necessary)
+  isOldPasswordCorrect(): boolean {
+    // If backend stores hashed passwords, do a proper verification via API instead
+    return this.passwordForm.old_password === this.user.password;
+  }
+
 
   isEmailValid(email: string): boolean {
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/; 
