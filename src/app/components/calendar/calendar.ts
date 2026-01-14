@@ -152,7 +152,7 @@ export class CalendarComponent implements OnInit {
                              text_done: boolean, // text done
                              posted: boolean, // poster ???
                              post_by: Date | null, // post_by
-
+                             fullyDone: boolean
                             }[]>
                             
   selectEvent(event: any) {
