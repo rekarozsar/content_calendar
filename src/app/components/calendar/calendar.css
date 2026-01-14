@@ -103,9 +103,9 @@
 
 .event.fully-done {
   box-shadow:
-    0 0 4px var(--glow-color),
-    0 0 16px var(--glow-color),
-    0 0 10px color-mix(in srgb, var(--glow-color) 40%, transparent);
+    0 0 3px rgba(255,255,255,0.1),
+    0 0 6px color-mix(in srgb, var(--glow-color) 50%, transparent),
+    0 0 10px color-mix(in srgb, var(--glow-color) 30%, transparent);
   border: 1px solid var(--glow-color);
 }
 
@@ -114,8 +114,9 @@
 
 
 
+
 .event.posted.fully-done {
-  opacity: 0.7;
+  opacity: 0.4;
   box-shadow: 0 0 6px var(--glow-color);
 }
 
