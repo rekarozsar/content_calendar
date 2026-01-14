@@ -10,7 +10,7 @@
       <li nz-menu-item (click)="showTasks()">Tasks</li>
       <li nz-menu-item (click)="showCalendar()">Calendar</li>
       <li nz-menu-item *ngIf="isAdmin()" (click)="openNewEvent()">New event</li>
-      <li nz-menu-item *ngIf="isAdmin()">Manage users</li>
+      <li nz-menu-item *ngIf="isAdmin()" (click)="showUsers()">Manage users</li>
       <li nz-menu-item (click)="logout()">Logout</li>
     </ul>
 
@@ -23,7 +23,7 @@
         <li nz-menu-item (click)="showTasks()">Tasks</li>
         <li nz-menu-item (click)="showCalendar()">Calendar</li>
         <li nz-menu-item *ngIf="isAdmin()" (click)="openNewEvent()">New event</li>
-        <li nz-menu-item *ngIf="isAdmin()">Manage users</li>
+        <li nz-menu-item *ngIf="isAdmin()" (click)="showUsers()">Manage users</li>
         <li nz-menu-item (click)="logout()">Logout</li>
       </ul>
     </nz-dropdown-menu>
@@ -45,10 +45,10 @@
         <div class="user-tasks-card">
           <app-tasks *ngIf="activeLeftView === 'tasks'"></app-tasks>
         </div>
-        
+        <app-users *ngIf="activeLeftView === 'users'"></app-users>
       </div>
 
-      <div class="right-panel">
+      <div class="right-panel" *ngIf="activeLeftView !== 'users'">
         <app-details></app-details>
         <!--<app-tasks></app-tasks>-->
       </div>

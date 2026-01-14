@@ -96,6 +96,10 @@
   --glow-color: #999;
 }
 
+.event.facebook_instagram {
+  --glow-color: #a32aa3;
+}
+
 
 .event.fully-done {
   box-shadow:

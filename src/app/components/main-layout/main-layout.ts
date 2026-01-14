@@ -14,6 +14,8 @@ import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 import { EventService } from '../../services/event';
 import { TasksComponent } from '../../components/tasks/tasks';
+import { UsersComponent } from '../../components/users/users';
+
 
 import { MenuOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -37,7 +39,8 @@ import { ApiService } from '../../api';
     CalendarComponent,
     EventDetailsComponent,
     CreateEventComponent,
-    TasksComponent
+    TasksComponent,
+    UsersComponent
   ],
   templateUrl: './main-layout.html',
   styleUrls: ['./main-layout.css']
@@ -68,7 +71,7 @@ export class MainLayoutComponent {
   }
   */
 
-  activeLeftView: 'calendar' | 'tasks' = 'calendar';
+  activeLeftView: 'calendar' | 'tasks' | 'users' = 'calendar';
 
   showCalendar() {
     this.activeLeftView = 'calendar';
@@ -77,6 +80,11 @@ export class MainLayoutComponent {
   showTasks() {
     this.activeLeftView = 'tasks';
   }
+
+  showUsers() {
+    this.activeLeftView = 'users';
+  }
+
 
   addEvent(event: any) {
     console.log('EVENT FROM MODAL:', event);

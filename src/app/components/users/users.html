@@ -1,0 +1,18 @@
+<div class="users-wrapper">
+  <nz-card
+    *ngFor="let user of users"
+    class="user-card"
+  >
+    <div class="user-info">
+      <div class="name">{{ user.name }}</div>
+      <div class="email">{{ user.email }}</div>
+      <div class="admin" *ngIf="user.admin">Admin</div>
+    </div>
+
+    <div class="actions">
+      <button nz-button nzType="default">Make Admin</button>
+      <button nz-button nzType="default">Edit</button>
+      <button nz-button nzDanger>Delete</button>
+    </div>
+  </nz-card>
+</div>
