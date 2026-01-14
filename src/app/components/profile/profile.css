@@ -1,0 +1,27 @@
+.profile-card {
+  max-width: 420px;
+  margin-bottom: 16px;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.label {
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+}
+
+.value {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.change-password-btn {
+  width: 100%;
+}

@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { EventService } from '../../services/event';
 import { TasksComponent } from '../../components/tasks/tasks';
 import { UsersComponent } from '../../components/users/users';
+import { ProfileComponent } from '../../components/profile/profile';
 
 
 import { MenuOutline } from '@ant-design/icons-angular/icons';
@@ -40,7 +41,8 @@ import { ApiService } from '../../api';
     EventDetailsComponent,
     CreateEventComponent,
     TasksComponent,
-    UsersComponent
+    UsersComponent,
+    ProfileComponent
   ],
   templateUrl: './main-layout.html',
   styleUrls: ['./main-layout.css']
@@ -71,7 +73,7 @@ export class MainLayoutComponent {
   }
   */
 
-  activeLeftView: 'calendar' | 'tasks' | 'users' = 'calendar';
+  activeLeftView: 'calendar' | 'tasks' | 'users' | 'profile' = 'calendar';
 
   showCalendar() {
     this.activeLeftView = 'calendar';
@@ -84,6 +86,12 @@ export class MainLayoutComponent {
   showUsers() {
     this.activeLeftView = 'users';
   }
+
+  showProfile() {
+  this.activeLeftView = 'profile';
+  this.eventService.updateSelectedEvent(null); 
+}
+
 
 
   addEvent(event: any) {

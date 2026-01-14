@@ -11,6 +11,7 @@
       <li nz-menu-item (click)="showCalendar()">Calendar</li>
       <li nz-menu-item *ngIf="isAdmin()" (click)="openNewEvent()">New event</li>
       <li nz-menu-item *ngIf="isAdmin()" (click)="showUsers()">Manage users</li>
+      <li nz-menu-item (click)="showProfile()">Profile</li>
       <li nz-menu-item (click)="logout()">Logout</li>
     </ul>
 
@@ -24,6 +25,7 @@
         <li nz-menu-item (click)="showCalendar()">Calendar</li>
         <li nz-menu-item *ngIf="isAdmin()" (click)="openNewEvent()">New event</li>
         <li nz-menu-item *ngIf="isAdmin()" (click)="showUsers()">Manage users</li>
+        <li nz-menu-item (click)="showProfile()">Profile</li>
         <li nz-menu-item (click)="logout()">Logout</li>
       </ul>
     </nz-dropdown-menu>
@@ -41,9 +43,11 @@
           <app-tasks *ngIf="activeLeftView === 'tasks'"></app-tasks>
         </div>
         <app-users *ngIf="activeLeftView === 'users'"></app-users>
+        <app-profile *ngIf="activeLeftView === 'profile'"></app-profile>
+
       </div>
 
-      <div class="right-panel" *ngIf="activeLeftView !== 'users'">
+      <div class="right-panel" *ngIf="activeLeftView !== 'users' && activeLeftView !== 'profile'" >
         <app-details></app-details>
         <!--<app-tasks></app-tasks>-->
       </div>

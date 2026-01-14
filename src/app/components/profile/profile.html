@@ -1,0 +1,25 @@
+<nz-card class="profile-card" *ngIf="user">
+  <div class="profile-row">
+    <div>
+      <p class="label">Username</p>
+      <p class="value">{{ user.name }}</p>
+    </div>
+    <button nz-button nzType="default" (click)="onEdit()">Edit</button>
+  </div>
+
+  <div class="profile-row">
+    <div>
+      <p class="label">Email</p>
+      <p class="value">{{ user.email }}</p>
+    </div>
+  </div>
+</nz-card>
+
+<button
+  nz-button
+  nzType="default"
+  class="change-password-btn"
+  (click)="onChangePassword()"
+>
+  Change password
+</button>
