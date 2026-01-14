@@ -1,9 +1,6 @@
 <div class="users-wrapper">
   <button class="button-75 new-btn" (click)="openNewUser()">New User</button>
-  <nz-card
-    *ngFor="let user of users"
-    class="user-card"
-  >
+  <div *ngFor="let user of users" class="user-card" >
     <div class="user-info">
       <div class="name">{{ user.name }}</div>
       <div class="email">{{ user.email }}</div>
@@ -15,7 +12,7 @@
       <button class="button-75 edit-btn" (click)="openEditUser(user)">Edit</button>
       <button class="button-75 delete-btn">Delete</button>
     </div>
-  </nz-card>
+  </div>
 </div>
 
 <nz-modal
