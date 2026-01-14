@@ -23,8 +23,7 @@
 <nz-modal
   [(nzVisible)]="isEditModalVisible"
   nzTitle="Edit profile"
-  (nzOnCancel)="cancelEdit()"
-  (nzOnOk)="saveEdit()"
+  [nzFooter]="null"
 >
 <form #editFormRef="ngForm" novalidate>
   <ng-container *nzModalContent>
@@ -39,14 +38,27 @@
     <div class="error" *ngIf="(email.invalid || getEmailError()) && (email.touched || formSubmitted)">
           {{ getEmailError() }}
     </div>
+    </ng-container>
   
-    <ng-template #footer>
+    <ng-template nzModalFooter>
       <div class="form-btns">
-        <button nz-button nzType="default" (click)="cancelEdit()" class="button-75 cancel-btn">Cancel</button>
-        <button nz-button nzType="primary" (click)="saveEdit()" class="button-75 create-btn">Save</button>
+        <button
+          class="button-75 cancel-btn"
+          type="button"
+          (click)="cancelEdit()"
+        >
+          Cancel
+        </button>
+        <button
+          class="button-75 create-btn"
+          type="button"
+          (click)="saveEdit()"
+        >
+          Save
+        </button>
       </div>
     </ng-template>
-  </ng-container>
+  
   </form>
 </nz-modal>
 
@@ -54,8 +66,7 @@
 <nz-modal
   [(nzVisible)]="isPasswordModalVisible"
   nzTitle="Change password"
-  (nzOnCancel)="cancelChangePassword()"
-  (nzOnOk)="changePassword()"
+  [nzFooter]="null"
 >
 <form #passwordFormRef="ngForm" novalidate>
   <ng-container *nzModalContent>
@@ -75,11 +86,23 @@
         New password must be at least 8 characters
     </div>
   </ng-container>
-   <ng-template #footer>
-    <div class="form-btns">
-      <button nz-button nzType="default" (click)="cancelChangePassword()" class="button-75 cancel-btn">Cancel</button>
-      <button nz-button nzType="primary" (click)="changePassword()" class="button-75 create-btn">Change</button>
-    </div>
-</ng-template>
+   <ng-template nzModalFooter>
+      <div class="form-btns">
+        <button
+          class="button-75 cancel-btn"
+          type="button"
+          (click)="cancelChangePassword()"
+        >
+          Cancel
+        </button>
+        <button
+          class="button-75 create-btn"
+          type="button"
+          (click)="changePassword()"
+        >
+          Change
+        </button>
+      </div>
+    </ng-template>
   </form>
 </nz-modal>
