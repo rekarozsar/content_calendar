@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
   // modals
   isEditModalVisible = false;
   isPasswordModalVisible = false;
+  formSubmitted = false;
 
   // forms
   editForm = {
@@ -69,10 +70,17 @@ export class ProfileComponent implements OnInit {
   }
 
   saveEdit() {
+    this.formSubmitted = true;
+
+    if (!this.editForm.name || !this.editForm.email || !this.isEmailValid(this.editForm.email)) {
+      return;
+    }
+
     this.api.updateUser(this.user.id, this.editForm).subscribe({
       next: async () => {
         this.isEditModalVisible = false;
         await this.loadUser();
+        this.formSubmitted = false;
       },
       error: () => alert('Failed to update profile')
     });
@@ -93,6 +101,12 @@ export class ProfileComponent implements OnInit {
   }
 
   changePassword() {
+    this.formSubmitted = true;
+
+    if (!this.passwordForm.old_password || !this.passwordForm.new_password) {
+      return;
+    }
+
     const payload = {
       name: this.user.name,
       email: this.user.email,
@@ -102,9 +116,15 @@ export class ProfileComponent implements OnInit {
       next: () => {
         this.isPasswordModalVisible = false;
         alert('Password updated successfully');
+        this.formSubmitted = false;
       },
       error: () => alert('Error updating password')
     });
+  }
+
+  isEmailValid(email: string): boolean {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
   }
 
 }
