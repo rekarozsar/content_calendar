@@ -118,3 +118,11 @@
 .required {
   color: red;
 }
+
+.cancel-btn {
+    background-image: linear-gradient(135deg, #943c22 40%, #e01f2d);
+}
+
+.create-btn {
+    background-image: linear-gradient(135deg, #5fc52e 40%, #6eee87);
+}
