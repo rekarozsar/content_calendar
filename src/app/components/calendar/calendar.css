@@ -76,11 +76,41 @@
   opacity: 0.4;
 }
 
+.event.facebook {
+  --glow-color: #1877f2;
+}
+
+.event.instagram {
+  --glow-color: #e1306c;
+}
+
+.event.tiktok {
+  --glow-color: #00f2ea;
+}
+
+.event.discord {
+  --glow-color: #5865f2;
+}
+
+.event.other {
+  --glow-color: #999;
+}
+
+
 .event.fully-done {
   box-shadow:
-    0 0 6px rgba(0, 255, 150, 0.8),
-    0 0 12px rgba(0, 255, 150, 0.6);
-  border: 1px solid rgba(0, 255, 150, 0.9);
+    0 0 6px var(--glow-color),
+    0 0 12px var(--glow-color),
+    0 0 18px color-mix(in srgb, var(--glow-color) 70%, transparent);
+  border: 1px solid var(--glow-color);
 }
+
+
+
+.event.posted.fully-done {
+  opacity: 0.7;
+  box-shadow: 0 0 6px var(--glow-color);
+}
+
 
 
