@@ -26,7 +26,7 @@ export class Login {
   constructor(private fb: FormBuilder, private router: Router, private auth: AuthService, private iconService: NzIconService) {
     this.iconService.addIcon(UserOutline, LockOutline);
     this.loginForm = fb.group({
-      username: fb.control('admin@example.com', [Validators.required, Validators.email]),
+      username: fb.control('admin@example.com', [Validators.required]),
       password: fb.control('password', [Validators.required, Validators.minLength(6)]),
       remember: [false]
     });
