@@ -8,6 +8,7 @@
               <div *ngFor="let e of dayEvents"
                   class="event"
                   [class.posted]="e.posted"
+                  [class.fully-done]="e.fullyDone"
                   [ngClass]="e.type"
                   (click)="selectEvent(e)">
                 <i *ngIf="e.type === 'facebook'" nz-icon nzType="facebook" nzTheme="outline"></i>

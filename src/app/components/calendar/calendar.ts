@@ -49,6 +49,8 @@ export class CalendarComponent implements OnInit {
       // Graphics/text
       const graphics = userMap.get(task.graphics_maker) ?? null;
       const text = userMap.get(task.text_writer) ?? null;
+      const fullyDone = task.graphics_done && task.text_done;
+
 
 
       map.get(dateStr)!.push({
@@ -72,7 +74,8 @@ export class CalendarComponent implements OnInit {
         text_done: task.text_done,
         text,
         posted: false,
-        post_by: task.post_by
+        post_by: task.post_by,
+        fullyDone
       });
     }
 

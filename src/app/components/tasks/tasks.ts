@@ -217,7 +217,7 @@ export class TasksComponent {
 
 
   getDoneText(task: any): string {
-    if (!this.user) return 'Mark as done';
+    if (!this.user) return 'Done';
 
     const isGraphics = task.graphics === this.user.name;
     const isText = task.text === this.user.name;
@@ -226,8 +226,8 @@ export class TasksComponent {
     const textDone = isText ? task.text_done : false;
 
     // If any role of the current user is done, show "Undo done"
-    if ((isGraphics && graphicsDone) || (isText && textDone)) return 'Done';
-    return 'Undo done';
+    if ((isGraphics && graphicsDone) || (isText && textDone)) return 'Undo done';
+    return 'Done';
   }
 
   getDoneClass(task: any): string {
