@@ -39,12 +39,14 @@
     <div class="error" *ngIf="(email.invalid || getEmailError()) && (email.touched || formSubmitted)">
           {{ getEmailError() }}
     </div>
-  </ng-container>
+  
     <ng-template #footer>
       <div class="form-btns">
         <button nz-button nzType="default" (click)="cancelEdit()" class="button-75 cancel-btn">Cancel</button>
         <button nz-button nzType="primary" (click)="saveEdit()" class="button-75 create-btn">Save</button>
       </div>
+    </ng-template>
+  </ng-container>
   </form>
 </nz-modal>
 
