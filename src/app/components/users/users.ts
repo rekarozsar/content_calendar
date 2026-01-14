@@ -129,6 +129,31 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  toggleAdmin(user: any) {
+    if (user.admin) {
+      // Revoke admin
+      this.api.revokeAdminRights(user.id).subscribe({
+        next: () => {
+          user.admin = false; // update UI immediately
+        },
+        error: (err) => {
+          console.error('Failed to revoke admin', err);
+        }
+      });
+    } else {
+      // Grant admin
+      this.api.grantAdminRights(user.id).subscribe({
+        next: () => {
+          user.admin = true; // update UI immediately
+        },
+        error: (err) => {
+          console.error('Failed to grant admin', err);
+        }
+      });
+    }
+  }
+
+
 
 
 }

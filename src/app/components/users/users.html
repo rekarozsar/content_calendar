@@ -8,7 +8,10 @@
     </div>
 
     <div class="user-actions">
-      <button class="button-75 admin-btn">Make Admin</button>
+      <button class="button-75" [ngClass]="user.admin ? 'un-admin-btn' : 'admin-btn'" (click)="toggleAdmin(user); $event.stopPropagation()">
+        {{ user.admin ? 'Revoke Admin' : 'Make Admin' }}
+      </button>
+
       <button class="button-75 edit-btn" (click)="openEditUser(user)">Edit</button>
       <button class="button-75 delete-btn" (click)="confirmDelete(user)">Delete</button>
     </div>

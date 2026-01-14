@@ -32,6 +32,15 @@ export class ApiService {
     return this.http.delete(`/backend/api/users/${id}`);
   }
 
+  grantAdminRights(id: number) {
+    return this.http.post(`/backend/api/users/${id}/grant_admin`, {});
+  }
+
+  revokeAdminRights(id: number) {
+    return this.http.post(`/backend/api/users/${id}/revoke_admin`, {});
+  }
+
+
 
   createTask(task: any) {
     return this.http.post('/backend/api/tasks', task);
