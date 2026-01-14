@@ -22,14 +22,15 @@
   (nzOnOk)="handleOk()"
   nzOkText="Save"
 >
+  <ng-template nzModalContent>
+    <div class="modal-form">
+        <label>Name</label>
+        <input nz-input [(ngModel)]="formUser.name" placeholder="Full name" />
 
-  <div class="modal-form">
-    <label>Name</label>
-    <input nz-input [(ngModel)]="formUser.name" placeholder="Full name" />
-
-    <label>Email</label>
-    <input nz-input [(ngModel)]="formUser.email" placeholder="Email address" />
-  </div>
+        <label>Email</label>
+        <input nz-input [(ngModel)]="formUser.email" placeholder="Email address" />
+    </div>
+  </ng-template>
 
 </nz-modal>
 

@@ -136,6 +136,7 @@
 
 .new-btn {
     background-image: linear-gradient(135deg, #5fc52e 40%, #6eee87);
+    max-width: 30%;
 }
 
 
