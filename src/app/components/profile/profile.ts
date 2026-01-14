@@ -62,6 +62,7 @@ export class ProfileComponent implements OnInit {
       name: this.user.name,
       email: this.user.email
     };
+    this.formSubmitted = false;
     this.isEditModalVisible = true;
   }
 

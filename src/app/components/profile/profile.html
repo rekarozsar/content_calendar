@@ -29,16 +29,15 @@
 <form #editFormRef="ngForm" novalidate>
   <ng-container *nzModalContent>
     <label>Username <span class="required">*</span> </label>
-    <input nz-input [(ngModel)]="editForm.name" required #name="ngModel"/>
+    <input nz-input [(ngModel)]="editForm.name" name="name" required #name="ngModel"/>
     <div class="error" *ngIf="name.invalid && (name.touched || formSubmitted)">
           Name is required
     </div>
 
     <label>Email <span class="required">*</span></label>
-    <input nz-input [(ngModel)]="editForm.email" required email #email="ngModel"/>
-    <div class="error" *ngIf="email.invalid && (email.touched || formSubmitted)">
-          <span *ngIf="email.errors?.['required']">Email is required</span>
-          <span *ngIf="email.errors?.['email']">Email must be valid</span>
+    <input nz-input [(ngModel)]="editForm.email" required name="email" #email="ngModel"/>
+    <div class="error" *ngIf="(email.invalid || getEmailError()) && (email.touched || formSubmitted)">
+          {{ getEmailError() }}
     </div>
   </ng-container>
   </form>
