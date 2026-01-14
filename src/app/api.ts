@@ -29,7 +29,7 @@ export class ApiService {
   }
 
   deleteUser(id: number) {
-    return this.http.delete(`/api/users/${id}`);
+    return this.http.delete(`/backend/api/users/${id}`);
   }
 
 
