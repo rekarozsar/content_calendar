@@ -29,13 +29,13 @@
     <form #userForm="ngForm" novalidate>
     <div class="modal-form">
         <label>Name <span class="required">*</span></label>
-        <input nz-input [(ngModel)]="formUser.name" placeholder="Full name" required #name="ngModel" />
+        <input nz-input [(ngModel)]="formUser.name" name="name" placeholder="Full name" required #name="ngModel" />
         <div class="error" *ngIf="name.invalid && (name.touched || formSubmitted)">
           Name is required
         </div>
 
         <label>Email <span class="required">*</span></label>
-        <input nz-input [(ngModel)]="formUser.email" placeholder="Email address" required #email="ngModel"/>
+        <input nz-input [(ngModel)]="formUser.email" name="email" placeholder="Email address" required #email="ngModel"/>
         <div class="error" *ngIf="(email.invalid || getEmailError()) && (email.touched || formSubmitted)">
           {{ getEmailError() }}
         </div>

@@ -78,10 +78,11 @@ export class UsersComponent implements OnInit {
   openEditUser(user: any) {
     this.isEditMode = true;
     this.formUser = {
-    id: user.id,
-    name: user.name,   
-    email: user.email  
-  };
+      id: user.id,
+      name: user.name,   
+      email: user.email  
+    };
+    this.formSubmitted = false;
     this.isModalVisible = true;
   }
 
