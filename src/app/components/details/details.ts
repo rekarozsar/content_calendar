@@ -82,17 +82,21 @@ export class EventDetailsComponent {
   async onPosted() {
     if (!this.selectedEvent) return;
 
-    const updatedEvent = {
-      ...this.selectedEvent,
-      poster: !this.selectedEvent.poster
-    };
+    const newPostedState = !this.selectedEvent.posted;
 
     try {
       const updated = await firstValueFrom(
-        this.api.updateTask(this.selectedEvent.id, updatedEvent)
+        this.api.updateTask(this.selectedEvent.id, {
+          poster: newPostedState
+        })
       );
 
-      this.selectedEvent = { ...this.selectedEvent, ...updated };
+      // update local frontend state
+      this.selectedEvent = {
+        ...this.selectedEvent,
+        posted: newPostedState
+      };
+
       this.eventService.updateSelectedEvent(this.selectedEvent);
       this.eventService.triggerRefresh();
     } catch (err) {
@@ -100,6 +104,7 @@ export class EventDetailsComponent {
       alert('Failed to update posted status.');
     }
   }
+
 
 
 
