@@ -81,7 +81,7 @@
 }
 
 .event.instagram {
-  --glow-color: #e1306c;
+  --glow-color: #e13094;
 }
 
 .event.tiktok {
@@ -99,11 +99,14 @@
 
 .event.fully-done {
   box-shadow:
-    0 0 6px var(--glow-color),
-    0 0 12px var(--glow-color),
-    0 0 18px color-mix(in srgb, var(--glow-color) 70%, transparent);
+    0 0 4px var(--glow-color),
+    0 0 16px var(--glow-color),
+    0 0 10px color-mix(in srgb, var(--glow-color) 40%, transparent);
   border: 1px solid var(--glow-color);
 }
+
+
+
 
 
 
