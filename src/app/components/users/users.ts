@@ -77,7 +77,11 @@ export class UsersComponent implements OnInit {
 
   openEditUser(user: any) {
     this.isEditMode = true;
-    this.formUser = { ...user };
+    this.formUser = {
+    id: user.id,
+    name: user.name,   
+    email: user.email  
+  };
     this.isModalVisible = true;
   }
 
@@ -166,8 +170,14 @@ export class UsersComponent implements OnInit {
   }
 
   isEmailValid(email: string): boolean {
-    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/; 
     return pattern.test(email);
+  }
+
+  getEmailError() {
+    if (!this.formUser.email) return 'Email is required';
+    if (!this.isEmailValid(this.formUser.email)) return 'Email must be valid';
+    return null;
   }
 
 

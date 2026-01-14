@@ -35,10 +35,9 @@
         </div>
 
         <label>Email <span class="required">*</span></label>
-        <input nz-input [(ngModel)]="formUser.email" placeholder="Email address" required email #email="ngModel"/>
-        <div class="error" *ngIf="email.invalid && (email.touched || formSubmitted)">
-          <span *ngIf="email.errors?.['required']">Email is required</span>
-          <span *ngIf="email.errors?.['email']">Email must be valid</span>
+        <input nz-input [(ngModel)]="formUser.email" placeholder="Email address" required #email="ngModel"/>
+        <div class="error" *ngIf="(email.invalid || getEmailError()) && (email.touched || formSubmitted)">
+          {{ getEmailError() }}
         </div>
     </div>
     </form>
