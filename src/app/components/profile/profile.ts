@@ -93,12 +93,18 @@ export class ProfileComponent implements OnInit {
   }
 
   changePassword() {
-    this.api.updateUser(this.user.id, this.passwordForm).subscribe({
+    const payload = {
+      name: this.user.name,
+      email: this.user.email,
+      password: this.passwordForm.new_password
+    };
+    this.api.updateUser(this.user.id, payload).subscribe({
       next: () => {
         this.isPasswordModalVisible = false;
-        alert('Password updated');
+        alert('Password updated successfully');
       },
-      error: () => alert('Wrong password or error')
+      error: () => alert('Error updating password')
     });
   }
+
 }
