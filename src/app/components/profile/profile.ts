@@ -110,7 +110,7 @@ export class ProfileComponent implements OnInit {
     if (!this.passwordForm.old_password || !this.passwordForm.new_password) return;
 
     // check old password
-    if (!this.isOldPasswordCorrect()) return;
+    //if (!this.isOldPasswordCorrect()) return;
 
     // check new password length
     if (this.passwordForm.new_password.length < 8) return;
@@ -132,11 +132,12 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  // check old password (replace with API call if necessary)
+  /*
+  // this will need to be done in the backend heh
   isOldPasswordCorrect(): boolean {
-    // If backend stores hashed passwords, do a proper verification via API instead
     return this.passwordForm.old_password === this.user.password;
   }
+    */
 
 
   isEmailValid(email: string): boolean {
