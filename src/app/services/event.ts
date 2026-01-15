@@ -37,4 +37,11 @@ export class EventService {
     this.modalEventSource.next({ ...event }); // clone!
   }
 
+  private openDetailsSubject = new Subject<void>();
+  openDetails$ = this.openDetailsSubject.asObservable();
+
+  requestOpenDetails() {
+    this.openDetailsSubject.next();
+  }
+
 }

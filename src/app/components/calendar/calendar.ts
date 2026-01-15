@@ -92,8 +92,6 @@ export class CalendarComponent implements OnInit {
   userMap = new Map<number, string>();
 
   ngOnInit() {
-    this.checkScreen();
-    window.addEventListener('resize', () => this.checkScreen());
     this.api.getUsers().subscribe({
       next: users => {
         this.userMap = new Map(users.map(u => [u.id, u.name]));
@@ -159,27 +157,6 @@ export class CalendarComponent implements OnInit {
                             
   selectEvent(event: any) {
     this.eventService.selectEvent(event);
-
-    if (this.isMobile) {
-      this.openDetails();
-    }
-  }
-
-  isMobile = false;
-
-
-
-  checkScreen() {
-    this.isMobile = window.innerWidth <= 768;
-  }
-
-  detailsOpen = false;
-
-  openDetails() {
-    this.detailsOpen = true;
-  }
-
-  closeDetails() {
-    this.detailsOpen = false;
+    this.eventService.requestOpenDetails();
   }
 }

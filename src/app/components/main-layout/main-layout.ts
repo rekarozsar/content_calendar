@@ -194,6 +194,12 @@ export class MainLayoutComponent {
 
     this.checkScreen();
     window.addEventListener('resize', () => this.checkScreen());
+
+    this.eventService.openDetails$.subscribe(() => {
+      if (this.isMobile) {
+        this.openDetails();
+      }
+    });
   }
 
 

@@ -49,10 +49,8 @@ export class TasksComponent {
 
   selectTask(task: any) {
     this.eventService.selectEvent(task);
+    this.eventService.requestOpenDetails();
     
-    if (this.isMobile) {
-      this.openDetails();
-    }
   }
 
 
@@ -73,8 +71,7 @@ export class TasksComponent {
 
 
   async ngOnInit() {
-    this.checkScreen();
-    window.addEventListener('resize', () => this.checkScreen());
+    
     const user = await this.fetchUser();
     if (!user) return;
 
@@ -247,24 +244,4 @@ export class TasksComponent {
 
     return (graphicsDone || textDone) ? 'done-btn' : 'not-done-btn';
   }
-
-
-  isMobile = false;
-
-
-
-  checkScreen() {
-    this.isMobile = window.innerWidth <= 768;
-  }
-
-  detailsOpen = false;
-
-  openDetails() {
-    this.detailsOpen = true;
-  }
-
-  closeDetails() {
-    this.detailsOpen = false;
-  }
-
 }
