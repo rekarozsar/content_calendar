@@ -21,6 +21,8 @@ import { ProfileComponent } from '../../components/profile/profile';
 
 import { MenuOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+
 
 import { ApiService } from '../../api';
 
@@ -43,7 +45,8 @@ import { ApiService } from '../../api';
     CreateEventComponent,
     TasksComponent,
     UsersComponent,
-    ProfileComponent
+    ProfileComponent,
+    NzDrawerModule
   ],
   templateUrl: './main-layout.html',
   styleUrls: ['./main-layout.css']
@@ -78,10 +81,12 @@ export class MainLayoutComponent {
 
   showCalendar() {
     this.activeLeftView = 'calendar';
+    this.closeDetails();
   }
 
   showTasks() {
     this.activeLeftView = 'tasks';
+    this.closeDetails();
   }
 
   showUsers() {
@@ -186,6 +191,9 @@ export class MainLayoutComponent {
 
   async ngOnInit() {
     await this.fetchUser();
+
+    this.checkScreen();
+    window.addEventListener('resize', () => this.checkScreen());
   }
 
 
@@ -253,4 +261,24 @@ export class MainLayoutComponent {
       console.error('Error during logout/clearing cookies:', err);
     }
   }
+
+  isMobile = false;
+
+
+
+  checkScreen() {
+    this.isMobile = window.innerWidth <= 768;
+  }
+
+  detailsOpen = false;
+
+  openDetails() {
+    this.detailsOpen = true;
+  }
+
+  closeDetails() {
+    this.detailsOpen = false;
+  }
+
+
 }

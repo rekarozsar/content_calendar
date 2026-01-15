@@ -47,14 +47,27 @@
 
       </div>
 
-      <div class="right-panel" *ngIf="activeLeftView !== 'users' && activeLeftView !== 'profile'" >
+      <div class="right-panel" *ngIf="!isMobile && activeLeftView !== 'users' && activeLeftView !== 'profile'" >
         <app-details></app-details>
         <!--<app-tasks></app-tasks>-->
       </div>
     </div>
 
 
-
+    
 
   </nz-content>
+
+  <nz-drawer
+    [nzVisible]="isMobile && detailsOpen"
+    nzPlacement="right"
+    nzTitle="Details"
+    [nzWidth]="'100%'"
+    (nzOnClose)="closeDetails()"
+  >
+    <app-details></app-details>
+  </nz-drawer>
+
 </nz-layout>
+
+
