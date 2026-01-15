@@ -19,7 +19,9 @@ export class EventDetailsComponent {
   selectedEvent: any | null = null;
 
   constructor(private eventService: EventService, private api: ApiService, public auth: AuthService) {
+    console.log('DETAILS CONSTRUCTOR');
     this.eventService.selectedEvent$.subscribe(event => {
+      console.log('DETAILS GOT EVENT:', event);
       this.selectedEvent = event;
       console.log('selectedEvent FROM SERVICE:', event);
     });
@@ -28,6 +30,7 @@ export class EventDetailsComponent {
 
 
    async ngOnInit() {
+    console.log('DETAILS INIT');
     await this.fetchUser();
     console.log('AAAAAAAAAAAAAAAAAAA', this.auth);
   }
