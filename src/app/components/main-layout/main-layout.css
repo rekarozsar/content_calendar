@@ -7,7 +7,8 @@
 
 
 .logo {
-  float: left;
+  display: flex;
+  align-items: center;
   height: 64px;
   padding-right: 24px;
   line-height: 64px;
@@ -140,5 +141,20 @@ nz-menu-item {
 
   .cdk-overlay-pane .ant-dropdown {
     min-width: 0px !important;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    order: 2;
+    margin: 0 auto;
+  }
+
+  .mobile-menu {
+    order: 1;
+    margin-right: auto;
   }
 }
