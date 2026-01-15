@@ -9,7 +9,7 @@
     <form #eventForm="ngForm">
     <div class="form-group">
       <label>Title <span class="required">*</span></label>
-      <input nz-input [(ngModel)]="newEvent.title" required #title="ngModel" />
+      <input nz-input [(ngModel)]="newEvent.title" required #title="ngModel" name="title" />
       <div class="error" *ngIf="title.invalid && title.touched">
         Title is required
       </div>
@@ -19,24 +19,24 @@
       <label class="choicetype">Platforms: <span class="required">*</span></label>
 
       <div class="checkbox-group" required>
-        <label nz-checkbox [(ngModel)]="newEvent.fb_post">
+        <label nz-checkbox [(ngModel)]="newEvent.fb_post" name="fb_post"> >
           Facebook post
         </label>
 
-        <label nz-checkbox [(ngModel)]="newEvent.fb_event">
+        <label nz-checkbox [(ngModel)]="newEvent.fb_event" name="fb_event">
           Facebook event
         </label>
 
-        <label nz-checkbox [(ngModel)]="newEvent.ig_post">
+        <label nz-checkbox [(ngModel)]="newEvent.ig_post" name="ig_post">
           Instagram post
         </label>
 
-        <label nz-checkbox [(ngModel)]="newEvent.ig_story">
+        <label nz-checkbox [(ngModel)]="newEvent.ig_story" name="ig_story">
           Instagram story
         </label>
 
         <!-- FIX IN BACKEND -->
-        <label nz-checkbox [(ngModel)]="newEvent.discord_post">
+        <label nz-checkbox [(ngModel)]="newEvent.discord_post" name="discord_post">
           Discord
         </label>
 
@@ -53,12 +53,12 @@
 
     <div class="form-group">
       <label >Other platforms:</label>
-      <input nz-input [(ngModel)]="newEvent.other_media" />
+      <input nz-input [(ngModel)]="newEvent.other_media" name="other_media" />
     </div>
 
     <div class="form-group select-content">
       <label class="choicetype">Date of the post <span class="required">*</span></label>
-      <nz-date-picker [(ngModel)]="newEvent.post_by" class="select" required></nz-date-picker>
+      <nz-date-picker [(ngModel)]="newEvent.post_by" class="select" required name="post_by"></nz-date-picker>
     </div>
     <div class="error" *ngIf="!dateOfThePostGiven() && formSubmitted">
         You must specify the date of the post
@@ -66,7 +66,7 @@
 
     <div class="form-group">
       <label >Date of the event <span class="required">*</span></label>
-      <input nz-input [(ngModel)]="newEvent.due_date" required />
+      <input nz-input [(ngModel)]="newEvent.due_date" required name="due_date" />
       <div class="error" *ngIf="!eventDateGiven() && formSubmitted">
         You must specify the date of the event
       </div>
@@ -74,7 +74,7 @@
 
     <div class="form-group">
       <label>Place <span class="required">*</span> </label>
-      <input nz-input [(ngModel)]="newEvent.place" required />
+      <input nz-input [(ngModel)]="newEvent.place" required name="place"/>
       <div class="error" *ngIf="!placeGiven() && formSubmitted">
         Place is required
       </div>
@@ -82,7 +82,7 @@
 
     <div class="form-group">
       <label>Description <span class="required">*</span> </label>
-      <textarea nz-input [(ngModel)]="newEvent.description" required></textarea>
+      <textarea nz-input [(ngModel)]="newEvent.description" required name="description"></textarea>
       <div class="error" *ngIf="!newEvent.description && formSubmitted">
         Description is required
       </div>
@@ -90,7 +90,7 @@
 
     <div class="form-group">
       <label>Caption <span class="required">*</span> </label>
-      <input nz-input [(ngModel)]="newEvent.caption" required />
+      <input nz-input [(ngModel)]="newEvent.caption" required name="caption" />
       <div class="error" *ngIf="!newEvent.caption && formSubmitted">
         Caption is required
       </div>
@@ -103,7 +103,8 @@
         nzAllowClear
         nzPlaceHolder="Select graphics maker"
         nzBordered
-        style="width: 100%;">
+        style="width: 100%;" 
+        name="graphics_maker">
         <nz-option
           *ngFor="let user of users"
           [nzValue]="user.id"
@@ -121,7 +122,8 @@
         nzAllowClear
         nzPlaceHolder="Select text writer"
         nzBordered
-        style="width: 100%;">
+        style="width: 100%;"
+        name="text_writer">
         <nz-option
           *ngFor="let user of users"
           [nzValue]="user.id"
