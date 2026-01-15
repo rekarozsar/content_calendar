@@ -37,7 +37,7 @@ export class CreateEventComponent {
 
     // DEBUG
     console.log('EVENT graphics id:', event?.graphics_maker);
-    console.log(event);
+    console.log('event from create-events.ts',event);
     console.log('EVENT text id:', event?.text_writer);
     console.log('USERS:', this.users.map(u => u.id));
 
