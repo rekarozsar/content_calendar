@@ -137,4 +137,8 @@ nz-menu-item {
    nz-content {
     padding: 0.75rem 0.5rem;
   }
+
+  .cdk-overlay-pane .ant-dropdown {
+    min-width: unset !important;
+  }
 }
