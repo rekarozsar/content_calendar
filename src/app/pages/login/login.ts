@@ -10,12 +10,14 @@ import { firstValueFrom } from 'rxjs';
 import { NzIconModule,  NzIconService } from 'ng-zorro-antd/icon';
 import { UserOutline, LockOutline } from '@ant-design/icons-angular/icons';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
 
 
 
 @Component({
   selector: 'app-login',
-  imports: [ ReactiveFormsModule, NzButtonModule, NzInputModule, NzFormModule, NzCheckboxModule, NzIconModule   ],
+  imports: [ CommonModule, ReactiveFormsModule, NzButtonModule, NzInputModule, NzFormModule, NzCheckboxModule, NzIconModule   ],
   standalone: true,
   templateUrl: './login.html',
   styleUrl: './login.css',
