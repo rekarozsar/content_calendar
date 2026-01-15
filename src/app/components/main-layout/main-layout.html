@@ -19,7 +19,7 @@
     <div class="mobile-menu" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" nzPlacement="bottomRight">
       <span nz-icon [nzType]="'menu'" nzTheme="outline" nzColor="#fff" class="menu-icon"></span>
     </div>
-    <nz-dropdown-menu #menu="nzDropdownMenu">
+    <nz-dropdown-menu #menu="nzDropdownMenu" nzPlacement="bottomRight">
       <ul nz-menu nzTheme="dark">
         <li nz-menu-item (click)="showTasks()">Tasks</li>
         <li nz-menu-item (click)="showCalendar()">Calendar</li>

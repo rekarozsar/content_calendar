@@ -133,4 +133,8 @@ nz-menu-item {
   .right-panel {
     display: none; 
   }
+
+   nz-content {
+    padding: 0.75rem 0.5rem;
+  }
 }
