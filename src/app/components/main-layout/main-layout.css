@@ -121,11 +121,13 @@ nz-menu-item {
 @media (max-width: 768px) {
   .main-comps {
     flex-direction: column;
+    margin: 0;
   }
 
   .left-panel {
     flex: 0 0 100%;
     width: 100%;
+    margin: 0;
   }
 
   .right-panel {
