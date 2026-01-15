@@ -61,6 +61,7 @@ export class CreateEventComponent {
         u => u.name === event.text
       );
 
+      console.log('event right before creating newEvent:', event);
 
       this.newEvent = {
         type: '',
@@ -95,6 +96,7 @@ export class CreateEventComponent {
         
         id: event.id
       };
+      console.log('newEvent set to:', this.newEvent);
 
     }
 
