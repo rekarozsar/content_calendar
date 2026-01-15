@@ -64,8 +64,6 @@ export class Login {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401 || err.status === 422) {
           this.error =
-            err.error?.detail ||
-            err.error?.message ||
             'Incorrect email or password';
         } else {
           this.error = 'Something went wrong. Please try again.';
