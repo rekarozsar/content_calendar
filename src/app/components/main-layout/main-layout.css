@@ -139,6 +139,6 @@ nz-menu-item {
   }
 
   .cdk-overlay-pane .ant-dropdown {
-    min-width: unset !important;
+    min-width: 0px !important;
   }
 }
