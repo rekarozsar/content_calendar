@@ -34,7 +34,8 @@ export class EventService {
   }
 
   openEdit(event: any) {
-    this.modalEventSource.next({ ...event }); // clone!
+    this.modalEventSource.next({ ...event }); 
+    console.log('EventService: openEdit called with event:', event);
   }
 
   private openDetailsSubject = new Subject<void>();

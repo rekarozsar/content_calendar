@@ -54,6 +54,7 @@ export class EventDetailsComponent {
     if (!this.selectedEvent) return;
 
     this.eventService.openEdit(this.selectedEvent);
+    console.log('(details.ts)Editing event:', this.selectedEvent);
   }
 
 
