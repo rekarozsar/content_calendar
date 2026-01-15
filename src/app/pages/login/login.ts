@@ -9,6 +9,8 @@ import { AuthService } from '../../services/auth';
 import { firstValueFrom } from 'rxjs';
 import { NzIconModule,  NzIconService } from 'ng-zorro-antd/icon';
 import { UserOutline, LockOutline } from '@ant-design/icons-angular/icons';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 
 @Component({
@@ -56,7 +58,19 @@ export class Login {
       await this.router.navigate(['/main']);
     } catch (err) {
       console.error('Login failed', err);
-      this.error = 'Invalid credentials';
+
+      if (err instanceof HttpErrorResponse) {
+        if (err.status === 401 || err.status === 422) {
+          this.error =
+            err.error?.detail ||
+            err.error?.message ||
+            'Incorrect email or password';
+        } else {
+          this.error = 'Something went wrong. Please try again.';
+        }
+      } else {
+        this.error = 'Unexpected error occurred.';
+      }
     } finally {
       this.loading = false;
     }
